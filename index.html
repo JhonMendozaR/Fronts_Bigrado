@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - Sistema Bigrado</title>
+    <link rel="stylesheet" href="/login.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="login-container">
+        <div class="login-card">
+            <div class="login-header">
+                <div class="logo">
+                    <i class="fas fa-graduation-cap"></i>
+                </div>
+                <h1>Sistema Bigrado</h1>
+                <p>Iniciar Sesión</p>
+            </div>
+            
+            <form id="loginForm" class="login-form">
+                <div class="form-group">
+                    <div class="input-container">
+                        <i class="fas fa-envelope"></i>
+                        <input 
+                            type="email" 
+                            id="correoElectronico" 
+                            name="correoElectronico" 
+                            placeholder="Correo electrónico"
+                            required
+                        >
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <div class="input-container">
+                        <i class="fas fa-lock"></i>
+                        <input 
+                            type="password" 
+                            id="clave" 
+                            name="clave" 
+                            placeholder="Contraseña"
+                            required
+                        >
+                        <button type="button" class="toggle-password" onclick="togglePassword()">
+                            <i class="fas fa-eye" id="toggleIcon"></i>
+                        </button>
+                    </div>
+                </div>
+                
+                <div id="errorMessage" class="error-message"></div>
+                
+                <button type="submit" class="login-btn" id="loginBtn">
+                    <span class="btn-text">Iniciar Sesión</span>
+                    <div class="loading-spinner" style="display: none;"></div>
+                </button>
+            </form>
+            
+            <div class="login-footer">
+                <a href="#" class="forgot-password">¿Olvidaste tu contraseña?</a>
+            </div>
+        </div>
+        
+        <div class="background-shapes">
+            <div class="shape shape-1"></div>
+            <div class="shape shape-2"></div>
+            <div class="shape shape-3"></div>
+        </div>
+    </div>
+    
+    <!-- Modal de éxito -->
+    <div id="successModal" class="modal">
+        <div class="modal-content">
+            <div class="success-icon">
+                <i class="fas fa-check-circle"></i>
+            </div>
+            <h2>¡Bienvenido!</h2>
+            <p id="welcomeMessage">Autenticación exitosa</p>
+            <button onclick="redirectToDashboard()" class="success-btn">Continuar</button>
+        </div>
+    </div>
+    
+    <script src="/login.js"></script>
+</body>
+</html>
