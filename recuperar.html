@@ -3,10 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login - Bigrado</title>
+    <title>Recuperar contraseña - Bigrado</title>
     <link rel="stylesheet" href="/css/styles.css">
     <link rel="icon" href="/img/Logo_Bigrado_negro.svg" type="image/x-icon">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <meta name="description" content="Recupera el acceso a tu cuenta de Bigrado">
 </head>
 <body>
     <div class="login-container">
@@ -59,46 +60,31 @@
                     </svg>
                 </div>
                 <h1>Bigrado</h1>
-                <p>Iniciar Sesión</p>
+                <p>Recuperar contraseña</p>
             </div>
-            
-            <form id="loginForm" class="login-form">
+
+            <form id="recoveryForm" class="login-form" novalidate>
                 <div class="form-group password-group">
                     <div class="input-container">
                         <i class="fas fa-envelope"></i>
-                        <input type="email" id="correoElectronico" name="correoElectronico" placeholder="Correo electrónico" required>
-                    </div>
-                </div>
-                
-                <div class="form-group">
-                    <div class="input-container">
-                        <i class="fas fa-lock"></i>
-                        <input type="password" id="clave" name="clave" placeholder="Contraseña" required>
-                        <button type="button" class="toggle-password" onclick="togglePassword()">
-                            <i class="fas fa-eye" id="toggleIcon"></i>
-                        </button>
+                        <input type="email" id="correoElectronico" name="correoElectronico" placeholder="Correo electrónico" autocomplete="email" required>
                     </div>
                 </div>
 
-                <div class="forgot-container">
-                    <a href="/recuperar.html" class="forgot-password">¿Olvidaste tu contraseña?</a>
-                </div>
-                
                 <div id="errorMessage" class="error-message"></div>
-                
-                <button type="submit" class="login-btn" id="loginBtn">
-                    <span class="btn-text">Iniciar Sesión</span>
+
+                <button type="submit" class="login-btn" id="recoveryBtn">
+                    <span class="btn-text">Enviar instrucciones</span>
                     <div class="loading-spinner" style="display: none;"></div>
                 </button>
             </form>
-            
 
             <div class="login-footer">
-                <p>¿No tienes una cuenta?</p>
-                <a href="/register.html" class="register">Regístrate</a>
+                <p>¿Recordaste tu contraseña?</p>
+                <a href="/index.html" class="register">Inicia sesión</a>
             </div>
         </div>
-        
+
         <div class="background-shapes">
             <div class="shape shape-1"></div>
             <div class="shape shape-2"></div>
@@ -112,12 +98,12 @@
             <div class="success-icon">
                 <i class="fas fa-check-circle"></i>
             </div>
-            <h2>Autenticación exitosa</h2>
-            <p id="welcomeMessage">Autenticación exitosa</p>
-            <button onclick="redirectToDashboard()" class="success-btn">Continuar</button>
+            <h2>Revisa tu correo</h2>
+            <p id="welcomeMessage">Te enviamos las instrucciones para restablecer tu contraseña.</p>
+            <button onclick="redirectToLogin()" class="success-btn">Volver al inicio de sesión</button>
         </div>
     </div>
-    
-    <script src="/js/login.js"></script>
+
+    <script src="/js/recuperar.js"></script>
 </body>
 </html>

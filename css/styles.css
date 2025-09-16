@@ -13,7 +13,6 @@ body {
     align-items: center;
     justify-content: center;
     position: relative;
-    overflow: hidden;
 }
 
 /* Container principal */
@@ -99,6 +98,10 @@ body {
 
 .password-group {
     margin-bottom: 20px;
+}
+
+.register-group {
+    margin-bottom: 10px;
 }
 
 .input-container {

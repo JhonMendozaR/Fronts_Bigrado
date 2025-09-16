@@ -3,10 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login - Bigrado</title>
+    <title>Registro - Bigrado</title>
     <link rel="stylesheet" href="/css/styles.css">
     <link rel="icon" href="/img/Logo_Bigrado_negro.svg" type="image/x-icon">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <meta name="description" content="Crea tu cuenta en Bigrado">
 </head>
 <body>
     <div class="login-container">
@@ -59,46 +60,65 @@
                     </svg>
                 </div>
                 <h1>Bigrado</h1>
-                <p>Iniciar Sesión</p>
+                <p>Crear cuenta</p>
             </div>
-            
-            <form id="loginForm" class="login-form">
-                <div class="form-group password-group">
+
+            <form id="registerForm" class="login-form" novalidate>
+                <div class="register-group">
                     <div class="input-container">
-                        <i class="fas fa-envelope"></i>
-                        <input type="email" id="correoElectronico" name="correoElectronico" placeholder="Correo electrónico" required>
+                        <i class="fas fa-user"></i>
+                        <input type="text" id="nombres" name="nombres" placeholder="Nombres" autocomplete="given-name" required>
                     </div>
                 </div>
-                
-                <div class="form-group">
+
+                <div class="register-group">
+                    <div class="input-container">
+                        <i class="fas fa-user"></i>
+                        <input type="text" id="apellidos" name="apellidos" placeholder="Apellidos" autocomplete="family-name" required>
+                    </div>
+                </div>
+
+                <div class="register-group">
+                    <div class="input-container">
+                        <i class="fas fa-envelope"></i>
+                        <input type="email" id="correoElectronico" name="correoElectronico" placeholder="Correo electrónico" autocomplete="email" required>
+                    </div>
+                </div>
+
+                <div class="register-group">
                     <div class="input-container">
                         <i class="fas fa-lock"></i>
-                        <input type="password" id="clave" name="clave" placeholder="Contraseña" required>
-                        <button type="button" class="toggle-password" onclick="togglePassword()">
-                            <i class="fas fa-eye" id="toggleIcon"></i>
+                        <input type="password" id="clave" name="clave" placeholder="Contraseña" autocomplete="new-password" required>
+                        <button type="button" class="toggle-password" onclick="togglePassword('clave','toggleIcon1')">
+                            <i class="fas fa-eye" id="toggleIcon1"></i>
                         </button>
                     </div>
                 </div>
 
-                <div class="forgot-container">
-                    <a href="/recuperar.html" class="forgot-password">¿Olvidaste tu contraseña?</a>
+                <div class="register-group forgot-container">
+                    <div class="input-container">
+                        <i class="fas fa-lock"></i>
+                        <input type="password" id="confirmarClave" name="confirmarClave" placeholder="Confirmar contraseña" autocomplete="new-password" required>
+                        <button type="button" class="toggle-password" onclick="togglePassword('confirmarClave','toggleIcon2')">
+                            <i class="fas fa-eye" id="toggleIcon2"></i>
+                        </button>
+                    </div>
                 </div>
-                
+
                 <div id="errorMessage" class="error-message"></div>
-                
-                <button type="submit" class="login-btn" id="loginBtn">
-                    <span class="btn-text">Iniciar Sesión</span>
+
+                <button type="submit" class="login-btn" id="registerBtn">
+                    <span class="btn-text">Crear cuenta</span>
                     <div class="loading-spinner" style="display: none;"></div>
                 </button>
             </form>
-            
 
             <div class="login-footer">
-                <p>¿No tienes una cuenta?</p>
-                <a href="/register.html" class="register">Regístrate</a>
+                <p>¿Ya tienes una cuenta?</p>
+                <a href="/index.html" class="register">Inicia sesión</a>
             </div>
         </div>
-        
+
         <div class="background-shapes">
             <div class="shape shape-1"></div>
             <div class="shape shape-2"></div>
@@ -112,12 +132,14 @@
             <div class="success-icon">
                 <i class="fas fa-check-circle"></i>
             </div>
-            <h2>Autenticación exitosa</h2>
-            <p id="welcomeMessage">Autenticación exitosa</p>
-            <button onclick="redirectToDashboard()" class="success-btn">Continuar</button>
+            <h2>Registro exitoso</h2>
+            <p id="welcomeMessage">¡Tu cuenta ha sido creada!</p>
+            <button onclick="redirectToHome()" class="success-btn">Ir al inicio de sesión</button>
         </div>
     </div>
+
+    <script src="/js/register.js"></script>
     
-    <script src="/js/login.js"></script>
 </body>
+        
 </html>

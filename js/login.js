@@ -24,10 +24,10 @@ function showError(message) {
     errorElement.textContent = message;
     errorElement.classList.add('show');
     
-    // Auto-ocultar después de 5 segundos
-    setTimeout(() => {
-        hideError();
-    }, 5000);
+    // // Auto-ocultar después de 5 segundos
+    // setTimeout(() => {
+    //     hideError();
+    // }, 5000);
 }
 
 // Función para ocultar mensajes de error
