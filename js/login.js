@@ -85,40 +85,56 @@ function validateForm(formData) {
     return errors;
 }
 
-// Función para realizar login
+// Simulación de inicio de sesión
 async function performLogin(loginData) {
-    try {
-        const response = await fetch(`${API_BASE_URL}/usuario/login`, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-                'Accept': 'application/json'
-            },
-            body: JSON.stringify(loginData)
-        });
+    return new Promise((resolve) => {
+        setTimeout(() => {
+            resolve({
+                success: true,
+                usuario: {
+                    idUsuario: 1,
+                    nombres: 'Juan',
+                    apellidos: 'Pérez',
+                    correoElectronico: loginData.correoElectronico,
+                    idRol: 2
+                }
+            });
+        }, 1000);
+    });
+
+    // // Descomenta el siguiente bloque para usar una API real
+    // try {
+    //     const response = await fetch(`${API_BASE_URL}/usuario/login`, {
+    //         method: 'POST',
+    //         headers: {
+    //             'Content-Type': 'application/json',
+    //             'Accept': 'application/json'
+    //         },
+    //         body: JSON.stringify(loginData)
+    //     });
         
-        if (!response.ok) {
-            if (response.status === 401) {
-                throw new Error('Credenciales incorrectas');
-            } else if (response.status === 500) {
-                throw new Error('Error interno del servidor');
-            } else {
-                throw new Error(`Error HTTP: ${response.status}`);
-            }
-        }
+    //     if (!response.ok) {
+    //         if (response.status === 401) {
+    //             throw new Error('Credenciales incorrectas');
+    //         } else if (response.status === 500) {
+    //             throw new Error('Error interno del servidor');
+    //         } else {
+    //             throw new Error(`Error HTTP: ${response.status}`);
+    //         }
+    //     }
         
-        const data = await response.json();
-        return data;
+    //     const data = await response.json();
+    //     return data;
         
-    } catch (error) {
-        console.error('Error en login:', error);
+    // } catch (error) {
+    //     console.error('Error en login:', error);
         
-        if (error.name === 'TypeError' && error.message === 'Failed to fetch') {
-            throw new Error('No se puede conectar con el servidor. Verifique que el backend esté ejecutándose.');
-        }
+    //     if (error.name === 'TypeError' && error.message === 'Failed to fetch') {
+    //         throw new Error('No se puede conectar con el servidor. Verifique que el backend esté ejecutándose.');
+    //     }
         
-        throw error;
-    }
+    //     throw error;
+    // }
 }
 
 // Función para mostrar modal de éxito
@@ -141,7 +157,7 @@ function showSuccessModal(userData) {
 function redirectToDashboard() {
     // Aquí puedes redireccionar a la página principal de tu aplicación
     // Por ahora, simplemente recargamos la página o redirigimos a una página de bienvenida
-    window.location.href = '/dashboard.html'; // Cambia esto por tu página principal
+    window.location.href = '/home.html'; // Cambia esto por tu página principal
 }
 
 // Función para guardar datos de usuario en localStorage
