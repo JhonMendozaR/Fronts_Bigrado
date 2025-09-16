@@ -7,7 +7,7 @@
 
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background: linear-gradient(135deg, #3393ff 0%, #54a5ff 100%);
+    background: linear-gradient(135deg, #006de8 0%, #54a5ff 100%);
     min-height: 100vh;
     display: flex;
     align-items: center;
@@ -44,7 +44,7 @@ body {
     left: -50%;
     width: 200%;
     height: 5px;
-    background: linear-gradient(90deg, #006de8, #0055b5, #006de8);
+    background: linear-gradient(90deg, #54a5ff, #0055b5, #54a5ff);
     /* animation: shimmer 3s ease-in-out infinite; */
 }
 
@@ -61,18 +61,53 @@ body {
 .logo {
     width: 80px;
     height: 80px;
-    border-radius: 50%;
+    background: linear-gradient(135deg, #006de8 0%, #54a5ff 100%);
+    border-radius: 12px;
     display: flex;
     align-items: center;
     justify-content: center;
     margin: 0 auto 20px;
+    box-shadow: 0 10px 30px rgba(0, 50, 107, 0.3);
+    position: relative;
+    overflow: hidden; /* Mantiene todo dentro del logo */
+}
+
+/* Efecto de brillo diagonal */
+.logo::before {
+    content: "";
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(
+        120deg,
+        rgba(255, 255, 255, 0) 43%,
+        rgba(255, 255, 255, 0.6) 50%,
+        rgba(255, 255, 255, 0) 57%
+    );
+    transform: rotate(25deg);
+    animation: shine 5s ease-in-out infinite;
+}
+
+/* Animación del reflejo */
+@keyframes shine {
+    0% {
+        transform: translateX(-100%) rotate(25deg);
+    }
+    30% {
+        transform: translateX(100%) rotate(25deg);
+    }
+    100% {
+        transform: translateX(100%) rotate(25deg);
+    }
 }
 
 .icon {
-    max-width: 100%; /* Asegura que la imagen no sea más ancha que el contenedor */
+    max-width: 80%; /* Asegura que la imagen no sea más ancha que el contenedor */
     height: auto;    /* Mantiene la proporción de la imagen */
     display: block;  /* Elimina el espacio extra causado por el comportamiento inline de las imágenes */
-    color: #0078ff;
+    color: white;
 }
 
 .login-header h1 {
@@ -166,7 +201,7 @@ body {
 .login-btn {
     width: 100%;
     padding: 15px;
-    background: #3393ff;
+    background: linear-gradient(135deg, #006de8 0%, #54a5ff 100%);
     color: white;
     border: none;
     border-radius: 12px;
