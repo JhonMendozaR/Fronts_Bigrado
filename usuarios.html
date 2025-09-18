@@ -80,49 +80,54 @@
                 </div>
             </div>
 
-            <!-- Filtros -->
-            <div class="filters-section">
-                <div class="filters-row">
-                    <div class="filter-group">
-                        <label for="search">Buscar Usuario</label>
-                        <input type="text" id="search" placeholder="Nombre, email o teléfono...">
-                    </div>
-                    
-                    <div class="filter-group">
-                        <label for="role-filter">Filtrar por Rol</label>
-                        <select id="role-filter">
-                            <option value="">Todos los roles</option>
-                            <option value="admin">Administrador</option>
-                            <option value="student">Estudiante</option>
-                            <option value="support">Profesional de Apoyo</option>
-                        </select>
-                    </div>
-                    
-                    <div class="filter-group">
-                        <label for="status-filter">Filtrar por Estado</label>
-                        <select id="status-filter">
-                            <option value="">Todos los estados</option>
-                            <option value="active">Activo</option>
-                            <option value="inactive">Inactivo</option>
-                            <option value="pending">Pendiente</option>
-                        </select>
-                    </div>
-                    
-                    <div class="filter-buttons">
-                        <button class="filter-btn primary" onclick="applyFilters()">
-                            <i class="fas fa-search"></i> Buscar
-                        </button>
-                        <button class="filter-btn secondary" onclick="clearFilters()">
-                            <i class="fas fa-times"></i> Limpiar
-                        </button>
-                    </div>
-                </div>
-            </div>
-
             <!-- Tabla de usuarios -->
             <div class="users-table-container">
                 <div class="table-header">
                     <h3>Lista de usuarios</h3>
+                    <button class="filter-toggle-btn" onclick="toggleFilters()">
+                        <i class="fas fa-filter"></i>
+                    </button>
+                </div>
+
+                <!-- Filtros colapsables -->
+                <div class="filters-section" id="filtersSection" style="display: none;">
+                    <div class="filters-row">
+                        <div class="filter-fields-container">
+                            <div class="filter-group">
+                                <label for="search">Buscar Usuario</label>
+                                <input type="text" id="search" placeholder="Nombre, email o teléfono...">
+                            </div>
+                            
+                            <div class="filter-group">
+                                <label for="role-filter">Filtrar por Rol</label>
+                                <select id="role-filter">
+                                    <option value="">Todos los roles</option>
+                                    <option value="admin">Administrador</option>
+                                    <option value="student">Estudiante</option>
+                                    <option value="support">Profesional de Apoyo</option>
+                                </select>
+                            </div>
+                            
+                            <div class="filter-group">
+                                <label for="status-filter">Filtrar por Estado</label>
+                                <select id="status-filter">
+                                    <option value="">Todos los estados</option>
+                                    <option value="active">Activo</option>
+                                    <option value="inactive">Inactivo</option>
+                                    <option value="pending">Pendiente</option>
+                                </select>
+                            </div>
+                        </div>
+                        
+                        <div class="filter-buttons">
+                            <button class="filter-btn primary" onclick="applyFilters()">
+                                <i class="fas fa-search"></i> Buscar
+                            </button>
+                            <button class="filter-btn secondary" onclick="clearFilters()">
+                                <i class="fas fa-times"></i> Limpiar
+                            </button>
+                        </div>
+                    </div>
                 </div>
 
                 <table class="users-table">

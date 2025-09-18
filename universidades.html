@@ -67,54 +67,59 @@
                 </div>
             </div>
 
-            <!-- Filtros -->
-            <div class="filters-section">
-                <div class="filters-row">
-                    <div class="filter-group">
-                        <label>Buscar universidad</label>
-                        <input type="text" placeholder="Nombre de la universidad..." id="searchUniversity">
-                    </div>
-                    
-                    <div class="filter-group">
-                        <label>País</label>
-                        <select id="filterCountry">
-                            <option value="">Todos los países</option>
-                            <option value="colombia">Colombia</option>
-                            <option value="mexico">México</option>
-                            <option value="argentina">Argentina</option>
-                            <option value="chile">Chile</option>
-                            <option value="peru">Perú</option>
-                            <option value="ecuador">Ecuador</option>
-                        </select>
-                    </div>
-                    
-                    <div class="filter-group">
-                        <label>Estado</label>
-                        <select id="filterStatus">
-                            <option value="">Todos los estados</option>
-                            <option value="active">Activa</option>
-                            <option value="review">En revisión</option>
-                            <option value="inactive">Inactiva</option>
-                        </select>
-                    </div>
-                    
-                    <div class="filter-buttons">
-                        <button class="filter-btn primary" onclick="applyFilters()">
-                            <i class="fas fa-search"></i>
-                            Filtrar
-                        </button>
-                        <button class="filter-btn secondary" onclick="clearFilters()">
-                            <i class="fas fa-times"></i>
-                            Limpiar
-                        </button>
-                    </div>
-                </div>
-            </div>
-
             <!-- Tabla de universidades -->
             <div class="users-table-container">
                 <div class="table-header">
                     <h3>Lista de universidades</h3>
+                    <button class="filter-toggle-btn" onclick="toggleFilters()">
+                        <i class="fas fa-filter"></i>
+                    </button>
+                </div>
+
+                <!-- Filtros colapsables -->
+                <div class="filters-section" id="filtersSection" style="display: none;">
+                    <div class="filters-row">
+                        <div class="filter-fields-container">
+                            <div class="filter-group">
+                                <label for="search">Buscar universidad</label>
+                                <input type="text" placeholder="Nombre de la universidad..." id="searchUniversity">
+                            </div>
+                            
+                            <div class="filter-group">
+                                <label>País</label>
+                                <select id="filterCountry">
+                                    <option value="">Todos los países</option>
+                                    <option value="colombia">Colombia</option>
+                                    <option value="mexico">México</option>
+                                    <option value="argentina">Argentina</option>
+                                    <option value="chile">Chile</option>
+                                    <option value="peru">Perú</option>
+                                    <option value="ecuador">Ecuador</option>
+                                </select>
+                            </div>
+                            
+                            <div class="filter-group">
+                                <label>Estado</label>
+                                <select id="filterStatus">
+                                    <option value="">Todos los estados</option>
+                                    <option value="active">Activa</option>
+                                    <option value="review">En revisión</option>
+                                    <option value="inactive">Inactiva</option>
+                                </select>
+                            </div>
+                        </div>
+                            
+                        <div class="filter-buttons">
+                            <button class="filter-btn primary" onclick="applyFilters()">
+                                <i class="fas fa-search"></i>
+                                Buscar
+                            </button>
+                            <button class="filter-btn secondary" onclick="clearFilters()">
+                                <i class="fas fa-times"></i>
+                                Limpiar
+                            </button>
+                        </div>
+                    </div>
                 </div>
 
                 <table class="users-table">

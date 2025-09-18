@@ -11,7 +11,7 @@ function toggleDropdown(button) {
 
     // Cerrar dropdown al hacer clic fuera
     document.addEventListener('click', function(event) {
-        if (!event.target.closest('.actions-menu')) {
+        if (!button.contains(event.target) && !dropdown.contains(event.target)) {
             dropdown.classList.remove('show');
         }
     });
@@ -692,6 +692,29 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 // Funciones para filtros
+function toggleFilters() {
+    const filtersSection = document.getElementById('filtersSection');
+    const toggleBtn = document.querySelector('.filter-toggle-btn');
+    const icon = toggleBtn.querySelector('i');
+    
+    if (filtersSection.style.display === 'none' || !filtersSection.style.display) {
+        // Mostrar filtros
+        filtersSection.style.display = 'block';
+        toggleBtn.classList.add('active');
+        icon.classList.remove('fa-filter');
+        icon.classList.add('fa-filter-circle-xmark');
+    } else {
+        // Ocultar filtros y limpiarlos
+        filtersSection.style.display = 'none';
+        toggleBtn.classList.remove('active');
+        icon.classList.remove('fa-filter-circle-xmark');
+        icon.classList.add('fa-filter');
+        
+        // Limpiar los filtros automáticamente
+        clearFilters();
+    }
+}
+
 function applyFilters() {
     const searchTerm = document.getElementById('searchUniversity').value;
     const country = document.getElementById('filterCountry').value;
@@ -707,11 +730,7 @@ function clearFilters() {
     document.getElementById('searchUniversity').value = '';
     document.getElementById('filterCountry').value = '';
     document.getElementById('filterStatus').value = '';
-    
     console.log('Filtros limpiados');
-    
-    // Aquí puedes agregar la lógica para mostrar todos los datos
-    alert('Filtros limpiados');
 }
 
 // Función para descargar documento

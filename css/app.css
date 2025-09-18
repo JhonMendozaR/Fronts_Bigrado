@@ -397,23 +397,46 @@ body {
 /* Filtros */
 .filters-section {
     background: #fff;
-    border-radius: 12px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
-    margin-bottom: 18px;
-    padding: 14px 16px;
+    border-radius: 0;
+    box-shadow: none;
+    margin-bottom: 0;
+    padding: 10px 16px;
+    border-bottom: 1px solid #e9ecef;
+    transition: all 0.3s ease;
+}
+
+/* Cuando los filtros están en la tabla (nueva ubicación) */
+.users-table-container .filters-section {
+    background: #f8f9fa;
+    border-radius: 0;
+    border-top: none;
+    border-bottom: 1px solid #e9ecef;
 }
 
 .filters-row {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    display: flex;
     gap: 14px;
     align-items: end;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    justify-content: space-between;
+}
+
+.filter-fields-container {
+    display: flex;
+    gap: 14px;
+    align-items: end;
+    flex: 1;
+    min-width: 0;
+    overflow-x: auto;
 }
 
 .filter-group {
     display: flex;
     flex-direction: column;
     gap: 8px;
+    min-width: 180px;
+    flex-shrink: 0;
 }
 
 .filter-group label {
@@ -440,6 +463,9 @@ body {
 .filter-buttons {
     display: flex;
     gap: 10px;
+    flex-shrink: 0;
+    align-items: end;
+    padding-bottom: 2px;
 }
 
 .filter-btn {
@@ -474,7 +500,7 @@ body {
 }
 
 .table-header {
-    padding: 14px 16px;
+    padding: 12px 16px;
     border-bottom: 1px solid #e9ecef;
     display: flex;
     justify-content: space-between;
@@ -485,6 +511,36 @@ body {
     color: #333;
     font-size: 1rem;
     font-weight: 600;
+}
+
+/* Botón de filtros */
+.filter-toggle-btn {
+    background: #f8f9fa;
+    border: 1px solid #f8f9fa;
+    color: #495057;
+    padding: 8px 16px;
+    border-radius: 8px;
+    font-size: 0.9rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: all 0.3s ease;
+}
+
+.filter-toggle-btn:hover {
+    background: #e9ecef;
+    border-color: #e9ecef;
+}
+
+.filter-toggle-btn.active {
+    background: #3393ff;
+    border-color: #3393ff;
+    color: white;
+}
+
+.filter-toggle-btn i {
+    font-size: 0.9rem;
 }
 
 .table-info {

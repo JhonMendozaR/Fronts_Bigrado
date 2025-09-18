@@ -758,6 +758,29 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 // Funciones para filtros
+function toggleFilters() {
+    const filtersSection = document.getElementById('filtersSection');
+    const toggleBtn = document.querySelector('.filter-toggle-btn');
+    const icon = toggleBtn.querySelector('i');
+    
+    if (filtersSection.style.display === 'none' || !filtersSection.style.display) {
+        // Mostrar filtros
+        filtersSection.style.display = 'block';
+        toggleBtn.classList.add('active');
+        icon.classList.remove('fa-filter');
+        icon.classList.add('fa-filter-circle-xmark');
+    } else {
+        // Ocultar filtros y limpiarlos
+        filtersSection.style.display = 'none';
+        toggleBtn.classList.remove('active');
+        icon.classList.remove('fa-filter-circle-xmark');
+        icon.classList.add('fa-filter');
+        
+        // Limpiar los filtros automáticamente
+        clearFilters();
+    }
+}
+
 function applyFilters() {
     const search = document.getElementById('search').value;
     const role = document.getElementById('role-filter').value;
