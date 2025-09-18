@@ -19,9 +19,50 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    position: sticky;
+    position: fixed;
     top: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
     z-index: 1000;
+    height: 60px;
+    box-sizing: border-box;
+    transition: box-shadow 0.3s ease;
+}
+
+/* Efecto cuando se hace scroll */
+.topbar.scrolled {
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+}
+
+/* Botón hamburguesa - Oculto por defecto */
+.hamburger-menu {
+    display: none;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    z-index: 1001;
+    border-radius: 6px;
+    transition: all 0.3s ease;
+}
+
+.hamburger-menu:hover {
+    background: rgba(0, 0, 0, 0.1);
+}
+
+.hamburger-menu i {
+    font-size: 18px;
+    color: #333;
+    transition: all 0.3s ease;
+}
+
+.hamburger-menu.active i:before {
+    content: "\f00d"; /* Font Awesome X icon */
 }
 
 .topbar-left {
@@ -54,7 +95,7 @@ body {
 
 .brand-text h2 {
     color: #333;
-    font-size: 1rem;
+    font-size: 1.3rem;
     font-weight: 600;
 }
 
@@ -175,18 +216,28 @@ body {
 /* Layout principal */
 .main-layout {
     display: flex;
-    min-height: calc(100vh - 70px);
+    min-height: calc(100vh - 60px);
+    margin-top: 60px; /* Espacio para el topbar fijo */
 }
 
 /* Sidebar */
 .sidebar {
     position: fixed;
-    height: 100vh;  
+    top: 60px; /* Posicionar debajo del topbar */
+    left: 0;
+    height: calc(100vh - 60px); /* Altura menos el topbar */
     width: 250px;
     background: #fff;
     box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
     padding: 25px 0;
-    overflow-y: auto; 
+    overflow-y: auto;
+    z-index: 999; /* Menor que el topbar */
+    transition: transform 0.3s ease;
+}
+
+/* Sidebar oculto en móvil */
+.sidebar.mobile-hidden {
+    transform: translateX(-100%);
 }
 
 .sidebar-menu {
@@ -419,7 +470,7 @@ body {
     background: #fff;
     border-radius: 12px;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
-    overflow: hidden;
+    overflow: visible;
 }
 
 .table-header {
@@ -553,6 +604,11 @@ body {
     color: #28a745;
 }
 
+.status-badge.pending {
+    background: #ffc10720;
+    color: #e0a800;
+}
+
 .status-badge.inactive {
     background: #dc354520;
     color: #dc3545;
@@ -563,8 +619,6 @@ body {
     position: relative;
     display: flex;
     justify-content: flex-end;
-    
-    
 }
 
 .actions-button {
@@ -687,23 +741,67 @@ body {
 }
 
 @media (max-width: 768px) {
+    /* Mostrar botón hamburguesa */
+    .hamburger-menu {
+        display: flex;
+    }
+
+    /* Layout principal */
     .main-layout {
-        flex-direction: column;
+        margin-top: 60px; /* Ajustar según el topbar */
     }
 
+    /* Sidebar en móvil */
     .sidebar {
-        width: 100%;
-        order: 2;
+        transform: translateX(-100%); /* Oculto por defecto */
+        z-index: 999; /* Por encima del topbar en móvil */
     }
 
+    .sidebar.show {
+        transform: translateX(0); /* Mostrar cuando se active */
+    }
+
+    /* Contenido principal */
     .main-content {
         padding: 15px;
+        margin-left: 0; /* Sin margen lateral en móvil */
     }
 
+    /* Topbar en móvil */
     .topbar {
-        flex-direction: column;
-        gap: 15px;
-        padding: 15px;
+        padding: 10px 15px;
+        height: 60px;
+    }
+
+    /* Overlay para cerrar sidebar en móvil */
+    .sidebar-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.5);
+        z-index: 998;
+        display: none;
+    }
+
+    .sidebar-overlay.show {
+        display: block;
+    }
+
+    /* Mejorar la experiencia en móvil */
+    .brand-text h2 {
+        font-size: 1.3rem;
+    }
+
+    .brand-text p {
+        font-size: 0.8rem;
+    }
+
+    /* Ajustar el logo en móvil */
+    .logo {
+        width: 35px;
+        height: 35px;
     }
 
     .summary-cards {

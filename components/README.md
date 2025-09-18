@@ -2,31 +2,38 @@
 
 This document explains how to use the reusable component system for the Bigrado application.
 
-## Components Created
+## Features
 
 ### 1. Topbar Component (`/components/topbar.html`)
 Contains the top navigation bar with:
 - Bigrado logo and branding
 - User dropdown menu with settings and logout options
+- **Hamburger menu button** (visible only on mobile devices)
 
 ### 2. Sidebar Component (`/components/sidebar.html`)
 Contains the main navigation sidebar with:
 - Navigation menu items
 - Icons for each section
 - Active state support
+- **Responsive behavior**: Fixed on desktop, slide-out on mobile
 
 ### 3. Component Loader (`/js/components.js`)
 JavaScript utility that automatically loads and inserts components into your pages.
+- **Mobile sidebar management**: Toggle functionality for mobile devices
+- **Responsive detection**: Automatically handles screen size changes
 
 ## How to Use Components in Your Pages
 
 ### Basic Setup
 
-1. **Add the component containers** to your HTML:
+1. **Add the component containers and overlay** to your HTML:
 ```html
 <body data-page="your-page-identifier">
     <!-- Topbar Container -->
     <div id="topbar-container"></div>
+
+    <!-- Sidebar Overlay para móvil -->
+    <div class="sidebar-overlay" id="sidebarOverlay" onclick="toggleSidebar()"></div>
 
     <!-- Layout principal -->
     <div class="main-layout">
@@ -95,6 +102,28 @@ updateSidebarActive('page-identifier');
 3. **Consistency**: Ensures all pages have the same navigation structure
 4. **Performance**: Components are cached after first load
 5. **Active State Management**: Automatically highlights the current page in navigation
+6. **🆕 Responsive Design**: 
+   - **Desktop**: Fixed sidebar always visible
+   - **Mobile (≤768px)**: Sidebar hidden by default with hamburger menu toggle
+   - **Smooth transitions**: Animated sidebar slide-in/out
+   - **Overlay**: Dark overlay when sidebar is open on mobile
+   - **Auto-close**: Sidebar automatically closes when resizing to desktop
+
+## Mobile Behavior
+
+### Desktop (>768px)
+- Sidebar is always visible and fixed
+- Hamburger menu is hidden
+- Content has left margin to accommodate sidebar
+
+### Mobile (≤768px)
+- Sidebar is hidden by default (slides off-screen)
+- Hamburger menu button appears in topbar
+- Clicking hamburger toggles sidebar visibility
+- Dark overlay appears when sidebar is open
+- Clicking overlay closes sidebar
+- Body scroll is disabled when sidebar is open
+- Sidebar automatically closes when screen size increases
 
 ## Creating New Pages
 

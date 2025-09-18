@@ -773,30 +773,3 @@ function clearFilters() {
     document.getElementById('status-filter').value = '';
     console.log('Filtros limpiados');
 }
-
-// Función para alternar el dropdown del usuario
-function toggleUserDropdown() {
-    const dropdown = document.querySelector('.user-dropdown');
-    dropdown.classList.toggle('show');
-
-    // Cerrar dropdown al hacer clic fuera
-    document.addEventListener('click', function(event) {
-        if (!event.target.closest('.user-info')) {
-            dropdown.classList.remove('show');
-        }
-    });
-}
-
-// Función para ir a configuración
-function goToSettings() {
-    alert('Ir a configuración');
-    // Aquí implementarías la lógica para redirigir a la página de configuración
-}
-
-// Función para cerrar sesión
-function logout() {
-    if (confirm('¿Estás seguro de que deseas cerrar sesión?')) {
-        alert('Cerrar sesión');
-        // Aquí implementarías la lógica para cerrar sesión
-    }
-}

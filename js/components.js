@@ -101,9 +101,10 @@ class ComponentLoader {
 
             // Map page identifiers to exact filenames
             const pageToFile = {
+                'home': 'home.html',
                 'usuarios': 'usuarios.html',
                 'universidades': 'universidades.html',
-                'home': 'home.html'
+                'programas': 'programas.html',
             };
 
             const targetFile = pageToFile[currentPage];
@@ -157,10 +158,40 @@ document.addEventListener('DOMContentLoaded', function() {
         console.log(`📄 Current page detected: ${currentPage}`);
         
         componentLoader.loadCommonComponents(currentPage);
+        
+        // Initialize scroll effect for topbar
+        initTopbarScrollEffect();
     } else {
         console.log('ℹ️ No component containers found on this page');
     }
 });
+
+// Topbar scroll effect
+function initTopbarScrollEffect() {
+    let ticking = false;
+    
+    function updateTopbar() {
+        const topbar = document.querySelector('.topbar');
+        if (topbar) {
+            if (window.scrollY > 10) {
+                topbar.classList.add('scrolled');
+            } else {
+                topbar.classList.remove('scrolled');
+            }
+        }
+        ticking = false;
+    }
+    
+    function requestTick() {
+        if (!ticking) {
+            requestAnimationFrame(updateTopbar);
+            ticking = true;
+        }
+    }
+    
+    // Add scroll listener with throttling
+    window.addEventListener('scroll', requestTick);
+}
 
 // Utility functions for easier access
 window.loadTopbar = (containerId, callback) => componentLoader.loadTopbar(containerId, callback);
@@ -173,3 +204,78 @@ window.forceUpdateSidebar = (currentPage) => {
     console.log(`🔧 Force updating sidebar for: ${currentPage}`);
     componentLoader.updateSidebarActiveState(currentPage);
 };
+
+// Mobile sidebar toggle functionality
+let sidebarOpen = false;
+
+function toggleSidebar() {
+    const sidebar = document.querySelector('.sidebar');
+    const overlay = document.querySelector('.sidebar-overlay');
+    const hamburger = document.querySelector('.hamburger-menu');
+    
+    sidebarOpen = !sidebarOpen;
+    
+    if (sidebar) {
+        if (sidebarOpen) {
+            sidebar.classList.add('show');
+            if (overlay) overlay.classList.add('show');
+            if (hamburger) hamburger.classList.add('active');
+            // Prevenir scroll del body cuando el sidebar está abierto
+            document.body.style.overflow = 'hidden';
+        } else {
+            sidebar.classList.remove('show');
+            if (overlay) overlay.classList.remove('show');
+            if (hamburger) hamburger.classList.remove('active');
+            // Restaurar scroll del body
+            document.body.style.overflow = '';
+        }
+    }
+}
+
+// Cerrar sidebar al redimensionar la ventana si estamos en desktop
+function handleResize() {
+    if (window.innerWidth > 768 && sidebarOpen) {
+        toggleSidebar(); // Cerrar sidebar si cambiamos a desktop
+    }
+}
+
+// Hacer la función global para que pueda ser llamada desde el HTML
+window.toggleSidebar = toggleSidebar;
+
+// Agregar listener para redimensionamiento
+window.addEventListener('resize', handleResize);
+
+// Función para alternar el dropdown del usuario
+function toggleUserDropdown() {
+    const dropdown = document.querySelector('.user-dropdown');
+    dropdown.classList.toggle('show');
+
+    // Cerrar dropdown al hacer clic fuera
+    document.addEventListener('click', function(event) {
+        if (!event.target.closest('.user-info')) {
+            dropdown.classList.remove('show');
+        }
+    });
+}
+
+// Función para ir a configuración
+function goToSettings() {
+    alert('Ir a configuración');
+    // Aquí implementarías la lógica para redirigir a la página de configuración
+}
+
+// Función para cerrar sesión
+function logout() {
+    if (confirm('¿Estás seguro de que deseas cerrar sesión?')) {
+        alert('Cerrar sesión');
+        // Limpiar sesión
+        localStorage.removeItem('userSession');
+        
+        // Redireccionar al login
+        redirectToLogin();
+    }
+}
+
+function redirectToLogin() {
+    window.location.href = '/index.html';
+}

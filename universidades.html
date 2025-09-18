@@ -1,0 +1,932 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Universidades - Bigrado</title>
+    <link rel="stylesheet" href="/css/app.css">
+    <link rel="icon" href="/img/Logo_Bigrado_negro.svg" type="image/x-icon">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body data-page="universidades">
+    <!-- Topbar -->
+    <div id="topbar-container"></div>
+
+    <!-- Sidebar Overlay para móvil -->
+    <div class="sidebar-overlay" id="sidebarOverlay" onclick="toggleSidebar()"></div>
+
+    <!-- Layout principal -->
+    <div class="main-layout">
+        <!-- Sidebar -->
+        <div id="sidebar-container"></div>
+
+        <!-- Contenido principal -->
+        <main class="main-content">
+            <!-- Header de página -->
+            <div class="page-header">
+                <div>
+                    <h1>Universidades</h1>
+                    <p>Administra las universidades registradas en el sistema.</p>
+                </div>
+                <button class="new-user-btn" onclick="openNewUniversityModal()">
+                    <i class="fas fa-plus"></i>
+                    Nueva Universidad
+                </button>
+            </div>
+
+            <!-- Cards de resumen -->
+            <div class="summary-cards">
+                <div class="summary-card">
+                    <div class="summary-icon total">
+                        <i class="fas fa-university"></i>
+                    </div>
+                    <div class="summary-content">
+                        <h3>245</h3>
+                        <p>Total universidades</p>
+                    </div>
+                </div>
+
+                <div class="summary-card">
+                    <div class="summary-icon students">
+                        <i class="fas fa-check-circle"></i>
+                    </div>
+                    <div class="summary-content">
+                        <h3>198</h3>
+                        <p>Activas</p>
+                    </div>
+                </div>
+
+                <div class="summary-card">
+                    <div class="summary-icon support">
+                        <i class="fas fa-globe"></i>
+                    </div>
+                    <div class="summary-content">
+                        <h3>23</h3>
+                        <p>Países</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Filtros -->
+            <div class="filters-section">
+                <div class="filters-row">
+                    <div class="filter-group">
+                        <label>Buscar universidad</label>
+                        <input type="text" placeholder="Nombre de la universidad..." id="searchUniversity">
+                    </div>
+                    
+                    <div class="filter-group">
+                        <label>País</label>
+                        <select id="filterCountry">
+                            <option value="">Todos los países</option>
+                            <option value="colombia">Colombia</option>
+                            <option value="mexico">México</option>
+                            <option value="argentina">Argentina</option>
+                            <option value="chile">Chile</option>
+                            <option value="peru">Perú</option>
+                            <option value="ecuador">Ecuador</option>
+                        </select>
+                    </div>
+                    
+                    <div class="filter-group">
+                        <label>Estado</label>
+                        <select id="filterStatus">
+                            <option value="">Todos los estados</option>
+                            <option value="active">Activa</option>
+                            <option value="review">En revisión</option>
+                            <option value="inactive">Inactiva</option>
+                        </select>
+                    </div>
+                    
+                    <div class="filter-buttons">
+                        <button class="filter-btn primary" onclick="applyFilters()">
+                            <i class="fas fa-search"></i>
+                            Filtrar
+                        </button>
+                        <button class="filter-btn secondary" onclick="clearFilters()">
+                            <i class="fas fa-times"></i>
+                            Limpiar
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tabla de universidades -->
+            <div class="users-table-container">
+                <div class="table-header">
+                    <h3>Lista de universidades</h3>
+                </div>
+
+                <table class="users-table">
+                    <thead>
+                        <tr>
+                            <th>Universidad</th>
+                            <th>País</th>
+                            <th>N° Programas</th>
+                            <th>Estado</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>
+                                <div class="user-info-cell">
+                                    <div class="user-avatar-table">
+                                        UN
+                                    </div>
+                                    <div class="user-details-table">
+                                        <div class="user-name">Universidad Nacional de Colombia</div>
+                                        <div class="user-email">contacto@unal.edu.co</div>
+                                    </div>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="document-info">
+                                    <div><i class="fas fa-flag"></i></div>
+                                    <div class="document-number">Colombia</div>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="document-info">
+                                    <div><i class="fas fa-graduation-cap"></i></div>
+                                    <div class="document-number">127</div>
+                                </div>
+                            </td>
+                            <td>
+                                <span class="status-badge active">Activa</span>
+                            </td>
+                            <td>
+                                <div class="actions-menu">
+                                    <button class="actions-button" onclick="toggleDropdown(this)">
+                                        <i class="fas fa-ellipsis-v"></i>
+                                    </button>
+                                    <div class="actions-dropdown">
+                                        <a href="#" onclick="viewUniversity(1)">
+                                            <i class="fas fa-eye"></i>
+                                            Ver detalles
+                                        </a>
+                                        <a href="#" onclick="editUniversity(1)">
+                                            <i class="fas fa-edit"></i>
+                                            Editar
+                                        </a>
+                                        <a href="#" onclick="deleteUniversity(1)" class="danger">
+                                            <i class="fas fa-trash"></i>
+                                            Eliminar
+                                        </a>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="user-info-cell">
+                                    <div class="user-avatar-table">
+                                        UV
+                                    </div>
+                                    <div class="user-details-table">
+                                        <div class="user-name">Universidad del Valle</div>
+                                        <div class="user-email">info@univalle.edu.co</div>
+                                    </div>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="document-info">
+                                    <div><i class="fas fa-flag"></i></div>
+                                    <div class="document-number">Colombia</div>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="document-info">
+                                    <div><i class="fas fa-graduation-cap"></i></div>
+                                    <div class="document-number">89</div>
+                                </div>
+                            </td>
+                            <td>
+                                <span class="status-badge active">Activa</span>
+                            </td>
+                            <td>
+                                <div class="actions-menu">
+                                    <button class="actions-button" onclick="toggleDropdown(this)">
+                                        <i class="fas fa-ellipsis-v"></i>
+                                    </button>
+                                    <div class="actions-dropdown">
+                                        <a href="#" onclick="viewUniversity(2)">
+                                            <i class="fas fa-eye"></i>
+                                            Ver detalles
+                                        </a>
+                                        <a href="#" onclick="editUniversity(2)">
+                                            <i class="fas fa-edit"></i>
+                                            Editar
+                                        </a>
+                                        <a href="#" onclick="deleteUniversity(2)" class="danger">
+                                            <i class="fas fa-trash"></i>
+                                            Eliminar
+                                        </a>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="user-info-cell">
+                                    <div class="user-avatar-table">
+                                        UA
+                                    </div>
+                                    <div class="user-details-table">
+                                        <div class="user-name">Universidad de los Andes</div>
+                                        <div class="user-email">admisiones@uniandes.edu.co</div>
+                                    </div>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="document-info">
+                                    <div><i class="fas fa-flag"></i></div>
+                                    <div class="document-number">Colombia</div>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="document-info">
+                                    <div><i class="fas fa-graduation-cap"></i></div>
+                                    <div class="document-number">156</div>
+                                </div>
+                            </td>
+                            <td>
+                                <span class="status-badge pending">Aplazada</span>
+                            </td>
+                            <td>
+                                <div class="actions-menu">
+                                    <button class="actions-button" onclick="toggleDropdown(this)">
+                                        <i class="fas fa-ellipsis-v"></i>
+                                    </button>
+                                    <div class="actions-dropdown">
+                                        <a href="#" onclick="viewUniversity(3)">
+                                            <i class="fas fa-eye"></i>
+                                            Ver detalles
+                                        </a>
+                                        <a href="#" onclick="editUniversity(3)">
+                                            <i class="fas fa-edit"></i>
+                                            Editar
+                                        </a>
+                                        <a href="#" onclick="deleteUniversity(3)" class="danger">
+                                            <i class="fas fa-trash"></i>
+                                            Eliminar
+                                        </a>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="user-info-cell">
+                                    <div class="user-avatar-table">
+                                        IT
+                                    </div>
+                                    <div class="user-details-table">
+                                        <div class="user-name">Instituto Tecnológico de Monterrey</div>
+                                        <div class="user-email">informes@tec.mx</div>
+                                    </div>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="document-info">
+                                    <div><i class="fas fa-flag"></i></div>
+                                    <div class="document-number">México</div>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="document-info">
+                                    <div><i class="fas fa-graduation-cap"></i></div>
+                                    <div class="document-number">92</div>
+                                </div>
+                            </td>
+                            <td>
+                                <span class="status-badge active">Activa</span>
+                            </td>
+                            <td>
+                                <div class="actions-menu">
+                                    <button class="actions-button" onclick="toggleDropdown(this)">
+                                        <i class="fas fa-ellipsis-v"></i>
+                                    </button>
+                                    <div class="actions-dropdown">
+                                        <a href="#" onclick="viewUniversity(4)">
+                                            <i class="fas fa-eye"></i>
+                                            Ver detalles
+                                        </a>
+                                        <a href="#" onclick="editUniversity(4)">
+                                            <i class="fas fa-edit"></i>
+                                            Editar
+                                        </a>
+                                        <a href="#" onclick="deleteUniversity(4)" class="danger">
+                                            <i class="fas fa-trash"></i>
+                                            Eliminar
+                                        </a>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="user-info-cell">
+                                    <div class="user-avatar-table">
+                                        UB
+                                    </div>
+                                    <div class="user-details-table">
+                                        <div class="user-name">Universidad de Buenos Aires</div>
+                                        <div class="user-email">contacto@uba.ar</div>
+                                    </div>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="document-info">
+                                    <div><i class="fas fa-flag"></i></div>
+                                    <div class="document-number">Argentina</div>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="document-info">
+                                    <div><i class="fas fa-graduation-cap"></i></div>
+                                    <div class="document-number">203</div>
+                                </div>
+                            </td>
+                            <td>
+                                <span class="status-badge inactive">Inactiva</span>
+                            </td>
+                            <td>
+                                <div class="actions-menu">
+                                    <button class="actions-button" onclick="toggleDropdown(this)">
+                                        <i class="fas fa-ellipsis-v"></i>
+                                    </button>
+                                    <div class="actions-dropdown">
+                                        <a href="#" onclick="viewUniversity(5)">
+                                            <i class="fas fa-eye"></i>
+                                            Ver detalles
+                                        </a>
+                                        <a href="#" onclick="editUniversity(5)">
+                                            <i class="fas fa-edit"></i>
+                                            Editar
+                                        </a>
+                                        <a href="#" onclick="deleteUniversity(5)" class="danger">
+                                            <i class="fas fa-trash"></i>
+                                            Eliminar
+                                        </a>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <!-- Paginación -->
+                <div class="pagination-container">
+                    <div class="pagination-info">
+                        Mostrando 1-5 de 245 universidades
+                    </div>
+                    <div class="pagination">
+                        <button disabled>
+                            <i class="fas fa-chevron-left"></i>
+                        </button>
+                        <button class="active">1</button>
+                        <button>2</button>
+                        <button>3</button>
+                        <button>...</button>
+                        <button>49</button>
+                        <button>
+                            <i class="fas fa-chevron-right"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+    
+    <!-- Modal de Nueva Universidad -->
+    <div id="newUniversityModal" class="modal" style="display:none;">
+        <div class="modal-content new-user-modal-content">
+            <span class="close-modal" onclick="closeNewUniversityModal()">&times;</span>
+            <h2>Nueva Universidad</h2>
+            <form id="newUniversityForm" class="new-user-form">
+                <!-- Información de la Universidad -->
+                <div class="form-section">
+                    <h3><i class="fas fa-university"></i> Información de la Universidad</h3>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="universityName">Universidad *</label>
+                            <input type="text" id="universityName" name="universityName" required placeholder="Nombre de la universidad">
+                        </div>
+                        <div class="form-group">
+                            <label for="universityCountry">País *</label>
+                            <select id="universityCountry" name="universityCountry" required>
+                                <option value="">Seleccionar país</option>
+                                <option value="colombia">Colombia</option>
+                                <option value="mexico">México</option>
+                                <option value="argentina">Argentina</option>
+                                <option value="chile">Chile</option>
+                                <option value="peru">Perú</option>
+                                <option value="ecuador">Ecuador</option>
+                                <option value="brasil">Brasil</option>
+                                <option value="uruguay">Uruguay</option>
+                                <option value="paraguay">Paraguay</option>
+                                <option value="venezuela">Venezuela</option>
+                                <option value="bolivia">Bolivia</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="universityCity">Ciudad *</label>
+                            <input type="text" id="universityCity" name="universityCity" required placeholder="Ciudad donde se ubica la universidad">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Contacto en la universidad de destino -->
+                <div class="form-section">
+                    <h3><i class="fas fa-address-card"></i> Contacto en la universidad de destino</h3>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="contactName">Nombre *</label>
+                            <input type="text" id="contactName" name="contactName" required placeholder="Nombre del contacto principal">
+                        </div>
+                        <div class="form-group">
+                            <label for="contactPhone">Teléfono *</label>
+                            <input type="tel" id="contactPhone" name="contactPhone" required placeholder="+57 1 234 5678">
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="contactEmail">Correo *</label>
+                            <input type="email" id="contactEmail" name="contactEmail" required placeholder="contacto@universidad.edu">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Detalles del convenio -->
+                <div class="form-section">
+                    <h3><i class="fas fa-handshake"></i> Detalles del convenio</h3>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="agreementName">Nombre del convenio *</label>
+                            <input type="text" id="agreementName" name="agreementName" required placeholder="Nombre del convenio o acuerdo">
+                        </div>
+                        <div class="form-group">
+                            <label for="agreementType">Tipo de convenio *</label>
+                            <select id="agreementType" name="agreementType" required>
+                                <option value="">Seleccionar tipo</option>
+                                <option value="intercambio">Intercambio académico</option>
+                                <option value="doble_titulacion">Doble titulación</option>
+                                <option value="investigacion">Investigación conjunta</option>
+                                <option value="movilidad_estudiantes">Movilidad de estudiantes</option>
+                                <option value="movilidad_docentes">Movilidad de docentes</option>
+                                <option value="cooperacion_academica">Cooperación académica</option>
+                                <option value="practicas">Prácticas profesionales</option>
+                                <option value="otros">Otros</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="agreementStatus">Estado de convenio *</label>
+                            <select id="agreementStatus" name="agreementStatus" required>
+                                <option value="">Seleccionar estado</option>
+                                <option value="negociacion">En negociación</option>
+                                <option value="borrador">Borrador</option>
+                                <option value="revision">En revisión</option>
+                                <option value="aprobacion">Pendiente de aprobación</option>
+                                <option value="firmado">Firmado</option>
+                                <option value="activo">Activo</option>
+                                <option value="suspendido">Suspendido</option>
+                                <option value="vencido">Vencido</option>
+                                <option value="renovacion">En renovación</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="agreementStartDate">Fecha de inicio *</label>
+                            <input type="date" id="agreementStartDate" name="agreementStartDate" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="agreementEndDate">Fecha de finalización *</label>
+                            <input type="date" id="agreementEndDate" name="agreementEndDate" required>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="agreementDocument">Documento firmado</label>
+                            <input type="file" id="agreementDocument" name="agreementDocument" accept=".pdf,.doc,.docx">
+                            <small>Formatos permitidos: PDF, DOC, DOCX (máximo 10MB)</small>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Coordinadores del Convenio -->
+                <div class="form-section">
+                    <h3><i class="fas fa-users"></i> Coordinadores del Convenio</h3>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="originCoordinator">Coordinador de origen *</label>
+                            <select id="originCoordinator" name="originCoordinator" required>
+                                <option value="">Seleccionar coordinador</option>
+                                <option value="1">Dr. Juan Carlos Martínez - Facultad de Ingeniería</option>
+                                <option value="2">Dra. María Elena García - Facultad de Ciencias</option>
+                                <option value="3">Dr. Carlos Alberto López - Facultad de Medicina</option>
+                                <option value="4">Dra. Ana Sofia Rodríguez - Facultad de Humanidades</option>
+                                <option value="5">Dr. Roberto Hernández - Oficina de Relaciones Internacionales</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="destinationCoordinator">Coordinador de destino *</label>
+                            <input type="text" id="destinationCoordinator" name="destinationCoordinator" required placeholder="Nombre del coordinador en la universidad de destino">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-actions">
+                    <button type="submit" class="primary-btn">Crear Universidad</button>
+                    <button type="button" class="secondary-btn" onclick="closeNewUniversityModal()">Cancelar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Modal de Ver Detalles de la Universidad -->
+    <div id="viewUniversityModal" class="modal" style="display:none;">
+        <div class="modal-content view-user-modal-content">
+            <span class="close-modal" onclick="closeViewUniversityModal()">&times;</span>
+            <h2 id="viewUniversityTitle">Detalles de la Universidad</h2>
+            
+            <div class="user-details-container">
+                <!-- Información básica de la universidad -->
+                <div class="user-header">
+                    <div class="user-avatar-large" id="viewUniversityAvatar">
+                        UN
+                    </div>
+                    <div class="user-main-info">
+                        <h3 id="viewUniversityName">Universidad Nacional de Colombia</h3>
+                        <p id="viewUniversityEmail">contacto@unal.edu.co</p>
+                        <div class="user-badges">
+                            <span id="viewAgreementType" class="role-badge student">Intercambio académico</span>
+                            <span id="viewAgreementStatus" class="status-badge active">Activo</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Secciones de información -->
+                <div class="user-details-sections">
+                    <!-- Información de la Universidad -->
+                    <div class="detail-section">
+                        <h4><i class="fas fa-university"></i> Información de la Universidad</h4>
+                        <div class="detail-grid">
+                            <div class="detail-item">
+                                <label>Universidad:</label>
+                                <span id="viewUniversityFullName">Universidad Nacional de Colombia</span>
+                            </div>
+                            <div class="detail-item">
+                                <label>País:</label>
+                                <span id="viewUniversityCountry">Colombia</span>
+                            </div>
+                            <div class="detail-item">
+                                <label>Ciudad:</label>
+                                <span id="viewUniversityCity">Bogotá</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Contacto en la universidad de destino -->
+                    <div class="detail-section">
+                        <h4><i class="fas fa-address-card"></i> Contacto en la universidad de destino</h4>
+                        <div class="detail-grid">
+                            <div class="detail-item">
+                                <label>Nombre:</label>
+                                <span id="viewContactName">Dr. Carlos Martínez</span>
+                            </div>
+                            <div class="detail-item">
+                                <label>Teléfono:</label>
+                                <span id="viewContactPhone">+57 1 316 5000</span>
+                            </div>
+                            <div class="detail-item">
+                                <label>Correo:</label>
+                                <span id="viewContactEmail">carlos.martinez@unal.edu.co</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Detalles del convenio -->
+                    <div class="detail-section">
+                        <h4><i class="fas fa-handshake"></i> Detalles del convenio</h4>
+                        <div class="detail-grid">
+                            <div class="detail-item">
+                                <label>Nombre del convenio:</label>
+                                <span id="viewAgreementName">Convenio de Intercambio Académico</span>
+                            </div>
+                            <div class="detail-item">
+                                <label>Tipo de convenio:</label>
+                                <span id="viewAgreementTypeDetail">Intercambio académico</span>
+                            </div>
+                            <div class="detail-item">
+                                <label>Estado del convenio:</label>
+                                <span id="viewAgreementStatusDetail">Activo</span>
+                            </div>
+                            <div class="detail-item">
+                                <label>Fecha de inicio:</label>
+                                <span id="viewAgreementStartDate">2024-01-15</span>
+                            </div>
+                            <div class="detail-item">
+                                <label>Fecha de finalización:</label>
+                                <span id="viewAgreementEndDate">2026-01-15</span>
+                            </div>
+                            <div class="detail-item">
+                                <label>Documento firmado:</label>
+                                <span id="viewAgreementDocument">
+                                    <a href="#" onclick="downloadDocument()" class="document-link">
+                                        <i class="fas fa-file-pdf"></i> convenio_unal_2024.pdf
+                                    </a>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Coordinadores del Convenio -->
+                    <div class="detail-section">
+                        <h4><i class="fas fa-users"></i> Coordinadores del Convenio</h4>
+                        <div class="detail-grid">
+                            <div class="detail-item">
+                                <label>Coordinador de origen:</label>
+                                <span id="viewOriginCoordinator">Dr. Juan Carlos Martínez - Facultad de Ingeniería</span>
+                            </div>
+                            <div class="detail-item">
+                                <label>Coordinador de destino:</label>
+                                <span id="viewDestinationCoordinator">Dr. Carlos Eduardo López</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Estadísticas adicionales -->
+                    <div class="detail-section">
+                        <h4><i class="fas fa-chart-bar"></i> Información adicional</h4>
+                        <div class="detail-grid">
+                            <div class="detail-item">
+                                <label>Fecha de registro:</label>
+                                <span id="viewRegistrationDate">2023-01-15</span>
+                            </div>
+                            <div class="detail-item">
+                                <label>Última actualización:</label>
+                                <span id="viewLastUpdate">2024-01-10</span>
+                            </div>
+                            <div class="detail-item">
+                                <label>Días restantes:</label>
+                                <span id="viewDaysRemaining">365 días</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="modal-actions">
+                    <button type="button" class="primary-btn" onclick="editUniversityFromModal()">
+                        <i class="fas fa-edit"></i>
+                        Editar Universidad
+                    </button>
+                    <button type="button" class="secondary-btn" onclick="closeViewUniversityModal()">
+                        <i class="fas fa-times"></i>
+                        Cerrar
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal de Editar Universidad -->
+    <div id="editUniversityModal" class="modal" style="display:none;">
+        <div class="modal-content new-user-modal-content">
+            <span class="close-modal" onclick="closeEditUniversityModal()">&times;</span>
+            <h2 id="editUniversityTitle">Editar Universidad</h2>
+            <form id="editUniversityForm" class="new-user-form">
+                <!-- Información de la Universidad -->
+                <div class="form-section">
+                    <h3><i class="fas fa-university"></i> Información de la Universidad</h3>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="editUniversityName">Universidad *</label>
+                            <input type="text" id="editUniversityName" name="universityName" required placeholder="Nombre de la universidad">
+                        </div>
+                        <div class="form-group">
+                            <label for="editUniversityCountry">País *</label>
+                            <select id="editUniversityCountry" name="universityCountry" required>
+                                <option value="">Seleccionar país</option>
+                                <option value="colombia">Colombia</option>
+                                <option value="mexico">México</option>
+                                <option value="argentina">Argentina</option>
+                                <option value="chile">Chile</option>
+                                <option value="peru">Perú</option>
+                                <option value="ecuador">Ecuador</option>
+                                <option value="brasil">Brasil</option>
+                                <option value="uruguay">Uruguay</option>
+                                <option value="paraguay">Paraguay</option>
+                                <option value="venezuela">Venezuela</option>
+                                <option value="bolivia">Bolivia</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="editUniversityCity">Ciudad *</label>
+                            <input type="text" id="editUniversityCity" name="universityCity" required placeholder="Ciudad donde se ubica la universidad">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Contacto en la universidad de destino -->
+                <div class="form-section">
+                    <h3><i class="fas fa-address-card"></i> Contacto en la universidad de destino</h3>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="editContactName">Nombre *</label>
+                            <input type="text" id="editContactName" name="contactName" required placeholder="Nombre del contacto principal">
+                        </div>
+                        <div class="form-group">
+                            <label for="editContactPhone">Teléfono *</label>
+                            <input type="tel" id="editContactPhone" name="contactPhone" required placeholder="+57 1 234 5678">
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="editContactEmail">Correo *</label>
+                            <input type="email" id="editContactEmail" name="contactEmail" required placeholder="contacto@universidad.edu">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Detalles del convenio -->
+                <div class="form-section">
+                    <h3><i class="fas fa-handshake"></i> Detalles del convenio</h3>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="editAgreementName">Nombre del convenio *</label>
+                            <input type="text" id="editAgreementName" name="agreementName" required placeholder="Nombre del convenio o acuerdo">
+                        </div>
+                        <div class="form-group">
+                            <label for="editAgreementType">Tipo de convenio *</label>
+                            <select id="editAgreementType" name="agreementType" required>
+                                <option value="">Seleccionar tipo</option>
+                                <option value="intercambio">Intercambio académico</option>
+                                <option value="doble_titulacion">Doble titulación</option>
+                                <option value="investigacion">Investigación conjunta</option>
+                                <option value="movilidad_estudiantes">Movilidad de estudiantes</option>
+                                <option value="movilidad_docentes">Movilidad de docentes</option>
+                                <option value="cooperacion_academica">Cooperación académica</option>
+                                <option value="practicas">Prácticas profesionales</option>
+                                <option value="otros">Otros</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="editAgreementStatus">Estado de convenio *</label>
+                            <select id="editAgreementStatus" name="agreementStatus" required>
+                                <option value="">Seleccionar estado</option>
+                                <option value="negociacion">En negociación</option>
+                                <option value="borrador">Borrador</option>
+                                <option value="revision">En revisión</option>
+                                <option value="aprobacion">Pendiente de aprobación</option>
+                                <option value="firmado">Firmado</option>
+                                <option value="activo">Activo</option>
+                                <option value="suspendido">Suspendido</option>
+                                <option value="vencido">Vencido</option>
+                                <option value="renovacion">En renovación</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="editAgreementStartDate">Fecha de inicio *</label>
+                            <input type="date" id="editAgreementStartDate" name="agreementStartDate" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="editAgreementEndDate">Fecha de finalización *</label>
+                            <input type="date" id="editAgreementEndDate" name="agreementEndDate" required>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="editAgreementDocument">Documento firmado</label>
+                            <input type="file" id="editAgreementDocument" name="agreementDocument" accept=".pdf,.doc,.docx">
+                            <small>Formatos permitidos: PDF, DOC, DOCX (máximo 10MB)</small>
+                            <div id="currentDocumentInfo" style="margin-top: 8px;">
+                                <span class="current-file">
+                                    <i class="fas fa-file-pdf"></i>
+                                    <span id="currentDocumentName">convenio_unal_2024.pdf</span>
+                                    <small>(Documento actual)</small>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Coordinadores del Convenio -->
+                <div class="form-section">
+                    <h3><i class="fas fa-users"></i> Coordinadores del Convenio</h3>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="editOriginCoordinator">Coordinador de origen *</label>
+                            <select id="editOriginCoordinator" name="originCoordinator" required>
+                                <option value="">Seleccionar coordinador</option>
+                                <option value="1">Dr. Juan Carlos Martínez - Facultad de Ingeniería</option>
+                                <option value="2">Dra. María Elena García - Facultad de Ciencias</option>
+                                <option value="3">Dr. Carlos Alberto López - Facultad de Medicina</option>
+                                <option value="4">Dra. Ana Sofia Rodríguez - Facultad de Humanidades</option>
+                                <option value="5">Dr. Roberto Hernández - Oficina de Relaciones Internacionales</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="editDestinationCoordinator">Coordinador de destino *</label>
+                            <input type="text" id="editDestinationCoordinator" name="destinationCoordinator" required placeholder="Nombre del coordinador en la universidad de destino">
+                        </div>
+                    </div>
+                </div>
+
+                <input type="hidden" id="editUniversityId" name="universityId">
+
+                <div class="form-actions">
+                    <button type="submit" class="primary-btn">Guardar Cambios</button>
+                    <button type="button" class="secondary-btn" onclick="closeEditUniversityModal()">Cancelar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Modal de Eliminar Universidad -->
+    <div id="deleteUniversityModal" class="modal" style="display:none;">
+        <div class="modal-content delete-user-modal-content">
+            <span class="close-modal" onclick="closeDeleteUniversityModal()">&times;</span>
+            <div class="delete-modal-header">
+                <div class="delete-icon">
+                    <i class="fas fa-exclamation-triangle"></i>
+                </div>
+                <h2>Eliminar Universidad</h2>
+                <p class="delete-subtitle">Esta acción es permanente e irreversible</p>
+            </div>
+            
+            <div class="delete-modal-body">
+                <div class="user-info-summary">
+                    <div class="user-avatar-small" id="deleteUniversityAvatar">
+                        UN
+                    </div>
+                    <div class="user-summary-details">
+                        <h4 id="deleteUniversityName">Universidad Nacional de Colombia</h4>
+                        <p id="deleteUniversityEmail">contacto@unal.edu.co</p>
+                    </div>
+                </div>
+
+                <div class="delete-warning">
+                    <div class="warning-content">
+                        <p>Al eliminar esta universidad se perderán permanentemente:</p>
+                        <ul>
+                            <li>Todos los datos de la universidad</li>
+                            <li>Programas académicos asociados</li>
+                            <li>Histórico de estudiantes</li>
+                            <li>Configuraciones y ajustes</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="delete-confirmation">
+                    <div class="confirmation-step">
+                        <label class="confirmation-checkbox">
+                            <input type="checkbox" id="confirmUnderstand">
+                            Entiendo que esta acción eliminará permanentemente todos los datos
+                        </label>
+                    </div>
+                    <div class="confirmation-step">
+                        <label class="confirmation-checkbox">
+                            <input type="checkbox" id="confirmIrreversible">
+                            Confirmo que esta acción es irreversible
+                        </label>
+                    </div>
+                    <div class="confirmation-step">
+                        <label for="deleteConfirmText">Para confirmar, escribe <strong>ELIMINAR</strong> en el campo:</label>
+                        <input type="text" id="deleteConfirmText" placeholder="Escribe ELIMINAR">
+                    </div>
+                    <div class="delete-reason">
+                        <label for="deleteReason">Motivo de eliminación (obligatorio):</label>
+                        <textarea id="deleteReason" placeholder="Explica el motivo por el cual se elimina esta universidad..."></textarea>
+                    </div>
+                </div>
+            </div>
+
+            <div class="delete-modal-actions">
+                <button type="button" id="confirmDeleteBtn" class="critical-danger-btn" disabled>
+                    <i class="fas fa-trash"></i>
+                    Eliminar Universidad
+                </button>
+                <button type="button" class="secondary-btn" onclick="closeDeleteUniversityModal()">
+                    <i class="fas fa-times"></i>
+                    Cancelar
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script src="/js/components.js"></script>
+    <script src="/js/universidades.js"></script>
+</body>
+</html>
