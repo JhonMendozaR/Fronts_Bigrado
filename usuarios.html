@@ -472,8 +472,14 @@
                 </div>
 
                 <div class="form-actions">
-                    <button type="submit" class="primary-btn">Crear Usuario</button>
-                    <button type="button" class="secondary-btn" onclick="closeNewUserModal()">Cancelar</button>
+                    <button type="button" class="secondary-btn" onclick="closeNewUserModal()">
+                        <i class="fas fa-times"></i>
+                        Cancelar
+                    </button>
+                    <button type="submit" class="primary-btn">
+                        <i class="fas fa-save"></i>
+                        Crear Usuario
+                    </button>
                 </div>
             </form>
         </div>
@@ -613,11 +619,11 @@
                 </div>
 
                 <div class="modal-actions">
-                    <button type="button" class="primary-btn" onclick="editUserFromModal()">
-                        <i class="fas fa-edit"></i> Editar Usuario
-                    </button>
                     <button type="button" class="secondary-btn" onclick="closeViewUserModal()">
                         <i class="fas fa-times"></i> Cerrar
+                    </button>
+                    <button type="button" class="primary-btn" onclick="editUserFromModal()">
+                        <i class="fas fa-edit"></i> Editar Usuario
                     </button>
                 </div>
             </div>
@@ -777,8 +783,14 @@
                 <input type="hidden" id="editUserId" name="userId">
 
                 <div class="form-actions">
-                    <button type="submit" class="primary-btn">Guardar Cambios</button>
-                    <button type="button" class="secondary-btn" onclick="closeEditUserModal()">Cancelar</button>
+                    <button type="button" class="secondary-btn" onclick="closeEditUserModal()">
+                        <i class="fas fa-times"></i>
+                        Cancelar
+                    </button>
+                    <button type="submit" class="primary-btn">
+                        <i class="fas fa-save"></i>
+                        Guardar cambios
+                    </button>
                 </div>
             </form>
         </div>
@@ -829,13 +841,13 @@
             </div>
 
             <div class="status-modal-actions">
-                <button type="button" id="confirmStatusBtn" class="danger-btn">
-                    <i class="fas fa-user-slash"></i>
-                    <span id="confirmStatusText">Desactivar Usuario</span>
-                </button>
                 <button type="button" class="secondary-btn" onclick="closeToggleStatusModal()">
                     <i class="fas fa-times"></i>
                     Cancelar
+                </button>
+                <button type="button" id="confirmStatusBtn" class="danger-btn">
+                    <i class="fas fa-user-slash"></i>
+                    <span id="confirmStatusText">Desactivar Usuario</span>
                 </button>
             </div>
         </div>

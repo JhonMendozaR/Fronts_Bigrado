@@ -1,0 +1,791 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Programas Curriculares - Bigrado</title>
+    <link rel="stylesheet" href="/css/app.css">
+    <link rel="icon" href="/img/Logo_Bigrado_negro.svg" type="image/x-icon">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body data-page="programas">
+    <!-- Topbar Container -->
+    <div id="topbar-container"></div>
+
+    <!-- Sidebar Overlay para móvil -->
+    <div class="sidebar-overlay" id="sidebarOverlay" onclick="toggleSidebar()"></div>
+
+    <!-- Layout principal -->
+    <div class="main-layout">
+        <!-- Sidebar Container -->
+        <div id="sidebar-container"></div>
+
+        <!-- Contenido principal -->
+        <main class="main-content">
+            <!-- Header de página -->
+            <div class="page-header">
+                <div>
+                    <h1>Programas Curriculares</h1>
+                    <p>Administra los programas curriculares del sistema, gestiona niveles de formación y facultades.</p>
+                </div>
+                <button class="new-user-btn" onclick="openNewProgramModal()">
+                    <i class="fas fa-plus"></i>
+                    Nuevo Programa
+                </button>
+            </div>
+
+            <!-- Cards de resumen -->
+            <div class="summary-cards">
+                <div class="summary-card">
+                    <div class="summary-icon total">
+                        <i class="fas fa-graduation-cap"></i>
+                    </div>
+                    <div class="summary-content">
+                        <h3>342</h3>
+                        <p>Total Programas</p>
+                    </div>
+                </div>
+
+                <div class="summary-card">
+                    <div class="summary-icon students">
+                        <i class="fas fa-building"></i>
+                    </div>
+                    <div class="summary-content">
+                        <h3>198</h3>
+                        <p>Sedes</p>
+                    </div>
+                </div>
+
+                <div class="summary-card">
+                    <div class="summary-icon support">
+                        <i class="fas fa-layer-group"></i>
+                    </div>
+                    <div class="summary-content">
+                        <h3>28</h3>
+                        <p>Facultades</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tabla de programas -->
+            <div class="users-table-container">
+                <div class="table-header">
+                    <h3>Lista de programas curriculares</h3>
+                    <button class="filter-toggle-btn" onclick="toggleFilters()">
+                        <i class="fas fa-filter"></i>
+                    </button>
+                </div>
+
+                <!-- Filtros colapsables -->
+                <div class="filters-section" id="filtersSection" style="display: none;">
+                    <div class="filters-row">
+                        <div class="filter-fields-container">
+                            <div class="filter-group">
+                                <label for="search">Buscar Programa</label>
+                                <input type="text" id="search" placeholder="Nombre del programa...">
+                            </div>
+                            
+                            <div class="filter-group">
+                                <label for="level-filter">Filtrar por Nivel</label>
+                                <select id="level-filter">
+                                    <option value="">Todos los niveles</option>
+                                    <option value="pregrado">Pregrado</option>
+                                    <option value="posgrado">Posgrado</option>
+                                </select>
+                            </div>
+                            
+                            <div class="filter-group">
+                                <label for="faculty-filter">Filtrar por Facultad</label>
+                                <select id="faculty-filter">
+                                    <option value="">Todas las facultades</option>
+                                    <option value="ingenieria">Ingeniería</option>
+                                    <option value="medicina">Medicina</option>
+                                    <option value="derecho">Derecho</option>
+                                    <option value="administracion">Administración</option>
+                                    <option value="artes">Artes</option>
+                                    <option value="ciencias">Ciencias</option>
+                                </select>
+                            </div>
+                            
+                            <div class="filter-group">
+                                <label for="sede-filter">Filtrar por Sede</label>
+                                <select id="sede-filter">
+                                    <option value="">Todas las sedes</option>
+                                    <option value="bogota">Bogotá</option>
+                                    <option value="medellin">Medellín</option>
+                                    <option value="cali">Cali</option>
+                                    <option value="barranquilla">Barranquilla</option>
+                                    <option value="bucaramanga">Bucaramanga</option>
+                                </select>
+                            </div>
+                        </div>
+                        
+                        <div class="filter-buttons">
+                            <button class="filter-btn primary" onclick="applyFilters()">
+                                <i class="fas fa-search"></i> Buscar
+                            </button>
+                            <button class="filter-btn secondary" onclick="clearFilters()">
+                                <i class="fas fa-times"></i> Limpiar
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <table class="users-table">
+                    <thead>
+                        <tr>
+                            <th>Programa</th>
+                            <th>Sede</th>
+                            <th>Facultad</th>
+                            <th>Estado</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>
+                                <div class="user-info-cell">
+                                    <div class="user-avatar-table program-avatar">
+                                        <i class="fas fa-laptop-code"></i>
+                                    </div>
+                                    <div class="user-details-table">
+                                        <div class="user-name">Ingeniería de Sistemas</div>
+                                        <div class="user-email">Pregrado</div>
+                                    </div>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="sede-info">
+                                    <div class="sede-name">Bogotá</div>
+                                    <div class="sede-campus">Campus Central</div>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="faculty-info">
+                                    <div class="faculty-name">Ingeniería</div>
+                                    <div class="faculty-code">FI-001</div>
+                                </div>
+                            </td>
+                            <td>
+                                <span class="status-badge active">Activo</span>
+                            </td>
+                            <td>
+                                <div class="actions-menu">
+                                    <button class="actions-button" onclick="toggleDropdown(this)">
+                                        <i class="fas fa-ellipsis-v"></i>
+                                    </button>
+                                    <div class="actions-dropdown">
+                                        <a href="#" onclick="viewProgram(1)">
+                                            <i class="fas fa-eye"></i>
+                                            Ver Detalles
+                                        </a>
+                                        <a href="#" onclick="editProgram(1)">
+                                            <i class="fas fa-edit"></i>
+                                            Editar
+                                        </a>
+                                        <a href="#" class="danger" onclick="deleteProgram(1)">
+                                            <i class="fas fa-trash"></i>
+                                            Eliminar
+                                        </a>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td>
+                                <div class="user-info-cell">
+                                    <div class="user-avatar-table program-avatar">
+                                        <i class="fas fa-stethoscope"></i>
+                                    </div>
+                                    <div class="user-details-table">
+                                        <div class="user-name">Medicina</div>
+                                        <div class="user-email">Pregrado</div>
+                                    </div>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="sede-info">
+                                    <div class="sede-name">Medellín</div>
+                                    <div class="sede-campus">Campus Norte</div>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="faculty-info">
+                                    <div class="faculty-name">Medicina</div>
+                                    <div class="faculty-code">FM-001</div>
+                                </div>
+                            </td>
+                            <td>
+                                <span class="status-badge active">Activo</span>
+                            </td>
+                            <td>
+                                <div class="actions-menu">
+                                    <button class="actions-button" onclick="toggleDropdown(this)">
+                                        <i class="fas fa-ellipsis-v"></i>
+                                    </button>
+                                    <div class="actions-dropdown">
+                                        <a href="#" onclick="viewProgram(2)">
+                                            <i class="fas fa-eye"></i>
+                                            Ver Detalles
+                                        </a>
+                                        <a href="#" onclick="editProgram(2)">
+                                            <i class="fas fa-edit"></i>
+                                            Editar
+                                        </a>
+                                        <a href="#" class="danger" onclick="deleteProgram(2)">
+                                            <i class="fas fa-trash"></i>
+                                            Eliminar
+                                        </a>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td>
+                                <div class="user-info-cell">
+                                    <div class="user-avatar-table program-avatar">
+                                        <i class="fas fa-balance-scale"></i>
+                                    </div>
+                                    <div class="user-details-table">
+                                        <div class="user-name">Derecho</div>
+                                        <div class="user-email">Pregrado</div>
+                                    </div>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="sede-info">
+                                    <div class="sede-name">Cali</div>
+                                    <div class="sede-campus">Campus Sur</div>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="faculty-info">
+                                    <div class="faculty-name">Derecho</div>
+                                    <div class="faculty-code">FD-001</div>
+                                </div>
+                            </td>
+                            <td>
+                                <span class="status-badge active">Activo</span>
+                            </td>
+                            <td>
+                                <div class="actions-menu">
+                                    <button class="actions-button" onclick="toggleDropdown(this)">
+                                        <i class="fas fa-ellipsis-v"></i>
+                                    </button>
+                                    <div class="actions-dropdown">
+                                        <a href="#" onclick="viewProgram(3)">
+                                            <i class="fas fa-eye"></i>
+                                            Ver Detalles
+                                        </a>
+                                        <a href="#" onclick="editProgram(3)">
+                                            <i class="fas fa-edit"></i>
+                                            Editar
+                                        </a>
+                                        <a href="#" class="danger" onclick="deleteProgram(3)">
+                                            <i class="fas fa-trash"></i>
+                                            Eliminar
+                                        </a>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td>
+                                <div class="user-info-cell">
+                                    <div class="user-avatar-table program-avatar">
+                                        <i class="fas fa-chart-line"></i>
+                                    </div>
+                                    <div class="user-details-table">
+                                        <div class="user-name">Maestría en Administración</div>
+                                        <div class="user-email">Posgrado</div>
+                                    </div>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="sede-info">
+                                    <div class="sede-name">Bogotá</div>
+                                    <div class="sede-campus">Campus Central</div>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="faculty-info">
+                                    <div class="faculty-name">Administración</div>
+                                    <div class="faculty-code">FA-002</div>
+                                </div>
+                            </td>
+                            <td>
+                                <span class="status-badge active">Activo</span>
+                            </td>
+                            <td>
+                                <div class="actions-menu">
+                                    <button class="actions-button" onclick="toggleDropdown(this)">
+                                        <i class="fas fa-ellipsis-v"></i>
+                                    </button>
+                                    <div class="actions-dropdown">
+                                        <a href="#" onclick="viewProgram(4)">
+                                            <i class="fas fa-eye"></i>
+                                            Ver Detalles
+                                        </a>
+                                        <a href="#" onclick="editProgram(4)">
+                                            <i class="fas fa-edit"></i>
+                                            Editar
+                                        </a>
+                                        <a href="#" class="danger" onclick="deleteProgram(4)">
+                                            <i class="fas fa-trash"></i>
+                                            Eliminar
+                                        </a>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td>
+                                <div class="user-info-cell">
+                                    <div class="user-avatar-table program-avatar">
+                                        <i class="fas fa-flask"></i>
+                                    </div>
+                                    <div class="user-details-table">
+                                        <div class="user-name">Química</div>
+                                        <div class="user-email">Pregrado</div>
+                                    </div>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="sede-info">
+                                    <div class="sede-name">Barranquilla</div>
+                                    <div class="sede-campus">Campus Costa</div>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="faculty-info">
+                                    <div class="faculty-name">Ciencias</div>
+                                    <div class="faculty-code">FC-001</div>
+                                </div>
+                            </td>
+                            <td>
+                                <span class="status-badge inactive">Inactivo</span>
+                            </td>
+                            <td>
+                                <div class="actions-menu">
+                                    <button class="actions-button" onclick="toggleDropdown(this)">
+                                        <i class="fas fa-ellipsis-v"></i>
+                                    </button>
+                                    <div class="actions-dropdown">
+                                        <a href="#" onclick="viewProgram(5)">
+                                            <i class="fas fa-eye"></i>
+                                            Ver Detalles
+                                        </a>
+                                        <a href="#" onclick="editProgram(5)">
+                                            <i class="fas fa-edit"></i>
+                                            Editar
+                                        </a>
+                                        <a href="#" class="danger" onclick="deleteProgram(5)">
+                                            <i class="fas fa-trash"></i>
+                                            Eliminar
+                                        </a>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <!-- Paginación -->
+                <div class="pagination-container">
+                    <div class="pagination-info">
+                        Mostrando 1-5 de 342 programas
+                    </div>
+                    <div class="pagination">
+                        <button disabled>
+                            <i class="fas fa-chevron-left"></i>
+                        </button>
+                        <button class="active">1</button>
+                        <button>2</button>
+                        <button>3</button>
+                        <button>...</button>
+                        <button>69</button>
+                        <button>
+                            <i class="fas fa-chevron-right"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Modal para nuevo programa curricular -->
+    <div id="newProgramModal" class="modal" style="display: none;">
+        <div class="modal-content new-user-modal-content">
+            <span class="close-modal" onclick="closeNewProgramModal()">&times;</span>
+            <h2>Nuevo Programa Curricular</h2>
+            <form id="newProgramForm" class="new-user-form">
+                <!-- Información del programa -->
+                <div class="form-section">
+                    <h3><i class="fas fa-graduation-cap"></i> Información del Programa</h3>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="programName">Nombre del programa curricular *</label>
+                            <input type="text" id="programName" name="programName" required placeholder="Ingeniería de Sistemas">
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="programSede">Sede del programa curricular *</label>
+                            <select id="programSede" name="programSede" required>
+                                <option value="">Seleccionar sede</option>
+                                <option value="bogota">Bogotá</option>
+                                <option value="medellin">Medellín</option>
+                                <option value="manizales">Manizales</option>
+                                <option value="palmira">Palmira</option>
+                                <option value="la-paz">La Paz</option>
+                                <option value="otro">Otro</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="programFaculty">Facultad del programa curricular *</label>
+                            <select id="programFaculty" name="programFaculty" required>
+                                <option value="">Seleccionar facultad</option>
+                                <option value="ingenieria">Ingeniería</option>
+                                <option value="minas">Minas</option>
+                                <option value="minas-arquitectura">Minas y arquitectura</option>
+                                <option value="ingenieria-administracion">Ingeniería y administración</option>
+                                <option value="ciencias">Ciencias</option>
+                                <option value="otro">Otro</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="programLevel">Nivel de formación *</label>
+                        <select id="programLevel" name="programLevel" required>
+                            <option value="">Seleccionar nivel</option>
+                            <option value="pregrado">Pregrado</option>
+                            <option value="posgrado">Posgrado</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- Información del coordinador -->
+                <div class="form-section">
+                    <h3><i class="fas fa-user-tie"></i> Información del Coordinador Curricular</h3>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="coordinatorName">Nombre del coordinador curricular *</label>
+                            <input type="text" id="coordinatorName" name="coordinatorName" required placeholder="Juan Carlos Pérez">
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="coordinatorPhone">Teléfono del coordinador *</label>
+                            <input type="tel" id="coordinatorPhone" name="coordinatorPhone" required placeholder="+57 300 123 4567">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="coordinatorEmail">Correo del coordinador *</label>
+                            <input type="email" id="coordinatorEmail" name="coordinatorEmail" required placeholder="coordinador@universidad.edu.co">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-actions">
+                    <button type="button" class="secondary-btn" onclick="closeNewProgramModal()">
+                        <i class="fas fa-times"></i>
+                        Cancelar
+                    </button>
+                    <button type="submit" class="primary-btn">
+                        <i class="fas fa-save"></i>
+                        Crear Programa
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Modal para ver detalles del programa curricular -->
+    <div id="viewProgramModal" class="modal" style="display:none;">
+        <div class="modal-content view-user-modal-content">
+            <span class="close-modal" onclick="closeViewProgramModal()">&times;</span>
+            <h2 id="viewProgramTitle">Detalles del Programa Curricular</h2>
+            
+            <div class="user-details-container">
+                <!-- Información básica del programa -->
+                <div class="user-header">
+                    <div class="user-avatar-large" id="viewProgramAvatar">
+                        <i class="fas fa-graduation-cap"></i>
+                    </div>
+                    <div class="user-main-info">
+                        <h3 id="viewProgramName">Nombre del Programa</h3>
+                        <p id="viewProgramLevel">Nivel de Formación</p>
+                        <div class="user-badges">
+                            <span id="viewProgramStatus" class="status-badge">Estado</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Secciones de información -->
+                <div class="user-details-sections">
+                    <!-- Información del programa -->
+                    <div class="detail-section">
+                        <h4><i class="fas fa-graduation-cap"></i> Información del Programa</h4>
+                        <div class="detail-grid">
+                            <div class="detail-item">
+                                <label>Nombre del Programa:</label>
+                                <span id="viewProgramNameDetail">-</span>
+                            </div>
+                            <div class="detail-item">
+                                <label>Sede:</label>
+                                <span id="viewProgramSede">-</span>
+                            </div>
+                            <div class="detail-item">
+                                <label>Facultad:</label>
+                                <span id="viewProgramFaculty">-</span>
+                            </div>
+                            <div class="detail-item">
+                                <label>Nivel de Formación:</label>
+                                <span id="viewProgramLevelDetail">-</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Información del coordinador -->
+                    <div class="detail-section">
+                        <h4><i class="fas fa-user-tie"></i> Coordinador Curricular</h4>
+                        <div class="detail-grid">
+                            <div class="detail-item">
+                                <label>Nombre del Coordinador:</label>
+                                <span id="viewCoordinatorName">-</span>
+                            </div>
+                            <div class="detail-item">
+                                <label>Teléfono:</label>
+                                <span id="viewCoordinatorPhone">-</span>
+                            </div>
+                            <div class="detail-item">
+                                <label>Correo Electrónico:</label>
+                                <span id="viewCoordinatorEmail">-</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Información del sistema -->
+                    <div class="detail-section">
+                        <h4><i class="fas fa-cogs"></i> Información del Sistema</h4>
+                        <div class="detail-grid">
+                            <div class="detail-item">
+                                <label>Fecha de Creación:</label>
+                                <span id="viewProgramCreationDate">-</span>
+                            </div>
+                            <div class="detail-item">
+                                <label>Última Modificación:</label>
+                                <span id="viewProgramLastUpdate">-</span>
+                            </div>
+                            <div class="detail-item">
+                                <label>ID del Programa:</label>
+                                <span id="viewProgramId">-</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="modal-actions">
+                    <button type="button" class="secondary-btn" onclick="closeViewProgramModal()">
+                        <i class="fas fa-times"></i> Cerrar
+                    </button>
+                    <button type="button" class="primary-btn" onclick="editProgramFromModal()">
+                        <i class="fas fa-edit"></i> Editar Programa
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal para editar programa curricular -->
+    <div id="editProgramModal" class="modal" style="display:none;">
+        <div class="modal-content new-user-modal-content">
+            <span class="close-modal" onclick="closeEditProgramModal()">&times;</span>
+            <h2 id="editProgramTitle">Editar Programa Curricular</h2>
+            <form id="editProgramForm" class="new-user-form">
+                <!-- Información del programa -->
+                <div class="form-section">
+                    <h3><i class="fas fa-graduation-cap"></i> Información del Programa</h3>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="editProgramName">Nombre del programa curricular *</label>
+                            <input type="text" id="editProgramName" name="programName" required 
+                                   placeholder="Ej: Ingeniería de Sistemas">
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="editProgramSede">Sede del programa curricular *</label>
+                            <select id="editProgramSede" name="programSede" required>
+                                <option value="">Seleccionar sede</option>
+                                <option value="bogota">Bogotá</option>
+                                <option value="medellin">Medellín</option>
+                                <option value="manizales">Manizales</option>
+                                <option value="palmira">Palmira</option>
+                                <option value="la-paz">La Paz</option>
+                                <option value="otro">Otro</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="editProgramFaculty">Facultad del programa curricular *</label>
+                            <select id="editProgramFaculty" name="programFaculty" required>
+                                <option value="">Seleccionar facultad</option>
+                                <option value="ingenieria">Ingeniería</option>
+                                <option value="minas">Minas</option>
+                                <option value="minas-arquitectura">Minas y arquitectura</option>
+                                <option value="ingenieria-administracion">Ingeniería y administración</option>
+                                <option value="ciencias">Ciencias</option>
+                                <option value="otro">Otro</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="editProgramLevel">Nivel de formación *</label>
+                        <select id="editProgramLevel" name="programLevel" required>
+                            <option value="">Seleccionar nivel</option>
+                            <option value="pregrado">Pregrado</option>
+                            <option value="posgrado">Posgrado</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- Información del coordinador -->
+                <div class="form-section">
+                    <h3><i class="fas fa-user-tie"></i> Información del Coordinador Curricular</h3>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="editCoordinatorName">Nombre del coordinador curricular *</label>
+                            <input type="text" id="editCoordinatorName" name="coordinatorName" required 
+                                   placeholder="Ej: Juan Carlos Pérez">
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="editCoordinatorPhone">Teléfono del coordinador *</label>
+                            <input type="tel" id="editCoordinatorPhone" name="coordinatorPhone" required 
+                                   placeholder="Ej: +57 300 123 4567">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="editCoordinatorEmail">Correo del coordinador *</label>
+                            <input type="email" id="editCoordinatorEmail" name="coordinatorEmail" required 
+                                   placeholder="Ej: coordinador@universidad.edu.co">
+                        </div>
+                    </div>
+                </div>
+
+                <input type="hidden" id="editProgramId" name="programId">
+
+                <div class="form-actions">
+                    <button type="button" class="secondary-btn" onclick="closeEditProgramModal()">
+                        <i class="fas fa-times"></i>
+                        Cancelar
+                    </button>
+                    <button type="submit" class="primary-btn">
+                        <i class="fas fa-save"></i>
+                        Guardar cambios
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Modal para eliminar programa curricular -->
+    <div id="deleteProgramModal" class="modal" style="display:none;">
+        <div class="modal-content delete-user-modal-content">
+            <span class="close-modal" onclick="closeDeleteProgramModal()">&times;</span>
+            <div class="delete-modal-header">
+                <div class="delete-icon">
+                    <i class="fas fa-exclamation-triangle"></i>
+                </div>
+                <h2>Eliminar Programa Curricular</h2>
+                <p class="delete-subtitle">Esta acción es permanente e irreversible</p>
+            </div>
+            
+            <div class="delete-modal-body">
+                <div class="user-info-summary">
+                    <div class="user-avatar-small" id="deleteProgramAvatar">
+                        <i class="fas fa-graduation-cap"></i>
+                    </div>
+                    <div class="user-summary-details">
+                        <h4 id="deleteProgramName">Nombre del Programa</h4>
+                        <p id="deleteProgramDetails">Sede - Facultad</p>
+                        <span id="deleteProgramLevel" class="role-badge">Nivel</span>
+                    </div>
+                </div>
+
+                <div class="delete-warning">
+                    <div class="warning-content">
+                        <p>
+                            Al eliminar este programa curricular se borrarán <strong>PERMANENTEMENTE</strong> todos sus datos:
+                        </p>
+                        <ul>
+                            <li>Información del programa y coordinador</li>
+                            <li>Estudiantes matriculados en el programa</li>
+                            <li>Historial académico y calificaciones</li>
+                            <li>Planes de estudio y materias</li>
+                            <li>Documentos y archivos asociados</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="delete-confirmation">
+                    <div class="confirmation-step">
+                        <label class="confirmation-checkbox">
+                            <input type="checkbox" id="confirmProgramUnderstand">
+                            <span class="checkmark"></span>
+                            Entiendo que esta acción eliminará permanentemente todos los datos del programa
+                        </label>
+                    </div>
+                    
+                    <div class="confirmation-step">
+                        <label class="confirmation-checkbox">
+                            <input type="checkbox" id="confirmProgramIrreversible">
+                            <span class="checkmark"></span>
+                            Confirmo que esta acción es irreversible y no se puede deshacer
+                        </label>
+                    </div>
+
+                    <div class="confirmation-step">
+                        <label for="deleteProgramConfirmText">
+                            Para confirmar, escribe <strong id="confirmationProgramText">ELIMINAR</strong> en el campo:
+                        </label>
+                        <input type="text" id="deleteProgramConfirmText" placeholder="Escribe ELIMINAR para continuar">
+                    </div>
+
+                    <div class="delete-reason">
+                        <label for="deleteProgramReason">Motivo de la eliminación (requerido)</label>
+                        <textarea id="deleteProgramReason" name="reason" rows="3" placeholder="Explica el motivo por el cual es necesario eliminar este programa curricular..." required></textarea>
+                    </div>
+                </div>
+            </div>
+
+            <div class="delete-modal-actions">
+                <button type="button" id="confirmDeleteProgramBtn" class="critical-danger-btn" disabled>
+                    <i class="fas fa-trash-alt"></i>
+                    <span>Eliminar Programa</span>
+                </button>
+                <button type="button" class="secondary-btn" onclick="closeDeleteProgramModal()">
+                    <i class="fas fa-times"></i> Cancelar
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script src="/js/components.js"></script>
+    <script src="/js/programas.js"></script>
+</body>
+</html>

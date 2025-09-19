@@ -547,8 +547,14 @@
                 </div>
 
                 <div class="form-actions">
-                    <button type="submit" class="primary-btn">Crear Universidad</button>
-                    <button type="button" class="secondary-btn" onclick="closeNewUniversityModal()">Cancelar</button>
+                    <button type="button" class="secondary-btn" onclick="closeNewUniversityModal()">
+                        <i class="fas fa-times"></i>
+                        Cancelar
+                    </button>
+                    <button type="submit" class="primary-btn">
+                        <i class="fas fa-save"></i>
+                        Crear Universidad
+                    </button>
                 </div>
             </form>
         </div>
@@ -687,13 +693,13 @@
                 </div>
 
                 <div class="modal-actions">
-                    <button type="button" class="primary-btn" onclick="editUniversityFromModal()">
-                        <i class="fas fa-edit"></i>
-                        Editar Universidad
-                    </button>
                     <button type="button" class="secondary-btn" onclick="closeViewUniversityModal()">
                         <i class="fas fa-times"></i>
                         Cerrar
+                    </button>
+                    <button type="button" class="primary-btn" onclick="editUniversityFromModal()">
+                        <i class="fas fa-edit"></i>
+                        Editar Universidad
                     </button>
                 </div>
             </div>
@@ -852,8 +858,14 @@
                 <input type="hidden" id="editUniversityId" name="universityId">
 
                 <div class="form-actions">
-                    <button type="submit" class="primary-btn">Guardar Cambios</button>
-                    <button type="button" class="secondary-btn" onclick="closeEditUniversityModal()">Cancelar</button>
+                    <button type="button" class="secondary-btn" onclick="closeEditUniversityModal()">
+                        <i class="fas fa-times"></i>
+                        Cancelar
+                    </button>
+                    <button type="submit" class="primary-btn">
+                        <i class="fas fa-save"></i>
+                        Guardar cambios
+                    </button>
                 </div>
             </form>
         </div>

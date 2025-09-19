@@ -576,8 +576,10 @@ function openNewUniversityModal() {
 function closeNewUniversityModal() {
     const modal = document.getElementById('newUniversityModal');
     if (modal) {
-        modal.style.display = 'none';
         modal.classList.remove('show');
+        setTimeout(() => {
+            modal.style.display = 'none';
+        }, 300);
         document.body.style.overflow = '';
     }
 }
