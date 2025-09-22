@@ -28,7 +28,7 @@
                     <h1>Programas Curriculares</h1>
                     <p>Administra los programas curriculares del sistema, gestiona niveles de formación y facultades.</p>
                 </div>
-                <button class="new-user-btn" onclick="openNewProgramModal()">
+                <button class="new-btn" onclick="openNewProgramModal()">
                     <i class="fas fa-plus"></i>
                     Nuevo Programa
                 </button>
@@ -68,7 +68,7 @@
             </div>
 
             <!-- Tabla de programas -->
-            <div class="users-table-container">
+            <div class="table-container">
                 <div class="table-header">
                     <h3>Lista de programas curriculares</h3>
                     <button class="filter-toggle-btn" onclick="toggleFilters()">
@@ -131,7 +131,7 @@
                     </div>
                 </div>
 
-                <table class="users-table">
+                <table class="contents-table">
                     <thead>
                         <tr>
                             <th>Programa</th>
@@ -144,26 +144,24 @@
                     <tbody>
                         <tr>
                             <td>
-                                <div class="user-info-cell">
-                                    <div class="user-avatar-table program-avatar">
+                                <div class="info-cell">
+                                    <div class="avatar-table program-avatar">
                                         <i class="fas fa-laptop-code"></i>
                                     </div>
-                                    <div class="user-details-table">
-                                        <div class="user-name">Ingeniería de Sistemas</div>
-                                        <div class="user-email">Pregrado</div>
+                                    <div class="details-table">
+                                        <div class="title-one">Ingeniería de Sistemas</div>
+                                        <div class="title-one-small">Pregrado</div>
                                     </div>
                                 </div>
                             </td>
                             <td>
-                                <div class="sede-info">
-                                    <div class="sede-name">Bogotá</div>
-                                    <div class="sede-campus">Campus Central</div>
+                                <div class="title-two">
+                                    <div>Bogotá</div>
                                 </div>
                             </td>
                             <td>
-                                <div class="faculty-info">
-                                    <div class="faculty-name">Ingeniería</div>
-                                    <div class="faculty-code">FI-001</div>
+                                <div class="title-two">
+                                    <div>Ingeniería</div>
                                 </div>
                             </td>
                             <td>
@@ -194,26 +192,24 @@
 
                         <tr>
                             <td>
-                                <div class="user-info-cell">
-                                    <div class="user-avatar-table program-avatar">
+                                <div class="info-cell">
+                                    <div class="avatar-table program-avatar">
                                         <i class="fas fa-stethoscope"></i>
                                     </div>
-                                    <div class="user-details-table">
-                                        <div class="user-name">Medicina</div>
-                                        <div class="user-email">Pregrado</div>
+                                    <div class="details-table">
+                                        <div class="title-one">Medicina</div>
+                                        <div class="title-one-small">Pregrado</div>
                                     </div>
                                 </div>
                             </td>
                             <td>
-                                <div class="sede-info">
-                                    <div class="sede-name">Medellín</div>
-                                    <div class="sede-campus">Campus Norte</div>
+                                <div class="title-two">
+                                    <div>Medellín</div>
                                 </div>
                             </td>
                             <td>
-                                <div class="faculty-info">
-                                    <div class="faculty-name">Medicina</div>
-                                    <div class="faculty-code">FM-001</div>
+                                <div class="title-two">
+                                    <div>Medicina</div>
                                 </div>
                             </td>
                             <td>
@@ -244,26 +240,24 @@
 
                         <tr>
                             <td>
-                                <div class="user-info-cell">
-                                    <div class="user-avatar-table program-avatar">
+                                <div class="info-cell">
+                                    <div class="avatar-table program-avatar">
                                         <i class="fas fa-balance-scale"></i>
                                     </div>
-                                    <div class="user-details-table">
-                                        <div class="user-name">Derecho</div>
-                                        <div class="user-email">Pregrado</div>
+                                    <div class="details-table">
+                                        <div class="title-one">Derecho</div>
+                                        <div class="title-one-small">Pregrado</div>
                                     </div>
                                 </div>
                             </td>
                             <td>
-                                <div class="sede-info">
-                                    <div class="sede-name">Cali</div>
-                                    <div class="sede-campus">Campus Sur</div>
+                                <div class="title-two">
+                                    <div>Cali</div>
                                 </div>
                             </td>
                             <td>
-                                <div class="faculty-info">
-                                    <div class="faculty-name">Derecho</div>
-                                    <div class="faculty-code">FD-001</div>
+                                <div class="title-two">
+                                    <div>Derecho</div>
                                 </div>
                             </td>
                             <td>
@@ -294,26 +288,24 @@
 
                         <tr>
                             <td>
-                                <div class="user-info-cell">
-                                    <div class="user-avatar-table program-avatar">
+                                <div class="info-cell">
+                                    <div class="avatar-table program-avatar">
                                         <i class="fas fa-chart-line"></i>
                                     </div>
-                                    <div class="user-details-table">
-                                        <div class="user-name">Maestría en Administración</div>
-                                        <div class="user-email">Posgrado</div>
+                                    <div class="details-table">
+                                        <div class="title-one">Maestría en Administración</div>
+                                        <div class="title-one-small">Posgrado</div>
                                     </div>
                                 </div>
                             </td>
                             <td>
-                                <div class="sede-info">
-                                    <div class="sede-name">Bogotá</div>
-                                    <div class="sede-campus">Campus Central</div>
+                                <div class="title-two">
+                                    <div>Bogotá</div>
                                 </div>
                             </td>
                             <td>
-                                <div class="faculty-info">
-                                    <div class="faculty-name">Administración</div>
-                                    <div class="faculty-code">FA-002</div>
+                                <div class="title-two">
+                                    <div>Administración</div>
                                 </div>
                             </td>
                             <td>
@@ -344,26 +336,24 @@
 
                         <tr>
                             <td>
-                                <div class="user-info-cell">
-                                    <div class="user-avatar-table program-avatar">
+                                <div class="info-cell">
+                                    <div class="avatar-table program-avatar">
                                         <i class="fas fa-flask"></i>
                                     </div>
-                                    <div class="user-details-table">
-                                        <div class="user-name">Química</div>
-                                        <div class="user-email">Pregrado</div>
+                                    <div class="details-table">
+                                        <div class="title-one">Química</div>
+                                        <div class="title-one-small">Pregrado</div>
                                     </div>
                                 </div>
                             </td>
                             <td>
-                                <div class="sede-info">
-                                    <div class="sede-name">Barranquilla</div>
-                                    <div class="sede-campus">Campus Costa</div>
+                                <div class="title-two">
+                                    <div>Barranquilla</div>
                                 </div>
                             </td>
                             <td>
-                                <div class="faculty-info">
-                                    <div class="faculty-name">Ciencias</div>
-                                    <div class="faculty-code">FC-001</div>
+                                <div class="title-two">
+                                    <div>Ciencias</div>
                                 </div>
                             </td>
                             <td>
@@ -419,10 +409,10 @@
 
     <!-- Modal para nuevo programa curricular -->
     <div id="newProgramModal" class="modal" style="display: none;">
-        <div class="modal-content new-user-modal-content">
+        <div class="modal-content">
             <span class="close-modal" onclick="closeNewProgramModal()">&times;</span>
             <h2>Nuevo Programa Curricular</h2>
-            <form id="newProgramForm" class="new-user-form">
+            <form id="newProgramForm" class="new-modal-form">
                 <!-- Información del programa -->
                 <div class="form-section">
                     <h3><i class="fas fa-graduation-cap"></i> Información del Programa</h3>
@@ -511,7 +501,7 @@
 
     <!-- Modal para ver detalles del programa curricular -->
     <div id="viewProgramModal" class="modal" style="display:none;">
-        <div class="modal-content view-user-modal-content">
+        <div class="modal-content">
             <span class="close-modal" onclick="closeViewProgramModal()">&times;</span>
             <h2 id="viewProgramTitle">Detalles del Programa Curricular</h2>
             
@@ -608,10 +598,10 @@
 
     <!-- Modal para editar programa curricular -->
     <div id="editProgramModal" class="modal" style="display:none;">
-        <div class="modal-content new-user-modal-content">
+        <div class="modal-content">
             <span class="close-modal" onclick="closeEditProgramModal()">&times;</span>
             <h2 id="editProgramTitle">Editar Programa Curricular</h2>
-            <form id="editProgramForm" class="new-user-form">
+            <form id="editProgramForm" class="new-modal-form">
                 <!-- Información del programa -->
                 <div class="form-section">
                     <h3><i class="fas fa-graduation-cap"></i> Información del Programa</h3>

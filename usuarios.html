@@ -31,7 +31,7 @@
                     <h1>Usuarios</h1>
                     <p>Administra los usuario del sistema, gestiona roles y permisos.</p>
                 </div>
-                <button class="new-user-btn" onclick="openNewUserModal()">
+                <button class="new-btn" onclick="openNewUserModal()">
                     <i class="fas fa-plus"></i>
                     Nuevo Usuario
                 </button>
@@ -81,7 +81,7 @@
             </div>
 
             <!-- Tabla de usuarios -->
-            <div class="users-table-container">
+            <div class="table-container">
                 <div class="table-header">
                     <h3>Lista de usuarios</h3>
                     <button class="filter-toggle-btn" onclick="toggleFilters()">
@@ -130,7 +130,7 @@
                     </div>
                 </div>
 
-                <table class="users-table">
+                <table class="contents-table">
                     <thead>
                         <tr>
                             <th>Usuario</th>
@@ -143,21 +143,21 @@
                     <tbody>
                         <tr>
                             <td>
-                                <div class="user-info-cell">
-                                    <div class="user-avatar-table">
+                                <div class="info-cell">
+                                    <div class="avatar-table">
                                         MG
                                     </div>
-                                    <div class="user-details-table">
-                                        <div class="user-name">María García López</div>
-                                        <div class="user-email">maria.garcia@estudiante.edu.co</div>
-                                        <div class="user-phone">+57 320 123 4567</div>
+                                    <div class="details-table">
+                                        <div class="title-one">María García López</div>
+                                        <div class="title-one-small">maria.garcia@estudiante.edu.co</div>
+                                        <div class="title-one-small">+57 320 123 4567</div>
                                     </div>
                                 </div>
                             </td>
                             <td>
-                                <div class="document-info">
+                                <div class="title-two">
                                     <div>CC.</div>
-                                    <div class="document-number">1234567890</div>
+                                    <div>1234567890</div>
                                 </div>
                             </td>
                             <td>
@@ -195,21 +195,21 @@
 
                         <tr>
                             <td>
-                                <div class="user-info-cell">
-                                    <div class="user-avatar-table">
+                                <div class="info-cell">
+                                    <div class="avatar-table">
                                         JR
                                     </div>
-                                    <div class="user-details-table">
-                                        <div class="user-name">Juan Carlos Rodríguez</div>
-                                        <div class="user-email">juan.rodriguez@bigrado.com</div>
-                                        <div class="user-phone">+57 310 987 6543</div>
+                                    <div class="details-table">
+                                        <div class="title-one">Juan Carlos Rodríguez</div>
+                                        <div class="title-one-small">juan.rodriguez@bigrado.com</div>
+                                        <div class="title-one-small">+57 310 987 6543</div>
                                     </div>
                                 </div>
                             </td>
                             <td>
-                                <div class="document-info">
+                                <div class="title-two">
                                     <div>TI.</div>
-                                    <div class="document-number">9876543210</div>
+                                    <div>9876543210</div>
                                 </div>
                             </td>
                             <td>
@@ -247,21 +247,21 @@
 
                         <tr>
                             <td>
-                                <div class="user-info-cell">
-                                    <div class="user-avatar-table">
+                                <div class="info-cell">
+                                    <div class="avatar-table">
                                         AM
                                     </div>
-                                    <div class="user-details-table">
-                                        <div class="user-name">Ana Sofía Martínez</div>
-                                        <div class="user-email">ana.martinez@apoyo.edu.co</div>
-                                        <div class="user-phone">+57 315 456 7890</div>
+                                    <div class="details-table">
+                                        <div class="title-one">Ana Sofía Martínez</div>
+                                        <div class="title-one-small">ana.martinez@apoyo.edu.co</div>
+                                        <div class="title-one-small">+57 315 456 7890</div>
                                     </div>
                                 </div>
                             </td>
                             <td>
-                                <div class="document-info">
+                                <div class="title-two">
                                     <div>CC.</div>
-                                    <div class="document-number">1122334455</div>
+                                    <div>1122334455</div>
                                 </div>
                             </td>
                             <td>
@@ -324,10 +324,10 @@
     
     <!-- Modal de Nuevo Usuario -->
     <div id="newUserModal" class="modal" style="display:none;">
-        <div class="modal-content new-user-modal-content">
+        <div class="modal-content">
             <span class="close-modal" onclick="closeNewUserModal()">&times;</span>
             <h2>Nuevo Usuario</h2>
-            <form id="newUserForm" class="new-user-form">
+            <form id="newUserForm" class="new-modal-form">
                 <!-- Tipo de usuario -->
                 <div class="form-section">
                     <h3><i class="fas fa-user-tag"></i> Tipo de usuario</h3>
@@ -487,7 +487,7 @@
 
     <!-- Modal de Ver Detalles del Usuario -->
     <div id="viewUserModal" class="modal" style="display:none;">
-        <div class="modal-content view-user-modal-content">
+        <div class="modal-content">
             <span class="close-modal" onclick="closeViewUserModal()">&times;</span>
             <h2 id="viewUserTitle">Detalles del Usuario</h2>
             
@@ -632,10 +632,10 @@
 
     <!-- Modal de Editar Usuario -->
     <div id="editUserModal" class="modal" style="display:none;">
-        <div class="modal-content new-user-modal-content">
+        <div class="modal-content">
             <span class="close-modal" onclick="closeEditUserModal()">&times;</span>
             <h2 id="editUserTitle">Editar Usuario</h2>
-            <form id="editUserForm" class="new-user-form">
+            <form id="editUserForm" class="new-modal-form">
                 <!-- Tipo de usuario -->
                 <div class="form-section">
                     <h3><i class="fas fa-user-tag"></i> Tipo de usuario</h3>
