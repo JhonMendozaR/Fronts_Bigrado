@@ -323,7 +323,7 @@
     </div>
     
     <!-- Modal de Nuevo Usuario -->
-    <div id="newUserModal" class="modal" style="display:none;">
+    <div id="newUserModal" class="modal">
         <div class="modal-content">
             <span class="close-modal" onclick="closeNewUserModal()">&times;</span>
             <h2>Nuevo Usuario</h2>
@@ -486,21 +486,21 @@
     </div>
 
     <!-- Modal de Ver Detalles del Usuario -->
-    <div id="viewUserModal" class="modal" style="display:none;">
+    <div id="viewUserModal" class="modal">
         <div class="modal-content">
             <span class="close-modal" onclick="closeViewUserModal()">&times;</span>
             <h2 id="viewUserTitle">Detalles del Usuario</h2>
             
-            <div class="user-details-container">
+            <div class="details-container">
                 <!-- Información básica del usuario -->
-                <div class="user-header">
-                    <div class="user-avatar-large" id="viewUserAvatar">
+                <div class="details-header">
+                    <div class="avatar-large" id="viewUserAvatar">
                         <i class="fas fa-user"></i>
                     </div>
-                    <div class="user-main-info">
+                    <div class="details-main-info">
                         <h3 id="viewUserName">Nombre del Usuario</h3>
                         <p id="viewUserEmail">email@example.com</p>
-                        <div class="user-badges">
+                        <div class="details-badges">
                             <span id="viewUserRole" class="role-badge">Rol</span>
                             <span id="viewUserStatus" class="status-badge">Estado</span>
                         </div>
@@ -508,7 +508,7 @@
                 </div>
 
                 <!-- Secciones de información -->
-                <div class="user-details-sections">
+                <div class="details-sections">
                     <!-- Información personal -->
                     <div class="detail-section">
                         <h4><i class="fas fa-user"></i> Información Personal</h4>
@@ -618,7 +618,7 @@
                     </div>
                 </div>
 
-                <div class="modal-actions">
+                <div class="form-actions">
                     <button type="button" class="secondary-btn" onclick="closeViewUserModal()">
                         <i class="fas fa-times"></i> Cerrar
                     </button>
@@ -631,7 +631,7 @@
     </div>
 
     <!-- Modal de Editar Usuario -->
-    <div id="editUserModal" class="modal" style="display:none;">
+    <div id="editUserModal" class="modal">
         <div class="modal-content">
             <span class="close-modal" onclick="closeEditUserModal()">&times;</span>
             <h2 id="editUserTitle">Editar Usuario</h2>
@@ -797,7 +797,7 @@
     </div>
 
     <!-- Modal de Cambiar Estado del Usuario -->
-    <div id="toggleUserStatusModal" class="modal" style="display:none;">
+    <div id="toggleUserStatusModal" class="modal">
         <div class="modal-content toggle-status-modal-content">
             <span class="close-modal" onclick="closeToggleStatusModal()">&times;</span>
             <div class="status-modal-header">
@@ -808,11 +808,11 @@
             </div>
             
             <div class="status-modal-body">
-                <div class="user-info-summary">
-                    <div class="user-avatar-small" id="toggleUserAvatar">
+                <div class="info-summary">
+                    <div class="avatar-small" id="toggleUserAvatar">
                         <i class="fas fa-user"></i>
                     </div>
-                    <div class="user-summary-details">
+                    <div class="summary-details">
                         <h4 id="toggleUserName">Nombre del Usuario</h4>
                         <p id="toggleUserEmail">email@example.com</p>
                         <span id="toggleUserRole" class="role-badge">Rol</span>
@@ -840,7 +840,7 @@
                 </div>
             </div>
 
-            <div class="status-modal-actions">
+            <div class="status-form-actions">
                 <button type="button" class="secondary-btn" onclick="closeToggleStatusModal()">
                     <i class="fas fa-times"></i>
                     Cancelar
@@ -854,8 +854,8 @@
     </div>
 
     <!-- Modal de Eliminar Usuario -->
-    <div id="deleteUserModal" class="modal" style="display:none;">
-        <div class="modal-content delete-user-modal-content">
+    <div id="deleteUserModal" class="modal">
+        <div class="modal-content delete-modal-content">
             <span class="close-modal" onclick="closeDeleteUserModal()">&times;</span>
             <div class="delete-modal-header">
                 <div class="delete-icon">
@@ -866,11 +866,11 @@
             </div>
             
             <div class="delete-modal-body">
-                <div class="user-info-summary">
-                    <div class="user-avatar-small" id="deleteUserAvatar">
+                <div class="info-summary">
+                    <div class="avatar-small" id="deleteUserAvatar">
                         <i class="fas fa-user"></i>
                     </div>
-                    <div class="user-summary-details">
+                    <div class="summary-details">
                         <h4 id="deleteUserName">Nombre del Usuario</h4>
                         <p id="deleteUserEmail">email@example.com</p>
                         <span id="deleteUserRole" class="role-badge">Rol</span>
@@ -931,7 +931,7 @@
                 </div>
             </div>
 
-            <div class="delete-modal-actions">
+            <div class="delete-form-actions">
                 <button type="button" id="confirmDeleteBtn" class="critical-danger-btn" disabled>
                     <i class="fas fa-trash-alt"></i>
                     <span>Eliminar Usuario Permanentemente</span>

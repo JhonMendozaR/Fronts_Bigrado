@@ -137,7 +137,6 @@
                             <th>Programa</th>
                             <th>Sede</th>
                             <th>Facultad</th>
-                            <th>Estado</th>
                             <th>Acciones</th>
                         </tr>
                     </thead>
@@ -145,7 +144,7 @@
                         <tr>
                             <td>
                                 <div class="info-cell">
-                                    <div class="avatar-table program-avatar">
+                                    <div class="avatar-table">
                                         <i class="fas fa-laptop-code"></i>
                                     </div>
                                     <div class="details-table">
@@ -163,9 +162,6 @@
                                 <div class="title-two">
                                     <div>Ingeniería</div>
                                 </div>
-                            </td>
-                            <td>
-                                <span class="status-badge active">Activo</span>
                             </td>
                             <td>
                                 <div class="actions-menu">
@@ -193,7 +189,7 @@
                         <tr>
                             <td>
                                 <div class="info-cell">
-                                    <div class="avatar-table program-avatar">
+                                    <div class="avatar-table">
                                         <i class="fas fa-stethoscope"></i>
                                     </div>
                                     <div class="details-table">
@@ -211,9 +207,6 @@
                                 <div class="title-two">
                                     <div>Medicina</div>
                                 </div>
-                            </td>
-                            <td>
-                                <span class="status-badge active">Activo</span>
                             </td>
                             <td>
                                 <div class="actions-menu">
@@ -241,7 +234,7 @@
                         <tr>
                             <td>
                                 <div class="info-cell">
-                                    <div class="avatar-table program-avatar">
+                                    <div class="avatar-table">
                                         <i class="fas fa-balance-scale"></i>
                                     </div>
                                     <div class="details-table">
@@ -259,9 +252,6 @@
                                 <div class="title-two">
                                     <div>Derecho</div>
                                 </div>
-                            </td>
-                            <td>
-                                <span class="status-badge active">Activo</span>
                             </td>
                             <td>
                                 <div class="actions-menu">
@@ -289,7 +279,7 @@
                         <tr>
                             <td>
                                 <div class="info-cell">
-                                    <div class="avatar-table program-avatar">
+                                    <div class="avatar-table">
                                         <i class="fas fa-chart-line"></i>
                                     </div>
                                     <div class="details-table">
@@ -307,9 +297,6 @@
                                 <div class="title-two">
                                     <div>Administración</div>
                                 </div>
-                            </td>
-                            <td>
-                                <span class="status-badge active">Activo</span>
                             </td>
                             <td>
                                 <div class="actions-menu">
@@ -337,7 +324,7 @@
                         <tr>
                             <td>
                                 <div class="info-cell">
-                                    <div class="avatar-table program-avatar">
+                                    <div class="avatar-table">
                                         <i class="fas fa-flask"></i>
                                     </div>
                                     <div class="details-table">
@@ -355,9 +342,6 @@
                                 <div class="title-two">
                                     <div>Ciencias</div>
                                 </div>
-                            </td>
-                            <td>
-                                <span class="status-badge inactive">Inactivo</span>
                             </td>
                             <td>
                                 <div class="actions-menu">
@@ -500,28 +484,28 @@
     </div>
 
     <!-- Modal para ver detalles del programa curricular -->
-    <div id="viewProgramModal" class="modal" style="display:none;">
+    <div id="viewProgramModal" class="modal">
         <div class="modal-content">
             <span class="close-modal" onclick="closeViewProgramModal()">&times;</span>
             <h2 id="viewProgramTitle">Detalles del Programa Curricular</h2>
             
-            <div class="user-details-container">
+            <div class="details-container">
                 <!-- Información básica del programa -->
-                <div class="user-header">
-                    <div class="user-avatar-large" id="viewProgramAvatar">
+                <div class="details-header">
+                    <div class="avatar-large" id="viewProgramAvatar">
                         <i class="fas fa-graduation-cap"></i>
                     </div>
-                    <div class="user-main-info">
+                    <div class="details-main-info">
                         <h3 id="viewProgramName">Nombre del Programa</h3>
                         <p id="viewProgramLevel">Nivel de Formación</p>
-                        <div class="user-badges">
+                        <div class="details-badges">
                             <span id="viewProgramStatus" class="status-badge">Estado</span>
                         </div>
                     </div>
                 </div>
 
                 <!-- Secciones de información -->
-                <div class="user-details-sections">
+                <div class="details-sections">
                     <!-- Información del programa -->
                     <div class="detail-section">
                         <h4><i class="fas fa-graduation-cap"></i> Información del Programa</h4>
@@ -584,7 +568,7 @@
                     </div>
                 </div>
 
-                <div class="modal-actions">
+                <div class="form-actions">
                     <button type="button" class="secondary-btn" onclick="closeViewProgramModal()">
                         <i class="fas fa-times"></i> Cerrar
                     </button>
@@ -597,7 +581,7 @@
     </div>
 
     <!-- Modal para editar programa curricular -->
-    <div id="editProgramModal" class="modal" style="display:none;">
+    <div id="editProgramModal" class="modal">
         <div class="modal-content">
             <span class="close-modal" onclick="closeEditProgramModal()">&times;</span>
             <h2 id="editProgramTitle">Editar Programa Curricular</h2>
@@ -694,8 +678,8 @@
     </div>
 
     <!-- Modal para eliminar programa curricular -->
-    <div id="deleteProgramModal" class="modal" style="display:none;">
-        <div class="modal-content delete-user-modal-content">
+    <div id="deleteProgramModal" class="modal">
+        <div class="modal-content delete-modal-content">
             <span class="close-modal" onclick="closeDeleteProgramModal()">&times;</span>
             <div class="delete-modal-header">
                 <div class="delete-icon">
@@ -706,11 +690,11 @@
             </div>
             
             <div class="delete-modal-body">
-                <div class="user-info-summary">
-                    <div class="user-avatar-small" id="deleteProgramAvatar">
+                <div class="info-summary">
+                    <div class="avatar-small" id="deleteProgramAvatar">
                         <i class="fas fa-graduation-cap"></i>
                     </div>
-                    <div class="user-summary-details">
+                    <div class="summary-details">
                         <h4 id="deleteProgramName">Nombre del Programa</h4>
                         <p id="deleteProgramDetails">Sede - Facultad</p>
                         <span id="deleteProgramLevel" class="role-badge">Nivel</span>
@@ -763,7 +747,7 @@
                 </div>
             </div>
 
-            <div class="delete-modal-actions">
+            <div class="delete-form-actions">
                 <button type="button" id="confirmDeleteProgramBtn" class="critical-danger-btn" disabled>
                     <i class="fas fa-trash-alt"></i>
                     <span>Eliminar Programa</span>

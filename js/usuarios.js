@@ -418,13 +418,13 @@ function populateToggleStatusModal(user) {
         icon.innerHTML = '<i class="fas fa-user-slash"></i>';
         icon.className = 'status-icon deactivate';
         
-        warning.className = 'status-warning danger';
-        warningIconElement.className = 'warning-icon danger';
-        warningContent.className = 'warning-content danger';
+        warning.className = 'status-warning';
+        warningIconElement.className = 'warning-icon';
+        warningContent.className = 'warning-content';
         warningTitle.textContent = '¿Estás seguro de desactivar este usuario?';
         warningMessage.textContent = 'Al desactivar este usuario, no podrá acceder al sistema hasta que sea activado nuevamente. Todas sus sesiones activas serán cerradas.';
         
-        confirmBtn.className = 'danger-btn';
+        confirmBtn.className = 'alternative-btn';
         confirmBtn.innerHTML = '<i class="fas fa-user-slash"></i><span>Desactivar Usuario</span>';
     } else {
         // Configurar para activar

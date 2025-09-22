@@ -127,7 +127,7 @@
                         <tr>
                             <th>Universidad</th>
                             <th>País</th>
-                            <th>N° Programas</th>
+                            <th>Ciudad</th>
                             <th>Estado</th>
                             <th>Acciones</th>
                         </tr>
@@ -153,8 +153,8 @@
                             </td>
                             <td>
                                 <div class="title-two">
-                                    <div><i class="fas fa-graduation-cap"></i></div>
-                                    <div>127</div>
+                                    <div><i class="fas fa-location-dot"></i></div>
+                                    <div>Bogotá</div>
                                 </div>
                             </td>
                             <td>
@@ -202,8 +202,8 @@
                             </td>
                             <td>
                                 <div class="title-two">
-                                    <div><i class="fas fa-graduation-cap"></i></div>
-                                    <div>89</div>
+                                    <div><i class="fas fa-location-dot"></i></div>
+                                    <div>Bogotá</div>
                                 </div>
                             </td>
                             <td>
@@ -251,8 +251,8 @@
                             </td>
                             <td>
                                 <div class="title-two">
-                                    <div><i class="fas fa-graduation-cap"></i></div>
-                                    <div>156</div>
+                                    <div><i class="fas fa-location-dot"></i></div>
+                                    <div>Bogotá</div>
                                 </div>
                             </td>
                             <td>
@@ -300,8 +300,8 @@
                             </td>
                             <td>
                                 <div class="title-two">
-                                    <div><i class="fas fa-graduation-cap"></i></div>
-                                    <div>92</div>
+                                    <div><i class="fas fa-location-dot"></i></div>
+                                    <div>Bogotá</div>
                                 </div>
                             </td>
                             <td>
@@ -349,8 +349,8 @@
                             </td>
                             <td>
                                 <div class="title-two">
-                                    <div><i class="fas fa-graduation-cap"></i></div>
-                                    <div>203</div>
+                                    <div><i class="fas fa-location-dot"></i></div>
+                                    <div>Buenos aires</div>
                                 </div>
                             </td>
                             <td>
@@ -405,7 +405,7 @@
     </div>
     
     <!-- Modal de Nueva Universidad -->
-    <div id="newUniversityModal" class="modal" style="display:none;">
+    <div id="newUniversityModal" class="modal">
         <div class="modal-content">
             <span class="close-modal" onclick="closeNewUniversityModal()">&times;</span>
             <h2>Nueva Universidad</h2>
@@ -530,14 +530,7 @@
                     <div class="form-row">
                         <div class="form-group">
                             <label for="originCoordinator">Coordinador de origen *</label>
-                            <select id="originCoordinator" name="originCoordinator" required>
-                                <option value="">Seleccionar coordinador</option>
-                                <option value="1">Dr. Juan Carlos Martínez - Facultad de Ingeniería</option>
-                                <option value="2">Dra. María Elena García - Facultad de Ciencias</option>
-                                <option value="3">Dr. Carlos Alberto López - Facultad de Medicina</option>
-                                <option value="4">Dra. Ana Sofia Rodríguez - Facultad de Humanidades</option>
-                                <option value="5">Dr. Roberto Hernández - Oficina de Relaciones Internacionales</option>
-                            </select>
+                            <input type="text" id="originCoordinator" name="originCoordinator" required placeholder="Nombre del coordinador en la universidad de origen">
                         </div>
                         <div class="form-group">
                             <label for="destinationCoordinator">Coordinador de destino *</label>
@@ -561,21 +554,21 @@
     </div>
 
     <!-- Modal de Ver Detalles de la Universidad -->
-    <div id="viewUniversityModal" class="modal" style="display:none;">
+    <div id="viewUniversityModal" class="modal">
         <div class="modal-content">
             <span class="close-modal" onclick="closeViewUniversityModal()">&times;</span>
             <h2 id="viewUniversityTitle">Detalles de la Universidad</h2>
             
-            <div class="user-details-container">
+            <div class="details-container">
                 <!-- Información básica de la universidad -->
-                <div class="user-header">
-                    <div class="user-avatar-large" id="viewUniversityAvatar">
+                <div class="details-header">
+                    <div class="avatar-large" id="viewUniversityAvatar">
                         UN
                     </div>
-                    <div class="user-main-info">
+                    <div class="details-main-info">
                         <h3 id="viewUniversityName">Universidad Nacional de Colombia</h3>
                         <p id="viewUniversityEmail">contacto@unal.edu.co</p>
-                        <div class="user-badges">
+                        <div class="details-badges">
                             <span id="viewAgreementType" class="role-badge student">Intercambio académico</span>
                             <span id="viewAgreementStatus" class="status-badge active">Activo</span>
                         </div>
@@ -583,7 +576,7 @@
                 </div>
 
                 <!-- Secciones de información -->
-                <div class="user-details-sections">
+                <div class="details-sections">
                     <!-- Información de la Universidad -->
                     <div class="detail-section">
                         <h4><i class="fas fa-university"></i> Información de la Universidad</h4>
@@ -692,7 +685,7 @@
                     </div>
                 </div>
 
-                <div class="modal-actions">
+                <div class="form-actions">
                     <button type="button" class="secondary-btn" onclick="closeViewUniversityModal()">
                         <i class="fas fa-times"></i>
                         Cerrar
@@ -707,7 +700,7 @@
     </div>
 
     <!-- Modal de Editar Universidad -->
-    <div id="editUniversityModal" class="modal" style="display:none;">
+    <div id="editUniversityModal" class="modal">
         <div class="modal-content">
             <span class="close-modal" onclick="closeEditUniversityModal()">&times;</span>
             <h2 id="editUniversityTitle">Editar Universidad</h2>
@@ -839,14 +832,7 @@
                     <div class="form-row">
                         <div class="form-group">
                             <label for="editOriginCoordinator">Coordinador de origen *</label>
-                            <select id="editOriginCoordinator" name="originCoordinator" required>
-                                <option value="">Seleccionar coordinador</option>
-                                <option value="1">Dr. Juan Carlos Martínez - Facultad de Ingeniería</option>
-                                <option value="2">Dra. María Elena García - Facultad de Ciencias</option>
-                                <option value="3">Dr. Carlos Alberto López - Facultad de Medicina</option>
-                                <option value="4">Dra. Ana Sofia Rodríguez - Facultad de Humanidades</option>
-                                <option value="5">Dr. Roberto Hernández - Oficina de Relaciones Internacionales</option>
-                            </select>
+                            <input type="text" id="editOriginCoordinator" name="originCoordinator" required placeholder="Nombre del coordinador en la universidad de origen">
                         </div>
                         <div class="form-group">
                             <label for="editDestinationCoordinator">Coordinador de destino *</label>
@@ -872,8 +858,8 @@
     </div>
 
     <!-- Modal de Eliminar Universidad -->
-    <div id="deleteUniversityModal" class="modal" style="display:none;">
-        <div class="modal-content delete-user-modal-content">
+    <div id="deleteUniversityModal" class="modal">
+        <div class="modal-content delete-modal-content">
             <span class="close-modal" onclick="closeDeleteUniversityModal()">&times;</span>
             <div class="delete-modal-header">
                 <div class="delete-icon">
@@ -884,11 +870,11 @@
             </div>
             
             <div class="delete-modal-body">
-                <div class="user-info-summary">
-                    <div class="user-avatar-small" id="deleteUniversityAvatar">
+                <div class="info-summary">
+                    <div class="avatar-small" id="deleteUniversityAvatar">
                         UN
                     </div>
-                    <div class="user-summary-details">
+                    <div class="summary-details">
                         <h4 id="deleteUniversityName">Universidad Nacional de Colombia</h4>
                         <p id="deleteUniversityEmail">contacto@unal.edu.co</p>
                     </div>
@@ -930,7 +916,7 @@
                 </div>
             </div>
 
-            <div class="delete-modal-actions">
+            <div class="delete-form-actions">
                 <button type="button" id="confirmDeleteBtn" class="critical-danger-btn" disabled>
                     <i class="fas fa-trash"></i>
                     Eliminar Universidad
