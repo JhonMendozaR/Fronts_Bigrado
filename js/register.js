@@ -52,7 +52,7 @@ function closeSuccessModal() {
 }
 
 function redirectToHome() {
-    window.location.href = '/index.html';
+    window.location.href = '/onboarding.html';
 }
 
 // Simple validation utilities
