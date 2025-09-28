@@ -157,7 +157,7 @@ function showSuccessModal(userData) {
 function redirectToDashboard() {
     // Aquí puedes redireccionar a la página principal de tu aplicación
     // Por ahora, simplemente recargamos la página o redirigimos a una página de bienvenida
-    window.location.href = '/home.html'; // Cambia esto por tu página principal
+    window.location.href = '/usuarios.html'; // Cambia esto por tu página principal
 }
 
 // Función para guardar datos de usuario en localStorage
