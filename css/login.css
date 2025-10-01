@@ -319,7 +319,7 @@ body {
     left: 0;
     width: 100%;
     height: 100%;
-    z-index: 0;
+    z-index: -2;
     overflow: hidden;
     pointer-events: none;
 }
@@ -328,7 +328,7 @@ body {
     position: absolute;
     background: rgba(255, 255, 255, 0.1);
     border-radius: 50%;
-    z-index: 1;
+    z-index: -1;
 }
 
 .shape-1 {
@@ -369,7 +369,9 @@ body {
     top: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.5);
+    background-color: rgba(0, 0, 0, 0.6);
+    align-items: center;
+    justify-content: center;
     animation: fadeIn 0.3s ease;
 }
 
@@ -384,7 +386,7 @@ body {
     padding: 40px;
     border-radius: 20px;
     width: 90%;
-    max-width: 400px;
+    max-width: 450px;
     text-align: center;
     position: relative;
     animation: slideUp 0.3s ease;
@@ -413,24 +415,28 @@ body {
 }
 
 .success-icon i {
-    font-size: 2rem;
+    font-size: 2.5rem;
     color: white;
+    z-index: 2;
+    position: relative;
 }
 
 .modal-content h2 {
-    color: #333;
-    margin-bottom: 10px;
-    font-size: 1.8rem;
+    color: #222;
+    margin-bottom: 15px;
+    font-size: 2rem;
+    font-weight: 700;
 }
 
 .modal-content p {
-    color: #666;
-    margin-bottom: 25px;
-    font-size: 1rem;
+    color: #555;
+    margin-bottom: 35px;
+    font-size: 1.1rem;
+    line-height: 1.5;
 }
 
 .success-btn {
-    background: #3393ff;
+    background: linear-gradient(135deg, #006de8 0%, #54a5ff 100%);
     color: white;
     border: none;
     padding: 12px 30px;
@@ -496,12 +502,10 @@ body {
 .onboarding-container {
     position: relative;
     width: 100%;
-    max-width: 500px;
+    max-width: 550px;
     padding: 20px;
     margin: 0 auto;
 }
-
-
 
 .cards-container {
     position: relative;
@@ -520,6 +524,8 @@ body {
     box-sizing: border-box;
     display: none;
     transition: all 0.3s ease;
+    position: relative;
+    z-index: 5;
 }
 
 .onboarding-card.active {
@@ -581,7 +587,6 @@ body {
 .form-row {
     display: flex;
     gap: 15px;
-    margin-bottom: 20px;
 }
 
 .form-row .register-group {
@@ -642,8 +647,9 @@ body {
 
 .btn-outline {
     background: transparent;
-    color: #0078ff;
-    border: 2px solid #0078ff;
+    color: #999;
+    font-size: 0.9rem;
+    opacity: 0.8;
 }
 
 .btn:hover {
@@ -653,6 +659,69 @@ body {
 
 .btn-primary:hover {
     box-shadow: 0 10px 25px rgba(102, 126, 234, 0.4);
+}
+
+.btn-outline:hover {
+    transform: none;
+    box-shadow: none;
+    color: #999;
+    border-color: #ccc;
+}
+
+.btn-back {
+    background: transparent;
+    color: #666;
+    border: 2px solid #ddd;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex: none;
+}
+
+.btn-back:hover {
+    background: #f5f5f5;
+    color: #333;
+    border-color: #bbb;
+    transform: translateY(-1px);
+}
+
+.btn-back i {
+    font-size: 1.1rem;
+}
+
+.btn-back-corner {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    background: transparent;
+    color: #999;
+    font-size: 0.9rem;
+    opacity: 0.8;
+    transition: none;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 10;
+}
+
+.btn-back-corner:hover {
+    transform: none;
+    box-shadow: none;
+    color: #999;
+    border-color: #ccc;
+    background: transparent;
+}
+
+.btn-back-corner i {
+    font-size: 1rem;
 }
 
 .btn:active {

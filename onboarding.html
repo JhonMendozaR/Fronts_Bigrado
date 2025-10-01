@@ -10,8 +10,6 @@
     <meta name="description" content="Completa tu registro en Bigrado">
 </head>
 <body>
-
-
     <div class="onboarding-container">
         <div class="cards-container">
             <!-- Tarjeta 1: Información Personal -->
@@ -30,7 +28,7 @@
                 <form id="personalForm" class="login-form">
                     <div class="register-group">
                         <select id="tipoIdentificacion" name="tipoIdentificacion" required>
-                            <option value="">Tipo de identificación *</option>
+                            <option value="">Tipo de identificación</option>
                             <option value="cedula">Cédula de Ciudadanía</option>
                             <option value="tarjeta">Tarjeta de Identidad</option>
                             <option value="cedula_extranjeria">Cédula de Extranjería</option>
@@ -41,8 +39,7 @@
                     <div class="register-group">
                         <div class="input-container">
                             <i class="fas fa-id-card"></i>
-                            <input type="text" id="numeroIdentificacion" name="numeroIdentificacion" 
-                                   placeholder="Número de identificación" required>
+                            <input type="number" id="numeroIdentificacion" name="numeroIdentificacion" placeholder="Número de identificación" required>
                         </div>
                     </div>
 
@@ -50,8 +47,7 @@
                         <div class="register-group">
                             <div class="input-container">
                                 <i class="fas fa-calendar"></i>
-                                <input type="date" id="fechaNacimiento" name="fechaNacimiento" 
-                                       placeholder="Fecha de nacimiento">
+                                <input type="date" id="fechaNacimiento" name="fechaNacimiento" placeholder="Fecha de nacimiento">
                             </div>
                         </div>
                         <div class="register-group">
@@ -85,6 +81,8 @@
                         </select>
                     </div>
 
+                    <div id="errorMessageCard1" class="error-message"></div>
+
                     <div class="card-actions">
                         <button type="button" class="btn btn-outline" onclick="skipStep(1)">Omitir</button>
                         <button type="button" class="btn btn-primary" onclick="nextStep(1)">Siguiente</button>
@@ -94,6 +92,8 @@
 
             <!-- Tarjeta 2: Información de Contacto -->
             <div class="onboarding-card" id="card2">
+                <button type="button" class="btn btn-back-corner" onclick="prevStep(2)"><i class="fas fa-arrow-left"></i></button>
+                
                 <div class="card-header">
                     <h2>Información de Contacto</h2>
                     <p>¿Dónde podemos encontrarte?</p>
@@ -140,22 +140,15 @@
 
                     <div class="register-group">
                         <div class="input-container">
-                            <i class="fas fa-envelope"></i>
-                            <input type="email" id="correoContacto" name="correoContacto" 
-                                   placeholder="Correo electrónico">
-                        </div>
-                    </div>
-
-                    <div class="register-group">
-                        <div class="input-container">
                             <i class="fas fa-phone"></i>
                             <input type="tel" id="telefono" name="telefono" 
                                    placeholder="Teléfono">
                         </div>
                     </div>
 
+                    <div id="errorMessageCard2" class="error-message"></div>
+
                     <div class="card-actions">
-                        <button type="button" class="btn btn-outline" onclick="prevStep(2)">Atrás</button>
                         <button type="button" class="btn btn-outline" onclick="skipStep(2)">Omitir</button>
                         <button type="button" class="btn btn-primary" onclick="nextStep(2)">Siguiente</button>
                     </div>
@@ -164,6 +157,8 @@
 
             <!-- Tarjeta 3: Contacto de Emergencia -->
             <div class="onboarding-card" id="card3">
+                <button type="button" class="btn btn-back-corner" onclick="prevStep(3)"><i class="fas fa-arrow-left"></i></button>
+                
                 <div class="card-header">
                     <h2>Contacto de Emergencia</h2>
                     <p>Información de tu contacto de emergencia</p>
@@ -208,8 +203,9 @@
                         </div>
                     </div>
 
+                    <div id="errorMessageCard3" class="error-message"></div>
+
                     <div class="card-actions single-action">
-                        <button type="button" class="btn btn-outline" onclick="prevStep(3)">Atrás</button>
                         <button type="button" class="btn btn-primary" onclick="finishOnboarding()">Finalizar registro</button>
                     </div>
                 </form>
@@ -235,169 +231,6 @@
         </div>
     </div>
 
-    <script>
-        // Variables globales
-        let currentStep = 1;
-        const totalSteps = 3;
-
-
-
-        // Función para ir al siguiente paso
-        function nextStep(step) {
-            if (validateCurrentStep(step)) {
-                if (step < totalSteps) {
-                    showCard(step + 1);
-                }
-            }
-        }
-
-        // Función para ir al paso anterior
-        function prevStep(step) {
-            if (step > 1) {
-                showCard(step - 1);
-            }
-        }
-
-        // Función para omitir paso
-        function skipStep(step) {
-            if (step < totalSteps) {
-                showCard(step + 1);
-            }
-        }
-
-        // Función para mostrar una tarjeta específica
-        function showCard(cardNumber) {
-            console.log('Showing card:', cardNumber); // Debug
-            
-            // Ocultar todas las tarjetas
-            const cards = document.querySelectorAll('.onboarding-card');
-            cards.forEach((card, index) => {
-                card.classList.remove('active');
-                if (index + 1 === cardNumber) {
-                    card.classList.add('active');
-                }
-            });
-
-            // Actualizar indicadores de progreso
-            const dots = document.querySelectorAll('.progress-dot');
-            dots.forEach((dot, index) => {
-                if (index < cardNumber) {
-                    dot.classList.add('active');
-                } else {
-                    dot.classList.remove('active');
-                }
-            });
-
-            currentStep = cardNumber;
-        }
-
-        // Función de validación básica
-        function validateCurrentStep(step) {
-            let isValid = true;
-            const errorMessages = [];
-
-            if (step === 1) {
-                const tipoId = document.getElementById('tipoIdentificacion').value;
-                const numeroId = document.getElementById('numeroIdentificacion').value;
-
-                if (!tipoId) {
-                    errorMessages.push('El tipo de identificación es obligatorio');
-                    isValid = false;
-                }
-
-                if (!numeroId) {
-                    errorMessages.push('El número de identificación es obligatorio');
-                    isValid = false;
-                }
-            }
-
-            if (!isValid) {
-                alert(errorMessages.join('\n'));
-            }
-
-            return isValid;
-        }
-
-        // Función para finalizar el onboarding
-        function finishOnboarding() {
-            // Recopilar todos los datos del formulario
-            const onboardingData = {
-                // Información personal
-                tipoIdentificacion: document.getElementById('tipoIdentificacion').value,
-                numeroIdentificacion: document.getElementById('numeroIdentificacion').value,
-                fechaNacimiento: document.getElementById('fechaNacimiento').value,
-                lugarNacimiento: document.getElementById('lugarNacimiento').value,
-                genero: document.getElementById('genero').value,
-                nacionalidad: document.getElementById('nacionalidad').value,
-                
-                // Información de contacto
-                direccion: document.getElementById('direccion').value,
-                ciudad: document.getElementById('ciudad').value,
-                departamento: document.getElementById('departamento').value,
-                correoContacto: document.getElementById('correoContacto').value,
-                telefono: document.getElementById('telefono').value,
-                
-                // Contacto de emergencia
-                nombreEmergencia: document.getElementById('nombreEmergencia').value,
-                parentesco: document.getElementById('parentesco').value,
-                telefonoEmergencia: document.getElementById('telefonoEmergencia').value
-            };
-
-            // Guardar datos en localStorage (simulación)
-            localStorage.setItem('onboardingData', JSON.stringify(onboardingData));
-
-            // Mostrar modal de éxito
-            document.getElementById('finalModal').style.display = 'flex';
-        }
-
-        // Función para redirigir al dashboard
-        function redirectToDashboard() {
-            // Redirigir a la página principal de la aplicación
-            window.location.href = '/usuarios.html'; // Cambiar esta URL por la página de inicio o dashboard
-        }
-
-        // Navegación con teclado
-        document.addEventListener('keydown', function(event) {
-            if (event.key === 'ArrowLeft' && currentStep > 1) {
-                prevStep(currentStep);
-            } else if (event.key === 'ArrowRight' && currentStep < totalSteps) {
-                nextStep(currentStep);
-            }
-        });
-
-        // Soporte para gestos táctiles (básico)
-        let startX = 0;
-        let endX = 0;
-
-        document.addEventListener('touchstart', function(event) {
-            startX = event.changedTouches[0].screenX;
-        });
-
-        document.addEventListener('touchend', function(event) {
-            endX = event.changedTouches[0].screenX;
-            handleSwipe();
-        });
-
-        function handleSwipe() {
-            const threshold = 50; // Distancia mínima para considerar un swipe
-            const diff = startX - endX;
-
-            if (Math.abs(diff) > threshold) {
-                if (diff > 0 && currentStep < totalSteps) {
-                    // Swipe izquierda - siguiente
-                    nextStep(currentStep);
-                } else if (diff < 0 && currentStep > 1) {
-                    // Swipe derecha - anterior
-                    prevStep(currentStep);
-                }
-            }
-        }
-
-        // Inicialización cuando carga la página
-        window.addEventListener('load', function() {
-            // Asegurar que la primera tarjeta esté visible
-            showCard(1);
-        });
-    </script>
+    <script src="/js/onboarding.js"></script>
 </body>
 </html>
