@@ -8,238 +8,6 @@
     <link rel="icon" href="/img/Logo_Bigrado_negro.svg" type="image/x-icon">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <meta name="description" content="Completa tu registro en Bigrado">
-    <style>
-        /* Estilos adicionales para el onboarding */
-        .onboarding-container {
-            position: relative;
-            width: 100%;
-            max-width: 500px;
-            padding: 20px;
-            margin: 0 auto;
-        }
-
-
-
-        .cards-container {
-            position: relative;
-            overflow: hidden;
-            border-radius: 20px;
-            min-height: 500px;
-        }
-
-        .onboarding-card {
-            background: #fffffff2;
-            backdrop-filter: blur(10px);
-            border-radius: 20px;
-            padding: 40px 30px;
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
-            width: 100%;
-            box-sizing: border-box;
-            display: none;
-            transition: all 0.3s ease;
-        }
-
-        .onboarding-card.active {
-            display: block;
-            animation: slideIn 0.5s ease forwards;
-        }
-
-        @keyframes slideIn {
-            from {
-                opacity: 0;
-                transform: translateX(50px);
-            }
-            to {
-                opacity: 1;
-                transform: translateX(0);
-            }
-        }
-
-        .onboarding-card.prev {
-            transform: translateX(-100%);
-        }
-
-        .card-header {
-            text-align: center;
-            margin-bottom: 30px;
-        }
-
-        .card-header h2 {
-            color: #222;
-            font-size: 1.5rem;
-            font-weight: 600;
-            margin-bottom: 10px;
-        }
-
-        .card-header p {
-            color: #666;
-            font-size: 0.95rem;
-        }
-
-        .progress-indicator {
-            display: flex;
-            justify-content: center;
-            margin-bottom: 30px;
-            gap: 10px;
-        }
-
-        .progress-dot {
-            width: 12px;
-            height: 12px;
-            border-radius: 50%;
-            background-color: #e0e0e0;
-            transition: background-color 0.3s ease;
-        }
-
-        .progress-dot.active {
-            background-color: #0078ff;
-        }
-
-        .form-row {
-            display: flex;
-            gap: 15px;
-            margin-bottom: 20px;
-        }
-
-        .form-row .form-group {
-            flex: 1;
-        }
-
-        .form-group select {
-            width: 100%;
-            padding: 15px;
-            border: 2px solid #e0e0e0;
-            border-radius: 12px;
-            font-size: 1rem;
-            background: #f8f9fa;
-            transition: all 0.3s ease;
-            outline: none;
-            appearance: none;
-            background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%236b7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M6 8l4 4 4-4'/%3e%3c/svg%3e");
-            background-position: right 12px center;
-            background-repeat: no-repeat;
-            background-size: 16px;
-        }
-
-        .form-group select:focus {
-            border-color: #0078ff;
-            background: white;
-            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
-        }
-
-        .card-actions {
-            display: flex;
-            gap: 15px;
-            margin-top: 30px;
-        }
-
-        .btn {
-            flex: 1;
-            padding: 15px;
-            border: none;
-            border-radius: 12px;
-            font-size: 1rem;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .btn-primary {
-            background: linear-gradient(135deg, #006de8 0%, #54a5ff 100%);
-            color: white;
-        }
-
-        .btn-secondary {
-            background: #f8f9fa;
-            color: #666;
-            border: 2px solid #e0e0e0;
-        }
-
-        .btn-outline {
-            background: transparent;
-            color: #0078ff;
-            border: 2px solid #0078ff;
-        }
-
-        .btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
-        }
-
-        .btn-primary:hover {
-            box-shadow: 0 10px 25px rgba(102, 126, 234, 0.4);
-        }
-
-        .btn:active {
-            transform: translateY(0);
-        }
-
-        .btn:disabled {
-            opacity: 0.7;
-            cursor: not-allowed;
-            transform: none;
-        }
-
-        .single-action {
-            justify-content: center;
-        }
-
-        .single-action .btn {
-            max-width: 200px;
-        }
-
-        /* Responsive */
-        @media (max-width: 480px) {
-            .onboarding-container {
-                padding: 15px;
-            }
-            
-            .onboarding-card {
-                padding: 30px 20px;
-            }
-            
-            .form-row {
-                flex-direction: column;
-                gap: 10px;
-            }
-            
-            .card-actions {
-                flex-direction: column;
-            }
-            
-            .welcome-content {
-                padding: 30px 20px;
-            }
-        }
-
-        /* Animaciones adicionales */
-        .fade-in {
-            animation: fadeInUp 0.6s ease forwards;
-        }
-
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .success-animation {
-            animation: successPulse 0.6s ease-in-out;
-        }
-
-        @keyframes successPulse {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.05); }
-            100% { transform: scale(1); }
-        }
-    </style>
 </head>
 <body>
 
@@ -260,7 +28,7 @@
                 </div>
 
                 <form id="personalForm" class="login-form">
-                    <div class="form-group">
+                    <div class="register-group">
                         <select id="tipoIdentificacion" name="tipoIdentificacion" required>
                             <option value="">Tipo de identificación *</option>
                             <option value="cedula">Cédula de Ciudadanía</option>
@@ -270,23 +38,23 @@
                         </select>
                     </div>
 
-                    <div class="form-group">
+                    <div class="register-group">
                         <div class="input-container">
                             <i class="fas fa-id-card"></i>
                             <input type="text" id="numeroIdentificacion" name="numeroIdentificacion" 
-                                   placeholder="Número de identificación *" required>
+                                   placeholder="Número de identificación" required>
                         </div>
                     </div>
 
                     <div class="form-row">
-                        <div class="form-group">
+                        <div class="register-group">
                             <div class="input-container">
                                 <i class="fas fa-calendar"></i>
                                 <input type="date" id="fechaNacimiento" name="fechaNacimiento" 
                                        placeholder="Fecha de nacimiento">
                             </div>
                         </div>
-                        <div class="form-group">
+                        <div class="register-group">
                             <select id="genero" name="genero">
                                 <option value="">Género</option>
                                 <option value="masculino">Masculino</option>
@@ -297,7 +65,7 @@
                         </div>
                     </div>
 
-                    <div class="form-group">
+                    <div class="register-group">
                         <div class="input-container">
                             <i class="fas fa-map-marker-alt"></i>
                             <input type="text" id="lugarNacimiento" name="lugarNacimiento" 
@@ -305,7 +73,7 @@
                         </div>
                     </div>
 
-                    <div class="form-group">
+                    <div class="register-group">
                         <select id="nacionalidad" name="nacionalidad">
                             <option value="">Nacionalidad</option>
                             <option value="colombiana">Colombiana</option>
@@ -338,7 +106,7 @@
                 </div>
 
                 <form id="contactForm" class="login-form">
-                    <div class="form-group">
+                    <div class="register-group">
                         <div class="input-container">
                             <i class="fas fa-home"></i>
                             <input type="text" id="direccion" name="direccion" 
@@ -347,14 +115,14 @@
                     </div>
 
                     <div class="form-row">
-                        <div class="form-group">
+                        <div class="register-group">
                             <div class="input-container">
                                 <i class="fas fa-city"></i>
                                 <input type="text" id="ciudad" name="ciudad" 
                                        placeholder="Ciudad">
                             </div>
                         </div>
-                        <div class="form-group">
+                        <div class="register-group">
                             <select id="departamento" name="departamento">
                                 <option value="">Departamento</option>
                                 <option value="antioquia">Antioquia</option>
@@ -370,7 +138,7 @@
                         </div>
                     </div>
 
-                    <div class="form-group">
+                    <div class="register-group">
                         <div class="input-container">
                             <i class="fas fa-envelope"></i>
                             <input type="email" id="correoContacto" name="correoContacto" 
@@ -378,7 +146,7 @@
                         </div>
                     </div>
 
-                    <div class="form-group">
+                    <div class="register-group">
                         <div class="input-container">
                             <i class="fas fa-phone"></i>
                             <input type="tel" id="telefono" name="telefono" 
@@ -408,7 +176,7 @@
                 </div>
 
                 <form id="emergencyForm" class="login-form">
-                    <div class="form-group">
+                    <div class="register-group">
                         <div class="input-container">
                             <i class="fas fa-user"></i>
                             <input type="text" id="nombreEmergencia" name="nombreEmergencia" 
@@ -416,7 +184,7 @@
                         </div>
                     </div>
 
-                    <div class="form-group">
+                    <div class="register-group">
                         <select id="parentesco" name="parentesco">
                             <option value="">Parentesco</option>
                             <option value="padre">Padre</option>
@@ -432,7 +200,7 @@
                         </select>
                     </div>
 
-                    <div class="form-group">
+                    <div class="register-group">
                         <div class="input-container">
                             <i class="fas fa-phone-alt"></i>
                             <input type="tel" id="telefonoEmergencia" name="telefonoEmergencia" 
