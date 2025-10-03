@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reportes - Bigrado</title>
+    <link rel="stylesheet" href="/css/app.css">
+    <link rel="icon" href="/img/Logo_Bigrado_negro.svg" type="image/x-icon">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body data-page="reportes">
+    <!-- Topbar Container -->
+    <div id="topbar-container"></div>
+
+    <!-- Sidebar Overlay para móvil -->
+    <div class="sidebar-overlay" id="sidebarOverlay" onclick="toggleSidebar()"></div>
+
+    <!-- Layout principal -->
+    <div class="main-layout">
+        <!-- Sidebar Container -->
+        <div id="sidebar-container"></div>
+
+        <!-- Contenido principal -->
+        <main class="main-content">
+            <!-- Header de página -->
+            <div class="page-header">
+                <div>
+                    <h1>Reportes</h1>
+                    <p>Consulta y genera reportes estadísticos del sistema para análisis y seguimiento.</p>
+                </div>
+            </div>
+
+            <!-- Cards de reportes -->
+            <div class="summary-cards">
+                <div class="summary-card">
+                    <div class="summary-icon total">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <div class="summary-content">
+                        <h3>Usuarios</h3>
+                        <p>Reportes de usuarios</p>
+                    </div>
+                </div>
+
+                <div class="summary-card">
+                    <div class="summary-icon students">
+                        <i class="fas fa-graduation-cap"></i>
+                    </div>
+                    <div class="summary-content">
+                        <h3>Programas curriculares</h3>
+                        <p>Reportes de programas</p>
+                    </div>
+                </div>
+
+                <div class="summary-card">
+                    <div class="summary-icon support">
+                        <i class="fas fa-handshake"></i>
+                    </div>
+                    <div class="summary-content">
+                        <h3>Convenios</h3>
+                        <p>Reportes de convenios</p>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="/js/components.js"></script>
+    <script src="/js/reportes.js"></script>
+</body>
+</html>
