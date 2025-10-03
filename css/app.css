@@ -1732,3 +1732,176 @@ body {
         padding: 8px 10px;
     }
 }
+
+
+/* REPORTES */
+
+.summary-card.report-card {
+    border: none;
+    background: #fff;
+    text-align: left;
+    width: 100%;
+    cursor: pointer;
+}
+
+.summary-card.report-card:focus-visible {
+    outline: 3px solid rgba(51, 147, 255, 0.35);
+    outline-offset: 4px;
+}
+
+.report-modal {
+    position: fixed;
+    inset: 0;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+    background: rgba(17, 24, 39, 0.55);
+    z-index: 2100;
+}
+
+.report-modal.is-open {
+    display: flex;
+}
+
+.report-modal__overlay {
+    position: absolute;
+    inset: 0;
+    cursor: pointer;
+}
+
+.report-modal__dialog {
+    position: relative;
+    background: #fff;
+    border-radius: 16px;
+    box-shadow: 0 30px 70px rgba(17, 24, 39, 0.25);
+    max-width: 560px;
+    width: 100%;
+    padding: 32px;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    z-index: 1;
+    max-height: 90vh;
+    overflow-y: auto;
+}
+
+.report-modal__close {
+    position: absolute;
+    top: 18px;
+    right: 18px;
+    background: transparent;
+    border: none;
+    color: #6c757d;
+    font-size: 1.4rem;
+    cursor: pointer;
+    transition: color 0.3s ease, transform 0.3s ease;
+}
+
+.report-modal__close:hover {
+    color: #333;
+    transform: scale(1.1);
+}
+
+.report-modal__header h2 {
+    font-size: 1.5rem;
+    color: #333;
+    font-weight: 700;
+    margin-bottom: 8px;
+}
+
+.report-modal__description {
+    color: #666;
+    font-size: 0.9rem;
+    line-height: 1.5;
+    margin: 0;
+}
+
+.report-modal__form {
+    display: grid;
+    gap: 16px;
+}
+
+.report-modal__field {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.report-modal__label {
+    color: #333;
+    font-weight: 600;
+    font-size: 0.85rem;
+}
+
+.report-modal__input,
+.report-modal__select {
+    padding: 10px 14px;
+    border: 2px solid #e0e0e0;
+    border-radius: 10px;
+    font-size: 0.9rem;
+    color: #333;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    background: #fff;
+}
+
+.report-modal__input:focus,
+.report-modal__select:focus {
+    outline: none;
+    border-color: #3393ff;
+    box-shadow: 0 0 0 3px rgba(51, 147, 255, 0.12);
+}
+
+.report-modal__actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 12px;
+    margin-top: 8px;
+}
+
+.report-modal__btn {
+    border: none;
+    border-radius: 10px;
+    font-weight: 600;
+    padding: 10px 22px;
+    cursor: pointer;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.9rem;
+}
+
+.report-modal__btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 25px rgba(51, 147, 255, 0.18);
+}
+
+.report-modal__btn--pdf {
+    background: linear-gradient(135deg, #c81d35 0%, #dc3545 100%);
+    color: #fff;
+}
+
+.report-modal__btn--excel {
+    background: linear-gradient(135deg, #1e7e34 0%, #28a745 100%);
+    color: #fff;
+}
+
+@media (max-width: 768px) {
+    .report-modal {
+        padding: 16px;
+    }
+
+    .report-modal__dialog {
+        padding: 24px 20px;
+    }
+
+    .report-modal__actions {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .report-modal__btn {
+        justify-content: center;
+    }
+}

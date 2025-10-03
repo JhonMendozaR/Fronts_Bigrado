@@ -105,6 +105,7 @@ class ComponentLoader {
                 'usuarios': 'usuarios.html',
                 'universidades': 'universidades.html',
                 'programas': 'programas.html',
+                'reportes': 'reportes.html',
             };
 
             const targetFile = pageToFile[currentPage];

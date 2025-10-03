@@ -32,7 +32,7 @@
 
             <!-- Cards de reportes -->
             <div class="summary-cards">
-                <div class="summary-card">
+                <button type="button" class="summary-card report-card" id="usuariosReportCard" aria-haspopup="dialog">
                     <div class="summary-icon total">
                         <i class="fas fa-users"></i>
                     </div>
@@ -40,9 +40,9 @@
                         <h3>Usuarios</h3>
                         <p>Reportes de usuarios</p>
                     </div>
-                </div>
+                </button>
 
-                <div class="summary-card">
+                <button type="button" class="summary-card report-card" id="programasReportCard" aria-haspopup="dialog">
                     <div class="summary-icon students">
                         <i class="fas fa-graduation-cap"></i>
                     </div>
@@ -50,9 +50,9 @@
                         <h3>Programas curriculares</h3>
                         <p>Reportes de programas</p>
                     </div>
-                </div>
+                </button>
 
-                <div class="summary-card">
+                <button type="button" class="summary-card report-card" id="conveniosReportCard" aria-haspopup="dialog">
                     <div class="summary-icon support">
                         <i class="fas fa-handshake"></i>
                     </div>
@@ -60,9 +60,151 @@
                         <h3>Convenios</h3>
                         <p>Reportes de convenios</p>
                     </div>
-                </div>
+                </button>
             </div>
         </main>
+    </div>
+
+    <!-- Modal Reporte Usuarios -->
+    <div class="report-modal" id="usuariosModal" role="dialog" aria-modal="true" aria-labelledby="usuariosModalTitle" aria-hidden="true">
+        <div class="report-modal__overlay" data-close="usuariosModal"></div>
+        <div class="report-modal__dialog" tabindex="-1">
+            <button type="button" class="report-modal__close" aria-label="Cerrar" data-close="usuariosModal">&times;</button>
+            <div class="report-modal__header">
+                <h2 id="usuariosModalTitle">Reporte de usuarios</h2>
+                <p class="report-modal__description">Personaliza el reporte con filtros o consulta la versión completa dejando los campos vacíos.</p>
+            </div>
+            <form class="report-modal__form" id="usuariosReportForm">
+                <div class="report-modal__field">
+                    <label class="report-modal__label" for="usuariosRol">Rol</label>
+                    <select id="usuariosRol" name="rol" class="report-modal__select">
+                        <option value="">Todos</option>
+                        <option value="Estudiante">Estudiante</option>
+                        <option value="Administrador">Administrador</option>
+                        <option value="Profesional de apoyo">Profesional de apoyo</option>
+                    </select>
+                </div>
+                <div class="report-modal__field">
+                    <label class="report-modal__label" for="usuariosGenero">Género</label>
+                    <select id="usuariosGenero" name="genero" class="report-modal__select">
+                        <option value="">Todos</option>
+                        <option value="Masculino">Masculino</option>
+                        <option value="Femenino">Femenino</option>
+                        <option value="Otro">Otro</option>
+                        <option value="Prefiero no decir">Prefiero no decir</option>
+                    </select>
+                </div>
+                <div class="report-modal__field">
+                    <label class="report-modal__label" for="usuariosCiudad">Ciudad</label>
+                    <input id="usuariosCiudad" name="ciudad" type="text" class="report-modal__input" placeholder="Ej. Bogotá" autocomplete="off">
+                </div>
+                <div class="report-modal__field">
+                    <label class="report-modal__label" for="usuariosEstado">Estado</label>
+                    <select id="usuariosEstado" name="estado" class="report-modal__select">
+                        <option value="">Todos</option>
+                        <option value="Activo">Activo</option>
+                        <option value="Inactivo">Inactivo</option>
+                    </select>
+                </div>
+            </form>
+            <div class="report-modal__actions">
+                <button type="button" class="report-modal__btn report-modal__btn--pdf" id="usuariosPdfBtn"><i class="fas fa-file-pdf"></i> PDF</button>
+                <button type="button" class="report-modal__btn report-modal__btn--excel" id="usuariosExcelBtn"><i class="fas fa-file-excel"></i> Excel</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Reporte Programas -->
+    <div class="report-modal" id="programasModal" role="dialog" aria-modal="true" aria-labelledby="programasModalTitle" aria-hidden="true">
+        <div class="report-modal__overlay" data-close="programasModal"></div>
+        <div class="report-modal__dialog" tabindex="-1">
+            <button type="button" class="report-modal__close" aria-label="Cerrar" data-close="programasModal">&times;</button>
+            <div class="report-modal__header">
+                <h2 id="programasModalTitle">Reporte de programas curriculares</h2>
+                <p class="report-modal__description">Personaliza el reporte con filtros o consulta la versión completa dejando los campos vacíos.</p>
+            </div>
+            <form class="report-modal__form" id="programasReportForm">
+                <div class="report-modal__field">
+                    <label class="report-modal__label" for="programasSede">Sede</label>
+                    <select id="programasSede" name="sede" class="report-modal__select">
+                        <option value="">Todas</option>
+                        <option value="Bogotá">Bogotá</option>
+                        <option value="Medellín">Medellín</option>
+                        <option value="Manizales">Manizales</option>
+                        <option value="Palmira">Palmira</option>
+                        <option value="La Paz">La Paz</option>
+                        <option value="Otro">Otro</option>
+                    </select>
+                </div>
+                <div class="report-modal__field">
+                    <label class="report-modal__label" for="programasFacultad">Facultad</label>
+                    <select id="programasFacultad" name="facultad" class="report-modal__select">
+                        <option value="">Todas</option>
+                        <option value="Ingeniería">Ingeniería</option>
+                        <option value="Minas">Minas</option>
+                        <option value="Minas y arquitectura">Minas y arquitectura</option>
+                        <option value="Ingeniería y administración">Ingeniería y administración</option>
+                        <option value="Ciencias">Ciencias</option>
+                        <option value="Otro">Otro</option>
+                    </select>
+                </div>
+                <div class="report-modal__field">
+                    <label class="report-modal__label" for="programasNivel">Nivel</label>
+                    <select id="programasNivel" name="nivel" class="report-modal__select">
+                        <option value="">Todos</option>
+                        <option value="Pregrado">Pregrado</option>
+                        <option value="Posgrado">Posgrado</option>
+                    </select>
+                </div>
+            </form>
+            <div class="report-modal__actions">
+                <button type="button" class="report-modal__btn report-modal__btn--pdf" id="programasPdfBtn"><i class="fas fa-file-pdf"></i> PDF</button>
+                <button type="button" class="report-modal__btn report-modal__btn--excel" id="programasExcelBtn"><i class="fas fa-file-excel"></i> Excel</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Reporte Convenios -->
+    <div class="report-modal" id="conveniosModal" role="dialog" aria-modal="true" aria-labelledby="conveniosModalTitle" aria-hidden="true">
+        <div class="report-modal__overlay" data-close="conveniosModal"></div>
+        <div class="report-modal__dialog" tabindex="-1">
+            <button type="button" class="report-modal__close" aria-label="Cerrar" data-close="conveniosModal">&times;</button>
+            <div class="report-modal__header">
+                <h2 id="conveniosModalTitle">Reporte de convenios</h2>
+                <p class="report-modal__description">Personaliza el reporte con filtros o consulta la versión completa dejando los campos vacíos.</p>
+            </div>
+            <form class="report-modal__form" id="conveniosReportForm">
+                <div class="report-modal__field">
+                    <label class="report-modal__label" for="conveniosUniversidad">Universidad</label>
+                    <input id="conveniosUniversidad" name="universidad" type="text" class="report-modal__input" placeholder="Ej. Universidad Nacional" autocomplete="off">
+                </div>
+                <div class="report-modal__field">
+                    <label class="report-modal__label" for="conveniosPais">País</label>
+                    <select id="conveniosPais" name="pais" class="report-modal__select">
+                        <option value="">Todos</option>
+                        <option value="Alemania">Alemania</option>
+                        <option value="Brasil">Brasil</option>
+                        <option value="España">España</option>
+                        <option value="Francia">Francia</option>
+                        <option value="Italia">Italia</option>
+                        <option value="Japón">Japón</option>
+                    </select>
+                </div>
+                <div class="report-modal__field">
+                    <label class="report-modal__label" for="conveniosEstado">Estado</label>
+                    <select id="conveniosEstado" name="estado" class="report-modal__select">
+                        <option value="">Todos</option>
+                        <option value="Activo">Activo</option>
+                        <option value="Aplazado">Aplazado</option>
+                        <option value="Inactivo">Inactivo</option>
+                    </select>
+                </div>
+            </form>
+            <div class="report-modal__actions">
+                <button type="button" class="report-modal__btn report-modal__btn--pdf" id="conveniosPdfBtn"><i class="fas fa-file-pdf"></i> PDF</button>
+                <button type="button" class="report-modal__btn report-modal__btn--excel" id="conveniosExcelBtn"><i class="fas fa-file-excel"></i> Excel</button>
+            </div>
+        </div>
     </div>
 
     <script src="/js/components.js"></script>
