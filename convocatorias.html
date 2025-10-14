@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Convocatorias - Bigrado</title>
+    <link rel="stylesheet" href="/css/app.css">
+    <link rel="icon" href="/img/Logo_Bigrado_negro.svg" type="image/x-icon">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body data-page="convocatorias">
+    <!-- Topbar Container -->
+    <div id="topbar-container"></div>
+
+    <!-- Sidebar Overlay para móvil -->
+    <div class="sidebar-overlay" id="sidebarOverlay" onclick="toggleSidebar()"></div>
+
+    <!-- Layout principal -->
+    <div class="main-layout">
+        <!-- Sidebar Container -->
+        <div id="sidebar-container"></div>
+
+        <!-- Contenido principal -->
+        <main class="main-content">
+            <!-- Header de página -->
+            <div class="page-header">
+                <div>
+                    <h1>Convocatorias</h1>
+                    <p>Gestiona las convocatorias de movilidad académica.</p>
+                </div>
+                <button class="new-btn" onclick="openNewConvocatoriaModal()">
+                    <i class="fas fa-plus"></i>
+                    Nueva Convocatoria
+                </button>
+            </div>
+
+            <!-- Cards de resumen -->
+            <div class="summary-cards">
+                <div class="summary-card">
+                    <div class="summary-icon total">
+                        <i class="fas fa-bullhorn"></i>
+                    </div>
+                    <div class="summary-content">
+                        <h3>24</h3>
+                        <p>Convocatorias</p>
+                    </div>
+                </div>
+
+                <div class="summary-card">
+                    <div class="summary-icon students">
+                        <i class="fas fa-door-open"></i>
+                    </div>
+                    <div class="summary-content">
+                        <h3>12</h3>
+                        <p>Abiertas</p>
+                    </div>
+                </div>
+
+                <div class="summary-card">
+                    <div class="summary-icon admins">
+                        <i class="fas fa-door-closed"></i>
+                    </div>
+                    <div class="summary-content">
+                        <h3>8</h3>
+                        <p>Cerradas</p>
+                    </div>
+                </div>
+
+                <div class="summary-card">
+                    <div class="summary-icon support">
+                        <i class="fas fa-pause-circle"></i>
+                    </div>
+                    <div class="summary-content">
+                        <h3>4</h3>
+                        <p>Aplazadas</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tabla de convocatorias -->
+            <div class="table-container">
+                <div class="table-header">
+                    <h3>Lista de convocatorias</h3>
+                    <button class="filter-toggle-btn" onclick="toggleFilters()">
+                        <i class="fas fa-filter"></i>
+                    </button>
+                </div>
+
+                <!-- Filtros colapsables -->
+                <div class="filters-section" id="filtersSection" style="display: none;">
+                    <div class="filters-row">
+                        <div class="filter-fields-container">
+                            <div class="filter-group">
+                                <label for="filterNombre">Nombre de convocatoria</label>
+                                <input type="text" id="filterNombre" placeholder="Buscar por nombre...">
+                            </div>
+                            
+                            <div class="filter-group">
+                                <label for="filterPrograma">Programa curricular</label>
+                                <select id="filterPrograma">
+                                    <option value="">Todos los programas</option>
+                                    <option value="ingenieria-sistemas">Ingeniería de Sistemas</option>
+                                    <option value="administracion">Administración de Empresas</option>
+                                    <option value="derecho">Derecho</option>
+                                    <option value="medicina">Medicina</option>
+                                    <option value="arquitectura">Arquitectura</option>
+                                </select>
+                            </div>
+                            
+                            <div class="filter-group">
+                                <label for="filterConvenio">Convenio</label>
+                                <select id="filterConvenio">
+                                    <option value="">Todos los convenios</option>
+                                    <option value="erasmus">Erasmus+</option>
+                                    <option value="bilateral">Bilateral</option>
+                                    <option value="multilateral">Multilateral</option>
+                                </select>
+                            </div>
+
+                            <div class="filter-group">
+                                <label for="filterEstado">Estado</label>
+                                <select id="filterEstado">
+                                    <option value="">Todos los estados</option>
+                                    <option value="abierta">Abierta</option>
+                                    <option value="aplazada">Aplazada</option>
+                                    <option value="cerrada">Cerrada</option>
+                                </select>
+                            </div>
+                        </div>
+                        
+                        <div class="filter-buttons">
+                            <button class="filter-btn primary" onclick="applyFilters()">
+                                <i class="fas fa-search"></i>
+                                Buscar
+                            </button>
+                            <button class="filter-btn secondary" onclick="clearFilters()">
+                                <i class="fas fa-times"></i>
+                                Limpiar
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <table class="contents-table">
+                    <thead>
+                        <tr>
+                            <th>Convocatoria</th>
+                            <th>Convenio</th>
+                            <th>Programa</th>
+                            <th>Periodo</th>
+                            <th>Días Restantes</th>
+                            <th>Estado</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>
+                                <div class="info-cell">
+                                    <div class="avatar-table">
+                                        <i class="fas fa-globe-americas"></i>
+                                    </div>
+                                    <div class="details-table">
+                                        <div class="title-one">Movilidad Académica Europa 2025-1</div>
+                                    </div>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="title-two">
+                                    <div>Universidad de Barcelona</div>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="title-two">
+                                    <div>Ingeniería de Sistemas</div>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="title-two">
+                                    <div>15/01/2025</div>
+                                </div>
+                                <div class="title-one-small">15/06/2025</div>
+                            </td>
+                            <td>
+                                <span class="role-badge student">93 días</span>
+                            </td>
+                            <td>
+                                <span class="status-badge active">Abierta</span>
+                            </td>
+                            <td>
+                                <div class="actions-menu">
+                                    <button class="actions-button" onclick="toggleActions(this)">
+                                        <i class="fas fa-ellipsis-v"></i>
+                                    </button>
+                                    <div class="actions-dropdown">
+                                        <a href="#" onclick="viewConvocatoria(1)">
+                                            <i class="fas fa-eye"></i>
+                                            Ver detalles
+                                        </a>
+                                        <a href="#" onclick="editConvocatoria(1)">
+                                            <i class="fas fa-edit"></i>
+                                            Editar
+                                        </a>
+                                        <a href="#" onclick="toggleConvocatoriaStatus(1)">
+                                            <i class="fas fa-exchange-alt"></i>
+                                            Cambiar estado
+                                        </a>
+                                        <a href="#" onclick="deleteConvocatoria(1)" class="danger">
+                                            <i class="fas fa-trash-alt"></i>
+                                            Eliminar
+                                        </a>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td>
+                                <div class="info-cell">
+                                    <div class="avatar-table">
+                                        <i class="fas fa-university"></i>
+                                    </div>
+                                    <div class="details-table">
+                                        <div class="title-one">Intercambio Latinoamérica 2025</div>
+                                    </div>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="title-two">
+                                    <div>Universidad de Buenos Aires</div>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="title-two">
+                                    <div>Administración de Empresas</div>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="title-two">
+                                    <div>01/02/2025</div>
+                                </div>
+                                <div class="title-one-small">30/07/2025</div>
+                            </td>
+                            <td>
+                                <span class="role-badge support">109 días</span>
+                            </td>
+                            <td>
+                                <span class="status-badge active">Abierta</span>
+                            </td>
+                            <td>
+                                <div class="actions-menu">
+                                    <button class="actions-button" onclick="toggleActions(this)">
+                                        <i class="fas fa-ellipsis-v"></i>
+                                    </button>
+                                    <div class="actions-dropdown">
+                                        <a href="#" onclick="viewConvocatoria(2)">
+                                            <i class="fas fa-eye"></i>
+                                            Ver detalles
+                                        </a>
+                                        <a href="#" onclick="editConvocatoria(2)">
+                                            <i class="fas fa-edit"></i>
+                                            Editar
+                                        </a>
+                                        <a href="#" onclick="toggleConvocatoriaStatus(2)">
+                                            <i class="fas fa-exchange-alt"></i>
+                                            Cambiar estado
+                                        </a>
+                                        <a href="#" onclick="deleteConvocatoria(2)" class="danger">
+                                            <i class="fas fa-trash-alt"></i>
+                                            Eliminar
+                                        </a>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td>
+                                <div class="info-cell">
+                                    <div class="avatar-table">
+                                        <i class="fas fa-graduation-cap"></i>
+                                    </div>
+                                    <div class="details-table">
+                                        <div class="title-one">Programa de Verano USA 2025</div>
+                                    </div>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="title-two">
+                                    <div>Massachusetts Institute of Technology</div>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="title-two">
+                                    <div>Ingeniería de Sistemas</div>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="title-two">
+                                    <div>20/11/2024</div>
+                                </div>
+                                <div class="title-one-small">15/12/2024</div>
+                            </td>
+                            <td>
+                                <span class="role-badge admin">Finalizado</span>
+                            </td>
+                            <td>
+                                <span class="status-badge inactive">Cerrada</span>
+                            </td>
+                            <td>
+                                <div class="actions-menu">
+                                    <button class="actions-button" onclick="toggleActions(this)">
+                                        <i class="fas fa-ellipsis-v"></i>
+                                    </button>
+                                    <div class="actions-dropdown">
+                                        <a href="#" onclick="viewConvocatoria(3)">
+                                            <i class="fas fa-eye"></i>
+                                            Ver detalles
+                                        </a>
+                                        <a href="#" onclick="editConvocatoria(3)">
+                                            <i class="fas fa-edit"></i>
+                                            Editar
+                                        </a>
+                                        <a href="#" onclick="toggleConvocatoriaStatus(3)">
+                                            <i class="fas fa-exchange-alt"></i>
+                                            Cambiar estado
+                                        </a>
+                                        <a href="#" onclick="deleteConvocatoria(3)" class="danger">
+                                            <i class="fas fa-trash-alt"></i>
+                                            Eliminar
+                                        </a>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td>
+                                <div class="info-cell">
+                                    <div class="avatar-table">
+                                        <i class="fas fa-book-open"></i>
+                                    </div>
+                                    <div class="details-table">
+                                        <div class="title-one">Investigación Asia-Pacífico 2025</div>
+                                    </div>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="title-two">
+                                    <div>Universidad de Tokio</div>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="title-two">
+                                    <div>Medicina</div>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="title-two">
+                                    <div>01/03/2025</div>
+                                </div>
+                                <div class="title-one-small">30/08/2025</div>
+                            </td>
+                            <td>
+                                <span class="role-badge support">138 días</span>
+                            </td>
+                            <td>
+                                <span class="status-badge pending">Aplazada</span>
+                            </td>
+                            <td>
+                                <div class="actions-menu">
+                                    <button class="actions-button" onclick="toggleActions(this)">
+                                        <i class="fas fa-ellipsis-v"></i>
+                                    </button>
+                                    <div class="actions-dropdown">
+                                        <a href="#" onclick="viewConvocatoria(4)">
+                                            <i class="fas fa-eye"></i>
+                                            Ver detalles
+                                        </a>
+                                        <a href="#" onclick="editConvocatoria(4)">
+                                            <i class="fas fa-edit"></i>
+                                            Editar
+                                        </a>
+                                        <a href="#" onclick="toggleConvocatoriaStatus(4)">
+                                            <i class="fas fa-exchange-alt"></i>
+                                            Cambiar estado
+                                        </a>
+                                        <a href="#" onclick="deleteConvocatoria(4)" class="danger">
+                                            <i class="fas fa-trash-alt"></i>
+                                            Eliminar
+                                        </a>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td>
+                                <div class="info-cell">
+                                    <div class="avatar-table">
+                                        <i class="fas fa-plane-departure"></i>
+                                    </div>
+                                    <div class="details-table">
+                                        <div class="title-one">Movilidad Estudiantil Francia 2025-2</div>
+                                    </div>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="title-two">
+                                    <div>Université Paris-Sorbonne</div>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="title-two">
+                                    <div>Derecho</div>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="title-two">
+                                    <div>10/02/2025</div>
+                                </div>
+                                <div class="title-one-small">15/05/2025</div>
+                            </td>
+                            <td>
+                                <span class="role-badge student">118 días</span>
+                            </td>
+                            <td>
+                                <span class="status-badge active">Abierta</span>
+                            </td>
+                            <td>
+                                <div class="actions-menu">
+                                    <button class="actions-button" onclick="toggleActions(this)">
+                                        <i class="fas fa-ellipsis-v"></i>
+                                    </button>
+                                    <div class="actions-dropdown">
+                                        <a href="#" onclick="viewConvocatoria(5)">
+                                            <i class="fas fa-eye"></i>
+                                            Ver detalles
+                                        </a>
+                                        <a href="#" onclick="editConvocatoria(5)">
+                                            <i class="fas fa-edit"></i>
+                                            Editar
+                                        </a>
+                                        <a href="#" onclick="toggleConvocatoriaStatus(5)">
+                                            <i class="fas fa-exchange-alt"></i>
+                                            Cambiar estado
+                                        </a>
+                                        <a href="#" onclick="deleteConvocatoria(5)" class="danger">
+                                            <i class="fas fa-trash-alt"></i>
+                                            Eliminar
+                                        </a>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <!-- Paginación -->
+                <div class="pagination-container">
+                    <div class="pagination-info">
+                        Mostrando 1-5 de 24 resultados
+                    </div>
+                    <div class="pagination">
+                        <button disabled>
+                            <i class="fas fa-chevron-left"></i>
+                        </button>
+                        <button class="active">1</button>
+                        <button>2</button>
+                        <button>3</button>
+                        <button>4</button>
+                        <button>5</button>
+                        <button>
+                            <i class="fas fa-chevron-right"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="/js/components.js"></script>
+    <script src="/js/convocatorias.js"></script>
+</body>
+</html>
