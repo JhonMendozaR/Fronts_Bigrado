@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Postulaciones - Bigrado</title>
+    <link rel="stylesheet" href="/css/app.css">
+    <link rel="icon" href="/img/Logo_Bigrado_negro.svg" type="image/x-icon">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body data-page="postulaciones">
+    <!-- Topbar Container -->
+    <div id="topbar-container"></div>
+
+    <!-- Sidebar Overlay para móvil -->
+    <div class="sidebar-overlay" id="sidebarOverlay" onclick="toggleSidebar()"></div>
+
+    <!-- Layout principal -->
+    <div class="main-layout">
+        <!-- Sidebar Container -->
+        <div id="sidebar-container"></div>
+
+        <!-- Contenido principal -->
+        <main class="main-content">
+            <!-- Header de página -->
+            <div class="page-header">
+                <div>
+                    <h1>Postulaciones</h1>
+                    <p>Gestiona las postulaciones de los estudiantes a las diferentes convocatorias disponibles.</p>
+                </div>
+                <button class="new-btn" onclick="openNewApplicationModal()">
+                    <i class="fas fa-plus"></i>
+                    Nueva Postulación
+                </button>
+            </div>
+
+            <!-- Cards de resumen -->
+            <div class="summary-cards">
+                <div class="summary-card">
+                    <div class="summary-icon total">
+                        <i class="fas fa-file-alt"></i>
+                    </div>
+                    <div class="summary-content">
+                        <h3>324</h3>
+                        <p>Total Postulaciones</p>
+                    </div>
+                </div>
+
+                <div class="summary-card">
+                    <div class="summary-icon students">
+                        <i class="fas fa-check-circle"></i>
+                    </div>
+                    <div class="summary-content">
+                        <h3>89</h3>
+                        <p>Aprobadas</p>
+                    </div>
+                </div>
+
+                <div class="summary-card">
+                    <div class="summary-icon support">
+                        <i class="fas fa-clock"></i>
+                    </div>
+                    <div class="summary-content">
+                        <h3>156</h3>
+                        <p>Pendientes</p>
+                    </div>
+                </div>
+
+                <div class="summary-card">
+                    <div class="summary-icon admins">
+                        <i class="fas fa-times-circle"></i>
+                    </div>
+                    <div class="summary-content">
+                        <h3>47</h3>
+                        <p>Rechazadas</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tabla de postulaciones -->
+            <div class="table-container">
+                <div class="table-header">
+                    <h3>Lista de postulaciones</h3>
+                    <button class="filter-toggle-btn" onclick="toggleFilters()">
+                        <i class="fas fa-filter"></i>
+                    </button>
+                </div>
+
+                <!-- Filtros colapsables -->
+                <div class="filters-section" id="filtersSection" style="display: none;">
+                    <div class="filters-row">
+                        <div class="filter-fields-container">
+                            <div class="filter-group">
+                                <label for="search-student">Nombre del Estudiante</label>
+                                <input type="text" id="search-student" placeholder="Buscar por nombre...">
+                            </div>
+                            
+                            <div class="filter-group">
+                                <label for="convocatoria-filter">Convocatoria</label>
+                                <select id="convocatoria-filter">
+                                    <option value="">Todas las convocatorias</option>
+                                    <option value="1">Becas de Excelencia 2025</option>
+                                    <option value="2">Movilidad Internacional 2025</option>
+                                    <option value="3">Apoyo Económico 2025</option>
+                                    <option value="4">Investigación Joven 2025</option>
+                                </select>
+                            </div>
+                            
+                            <div class="filter-group">
+                                <label for="status-filter">Estado</label>
+                                <select id="status-filter">
+                                    <option value="">Todos los estados</option>
+                                    <option value="nueva">Nueva</option>
+                                    <option value="pendiente">Pendiente</option>
+                                    <option value="actualizada">Actualizada</option>
+                                    <option value="aprobada">Aprobada</option>
+                                    <option value="rechazada">Rechazada</option>
+                                    <option value="cancelada">Cancelada</option>
+                                    <option value="suspendida">Suspendida</option>
+                                </select>
+                            </div>
+                        </div>
+                        
+                        <div class="filter-buttons">
+                            <button class="filter-btn primary" onclick="applyFilters()">
+                                <i class="fas fa-search"></i> Buscar
+                            </button>
+                            <button class="filter-btn secondary" onclick="clearFilters()">
+                                <i class="fas fa-times"></i> Limpiar
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <table class="contents-table">
+                    <thead>
+                        <tr>
+                            <th>Estudiante</th>
+                            <th>Convocatoria</th>
+                            <th>Fechas</th>
+                            <th>Estado</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>
+                                <div class="info-cell">
+                                    <div class="avatar-table">
+                                        MG
+                                    </div>
+                                    <div class="details-table">
+                                        <div class="title-one">María García López</div>
+                                        <div class="title-one-small">maria.garcia@estudiante.edu.co</div>
+                                    </div>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="title-two">
+                                    <div>Becas de Excelencia 2025</div>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="title-two">
+                                    <div><strong>Postulación:</strong></div>
+                                    <div>15/01/2025</div>
+                                </div>
+                                <div class="title-two">
+                                    <div><strong>Actualización:</strong></div>
+                                    <div>20/01/2025</div>
+                                </div>
+                            </td>
+                            <td>
+                                <span class="status-badge active">Aprobada</span>
+                            </td>
+                            <td>
+                                <div class="actions-menu">
+                                    <button class="actions-button" onclick="toggleDropdown(this)">
+                                        <i class="fas fa-ellipsis-v"></i>
+                                    </button>
+                                    <div class="actions-dropdown">
+                                        <a href="#" onclick="viewApplication(1)">
+                                            <i class="fas fa-eye"></i>
+                                            Ver Detalles
+                                        </a>
+                                        <a href="#" onclick="editApplication(1)">
+                                            <i class="fas fa-edit"></i>
+                                            Editar
+                                        </a>
+                                        <a href="#" class="danger" onclick="deleteApplication(1)">
+                                            <i class="fas fa-trash"></i>
+                                            Eliminar
+                                        </a>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td>
+                                <div class="info-cell">
+                                    <div class="avatar-table">
+                                        CP
+                                    </div>
+                                    <div class="details-table">
+                                        <div class="title-one">Carlos Pérez Martínez</div>
+                                        <div class="title-one-small">carlos.perez@estudiante.edu.co</div>
+                                    </div>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="title-two">
+                                    <div>Movilidad Internacional 2025</div>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="title-two">
+                                    <div><strong>Postulación:</strong></div>
+                                    <div>18/01/2025</div>
+                                </div>
+                            </td>
+                            <td>
+                                <span class="status-badge pending">Pendiente</span>
+                            </td>
+                            <td>
+                                <div class="actions-menu">
+                                    <button class="actions-button" onclick="toggleDropdown(this)">
+                                        <i class="fas fa-ellipsis-v"></i>
+                                    </button>
+                                    <div class="actions-dropdown">
+                                        <a href="#" onclick="viewApplication(2)">
+                                            <i class="fas fa-eye"></i>
+                                            Ver Detalles
+                                        </a>
+                                        <a href="#" onclick="editApplication(2)">
+                                            <i class="fas fa-edit"></i>
+                                            Editar
+                                        </a>
+                                        <a href="#" class="danger" onclick="deleteApplication(2)">
+                                            <i class="fas fa-trash"></i>
+                                            Eliminar
+                                        </a>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td>
+                                <div class="info-cell">
+                                    <div class="avatar-table">
+                                        LS
+                                    </div>
+                                    <div class="details-table">
+                                        <div class="title-one">Laura Sánchez Gómez</div>
+                                        <div class="title-one-small">laura.sanchez@estudiante.edu.co</div>
+                                    </div>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="title-two">
+                                    <div>Apoyo Económico 2025</div>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="title-two">
+                                    <div><strong>Postulación:</strong></div>
+                                    <div>10/01/2025</div>
+                                </div>
+                                <div class="title-two">
+                                    <div><strong>Actualización:</strong></div>
+                                    <div>22/01/2025</div>
+                                </div>
+                            </td>
+                            <td>
+                                <span class="status-badge inactive">Rechazada</span>
+                            </td>
+                            <td>
+                                <div class="actions-menu">
+                                    <button class="actions-button" onclick="toggleDropdown(this)">
+                                        <i class="fas fa-ellipsis-v"></i>
+                                    </button>
+                                    <div class="actions-dropdown">
+                                        <a href="#" onclick="viewApplication(3)">
+                                            <i class="fas fa-eye"></i>
+                                            Ver Detalles
+                                        </a>
+                                        <a href="#" onclick="editApplication(3)">
+                                            <i class="fas fa-edit"></i>
+                                            Editar
+                                        </a>
+                                        <a href="#" class="danger" onclick="deleteApplication(3)">
+                                            <i class="fas fa-trash"></i>
+                                            Eliminar
+                                        </a>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td>
+                                <div class="info-cell">
+                                    <div class="avatar-table">
+                                        DR
+                                    </div>
+                                    <div class="details-table">
+                                        <div class="title-one">Diego Rodríguez Castro</div>
+                                        <div class="title-one-small">diego.rodriguez@estudiante.edu.co</div>
+                                    </div>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="title-two">
+                                    <div>Investigación Joven 2025</div>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="title-two">
+                                    <div><strong>Postulación:</strong></div>
+                                    <div>25/01/2025</div>
+                                </div>
+                            </td>
+                            <td>
+                                <span class="status-badge pending">Nueva</span>
+                            </td>
+                            <td>
+                                <div class="actions-menu">
+                                    <button class="actions-button" onclick="toggleDropdown(this)">
+                                        <i class="fas fa-ellipsis-v"></i>
+                                    </button>
+                                    <div class="actions-dropdown">
+                                        <a href="#" onclick="viewApplication(4)">
+                                            <i class="fas fa-eye"></i>
+                                            Ver Detalles
+                                        </a>
+                                        <a href="#" onclick="editApplication(4)">
+                                            <i class="fas fa-edit"></i>
+                                            Editar
+                                        </a>
+                                        <a href="#" class="danger" onclick="deleteApplication(4)">
+                                            <i class="fas fa-trash"></i>
+                                            Eliminar
+                                        </a>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td>
+                                <div class="info-cell">
+                                    <div class="avatar-table">
+                                        SM
+                                    </div>
+                                    <div class="details-table">
+                                        <div class="title-one">Sofía Morales Vargas</div>
+                                        <div class="title-one-small">sofia.morales@estudiante.edu.co</div>
+                                    </div>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="title-two">
+                                    <div>Becas de Excelencia 2025</div>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="title-two">
+                                    <div><strong>Postulación:</strong></div>
+                                    <div>12/01/2025</div>
+                                </div>
+                                <div class="title-two">
+                                    <div><strong>Actualización:</strong></div>
+                                    <div>28/01/2025</div>
+                                </div>
+                            </td>
+                            <td>
+                                <span class="status-badge pending">Actualizada</span>
+                            </td>
+                            <td>
+                                <div class="actions-menu">
+                                    <button class="actions-button" onclick="toggleDropdown(this)">
+                                        <i class="fas fa-ellipsis-v"></i>
+                                    </button>
+                                    <div class="actions-dropdown">
+                                        <a href="#" onclick="viewApplication(5)">
+                                            <i class="fas fa-eye"></i>
+                                            Ver Detalles
+                                        </a>
+                                        <a href="#" onclick="editApplication(5)">
+                                            <i class="fas fa-edit"></i>
+                                            Editar
+                                        </a>
+                                        <a href="#" class="danger" onclick="deleteApplication(5)">
+                                            <i class="fas fa-trash"></i>
+                                            Eliminar
+                                        </a>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <!-- Paginación -->
+                <div class="pagination-container">
+                    <div class="pagination-info">
+                        Mostrando 1-5 de 324 resultados
+                    </div>
+                    <div class="pagination">
+                        <button disabled>
+                            <i class="fas fa-chevron-left"></i>
+                        </button>
+                        <button class="active">1</button>
+                        <button>2</button>
+                        <button>3</button>
+                        <button>...</button>
+                        <button>65</button>
+                        <button>
+                            <i class="fas fa-chevron-right"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="/js/components.js"></script>
+    <script src="/js/postulaciones.js"></script>
+</body>
+</html>

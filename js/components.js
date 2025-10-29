@@ -105,6 +105,8 @@ class ComponentLoader {
                 'usuarios': 'usuarios.html',
                 'universidades': 'universidades.html',
                 'programas': 'programas.html',
+                'convocatorias': 'convocatorias.html',
+                'postulaciones': 'postulaciones.html',
                 'reportes': 'reportes.html',
             };
 

@@ -662,6 +662,27 @@ body {
     color: #dc3545;
 }
 
+/* Status badges para postulaciones */
+.status-badge.nueva {
+    background: #17a2b820;
+    color: #17a2b8;
+}
+
+.status-badge.actualizada {
+    background: #6610f220;
+    color: #6610f2;
+}
+
+.status-badge.cancelada {
+    background: #6c757d20;
+    color: #6c757d;
+}
+
+.status-badge.suspendida {
+    background: #fd7e1420;
+    color: #fd7e14;
+}
+
 /* Menú de acciones */
 .actions-menu {
     position: relative;
