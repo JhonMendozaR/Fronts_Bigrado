@@ -479,6 +479,619 @@
         </main>
     </div>
 
+    <!-- Modal de Nueva Convocatoria -->
+    <div id="newConvocatoriaModal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeNewConvocatoriaModal()">&times;</span>
+            <h2>Nueva Convocatoria</h2>
+            <form id="newConvocatoriaForm" class="new-modal-form">
+                <!-- Información General -->
+                <div class="form-section">
+                    <h3><i class="fas fa-info-circle"></i> Información General de la Convocatoria</h3>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="nombreConvocatoria">Nombre de la convocatoria</label>
+                            <input type="text" id="nombreConvocatoria" name="nombreConvocatoria" placeholder="Ej: Movilidad Académica Europa 2025-1" required>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="convenioUniversitario">Convenio universitario</label>
+                            <select id="convenioUniversitario" name="convenioUniversitario" required>
+                                <option value="">Seleccione un convenio</option>
+                                <option value="erasmus">Erasmus+</option>
+                                <option value="bilateral">Bilateral</option>
+                                <option value="multilateral">Multilateral</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="programaCurricular">Programa curricular</label>
+                            <select id="programaCurricular" name="programaCurricular" required>
+                                <option value="">Seleccione un programa</option>
+                                <option value="ingenieria-sistemas">Ingeniería de Sistemas</option>
+                                <option value="administracion">Administración de Empresas</option>
+                                <option value="derecho">Derecho</option>
+                                <option value="medicina">Medicina</option>
+                                <option value="arquitectura">Arquitectura</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="descripcionOferta">Descripción de la oferta</label>
+                        <textarea id="descripcionOferta" name="descripcionOferta" rows="4" placeholder="Describe los detalles de la convocatoria..." required></textarea>
+                    </div>
+                </div>
+
+                <!-- Fechas y Duración -->
+                <div class="form-section">
+                    <h3><i class="fas fa-calendar-alt"></i> Fechas y Duración</h3>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="inicioConvocatoria">Inicio de la convocatoria</label>
+                            <input type="date" id="inicioConvocatoria" name="inicioConvocatoria" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="cierreConvocatoria">Cierre de la convocatoria</label>
+                            <input type="date" id="cierreConvocatoria" name="cierreConvocatoria" required>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="inicioPrograma">Inicio del programa</label>
+                            <input type="date" id="inicioPrograma" name="inicioPrograma" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="duracion">Duración (años)</label>
+                            <input type="number" id="duracion" name="duracion" min="0.5" max="10" step="0.5" placeholder="Ej: 1" required>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Documentación Requerida -->
+                <div class="form-section">
+                    <h3><i class="fas fa-file-alt"></i> Documentación Requerida</h3>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="requisitosGenerales">Requisitos generales</label>
+                            <textarea id="requisitosGenerales" name="requisitosGenerales" rows="3" placeholder="Describe los requisitos generales..." required></textarea>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="requisitosAcademicos">Requisitos académicos</label>
+                            <textarea id="requisitosAcademicos" name="requisitosAcademicos" rows="3" placeholder="Describe los requisitos académicos..." required></textarea>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="documentosConvocatoria">Documentos de la convocatoria</label>
+                            <textarea id="documentosConvocatoria" name="documentosConvocatoria" rows="3" placeholder="Lista los documentos requeridos..." required></textarea>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="cartaAceptacion">Carta de aceptación de términos</label>
+                        <input type="file" id="cartaAceptacion" name="cartaAceptacion" accept=".pdf,.doc,.docx" required>
+                        <p class="form-hint">Formatos permitidos: PDF, DOC, DOCX (Máx. 5MB)</p>
+                    </div>
+                </div>
+
+                <!-- Preselección -->
+                <div class="form-section">
+                    <h3><i class="fas fa-user-check"></i> Preselección</h3>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="procesoPreseleccion">Proceso de preselección</label>
+                            <textarea id="procesoPreseleccion" name="procesoPreseleccion" rows="3" placeholder="Describe el proceso de preselección..." required></textarea>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="cronograma">Cronograma</label>
+                            <textarea id="cronograma" name="cronograma" rows="3" placeholder="Detalla el cronograma de actividades..." required></textarea>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="aclaracionesReclamaciones">Aclaraciones y reclamaciones</label>
+                        <textarea id="aclaracionesReclamaciones" name="aclaracionesReclamaciones" rows="3" placeholder="Información sobre aclaraciones y reclamaciones..." required></textarea>
+                    </div>
+                </div>
+
+                <!-- Financiación y Contacto -->
+                <div class="form-section">
+                    <h3><i class="fas fa-money-bill-wave"></i> Financiación y Contacto</h3>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="financiacion">Financiación</label>
+                            <textarea id="financiacion" name="financiacion" rows="3" placeholder="Describe las opciones de financiación disponibles..." required></textarea>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="mayorInformacion">Mayor información</label>
+                        <textarea id="mayorInformacion" name="mayorInformacion" rows="3" placeholder="Contacto y más información (correo, teléfono, sitio web)..." required></textarea>
+                    </div>
+                </div>
+
+                <div class="form-actions">
+                    <button type="button" class="secondary-btn" onclick="closeNewConvocatoriaModal()">
+                        <i class="fas fa-times"></i>
+                        Cancelar
+                    </button>
+                    <button type="submit" class="primary-btn">
+                        <i class="fas fa-save"></i>
+                        Crear Convocatoria
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Modal de Ver Detalles de la Convocatoria -->
+    <div id="viewConvocatoriaModal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeViewConvocatoriaModal()">&times;</span>
+            <h2 id="viewConvocatoriaTitle">Detalles de la Convocatoria</h2>
+            
+            <div class="details-container">
+                <!-- Información básica de la convocatoria -->
+                <div class="details-header">
+                    <div class="avatar-large" id="viewConvocatoriaAvatar">
+                        <i class="fas fa-bullhorn"></i>
+                    </div>
+                    <div class="details-main-info">
+                        <h3 id="viewConvocatoriaName">Nombre de la Convocatoria</h3>
+                        <p id="viewConvocatoriaUniversidad">Universidad de Destino</p>
+                        <div class="details-badges">
+                            <span id="viewConvocatoriaEstado" class="status-badge">Estado</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Secciones de información -->
+                <div class="details-sections">
+                    <!-- Información general -->
+                    <div class="detail-section">
+                        <h4><i class="fas fa-info-circle"></i> Información General</h4>
+                        <div class="detail-grid">
+                            <div class="detail-item">
+                                <label>Nombre de la Convocatoria</label>
+                                <span id="detailNombre">-</span>
+                            </div>
+                            <div class="detail-item">
+                                <label>Convenio Universitario</label>
+                                <span id="detailConvenio">-</span>
+                            </div>
+                            <div class="detail-item">
+                                <label>Programa Curricular</label>
+                                <span id="detailPrograma">-</span>
+                            </div>
+                            <div class="detail-item">
+                                <label>Ciudad y País</label>
+                                <span id="detailCiudadPais">-</span>
+                            </div>
+                        </div>
+                        <div class="detail-item" style="margin-top: 15px;">
+                            <label>Descripción de la Oferta</label>
+                            <span id="detailDescripcion" style="white-space: pre-wrap;">-</span>
+                        </div>
+                    </div>
+
+                    <!-- Fechas y duración -->
+                    <div class="detail-section">
+                        <h4><i class="fas fa-calendar-alt"></i> Fechas y Duración</h4>
+                        <div class="detail-grid">
+                            <div class="detail-item">
+                                <label>Inicio de la Convocatoria</label>
+                                <span id="detailInicioConvocatoria">-</span>
+                            </div>
+                            <div class="detail-item">
+                                <label>Cierre de la Convocatoria</label>
+                                <span id="detailCierreConvocatoria">-</span>
+                            </div>
+                            <div class="detail-item">
+                                <label>Inicio del Programa</label>
+                                <span id="detailInicioPrograma">-</span>
+                            </div>
+                            <div class="detail-item">
+                                <label>Duración</label>
+                                <span id="detailDuracion">-</span>
+                            </div>
+                            <div class="detail-item">
+                                <label>Días Restantes</label>
+                                <span id="detailDiasRestantes">-</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Documentación requerida -->
+                    <div class="detail-section">
+                        <h4><i class="fas fa-file-alt"></i> Documentación Requerida</h4>
+                        <div class="detail-item" style="margin-bottom: 15px;">
+                            <label>Requisitos Generales</label>
+                            <span id="detailRequisitosGenerales" style="white-space: pre-wrap;">-</span>
+                        </div>
+                        <div class="detail-item" style="margin-bottom: 15px;">
+                            <label>Requisitos Académicos</label>
+                            <span id="detailRequisitosAcademicos" style="white-space: pre-wrap;">-</span>
+                        </div>
+                        <div class="detail-item" style="margin-bottom: 15px;">
+                            <label>Documentos de la Convocatoria</label>
+                            <span id="detailDocumentosConvocatoria" style="white-space: pre-wrap;">-</span>
+                        </div>
+                        <div class="detail-item">
+                            <label>Carta de Aceptación de Términos</label>
+                            <span id="detailCartaAceptacion">
+                                <a href="#" class="download-link">
+                                    <i class="fas fa-download"></i> Descargar documento
+                                </a>
+                            </span>
+                        </div>
+                    </div>
+
+                    <!-- Preselección -->
+                    <div class="detail-section">
+                        <h4><i class="fas fa-user-check"></i> Preselección</h4>
+                        <div class="detail-item" style="margin-bottom: 15px;">
+                            <label>Proceso de Preselección</label>
+                            <span id="detailProcesoPreseleccion" style="white-space: pre-wrap;">-</span>
+                        </div>
+                        <div class="detail-item" style="margin-bottom: 15px;">
+                            <label>Cronograma</label>
+                            <span id="detailCronograma" style="white-space: pre-wrap;">-</span>
+                        </div>
+                        <div class="detail-item">
+                            <label>Aclaraciones y Reclamaciones</label>
+                            <span id="detailAclaracionesReclamaciones" style="white-space: pre-wrap;">-</span>
+                        </div>
+                    </div>
+
+                    <!-- Financiación y contacto -->
+                    <div class="detail-section">
+                        <h4><i class="fas fa-money-bill-wave"></i> Financiación y Contacto</h4>
+                        <div class="detail-item" style="margin-bottom: 15px;">
+                            <label>Financiación</label>
+                            <span id="detailFinanciacion" style="white-space: pre-wrap;">-</span>
+                        </div>
+                        <div class="detail-item">
+                            <label>Mayor Información</label>
+                            <span id="detailMayorInformacion" style="white-space: pre-wrap;">-</span>
+                        </div>
+                    </div>
+
+                    <!-- Información del sistema -->
+                    <div class="detail-section">
+                        <h4><i class="fas fa-cogs"></i> Información del Sistema</h4>
+                        <div class="detail-grid">
+                            <div class="detail-item">
+                                <label>Fecha de Creación</label>
+                                <span id="detailFechaCreacion">-</span>
+                            </div>
+                            <div class="detail-item">
+                                <label>Última Modificación</label>
+                                <span id="detailUltimaModificacion">-</span>
+                            </div>
+                            <div class="detail-item">
+                                <label>Creado Por</label>
+                                <span id="detailCreadoPor">-</span>
+                            </div>
+                            <div class="detail-item">
+                                <label>Total de Postulantes</label>
+                                <span id="detailTotalPostulantes">-</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-actions">
+                    <button type="button" class="secondary-btn" onclick="closeViewConvocatoriaModal()">
+                        <i class="fas fa-times"></i> Cerrar
+                    </button>
+                    <button type="button" class="primary-btn" onclick="editConvocatoriaFromModal()">
+                        <i class="fas fa-edit"></i> Editar Convocatoria
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal de Editar Convocatoria -->
+    <div id="editConvocatoriaModal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeEditConvocatoriaModal()">&times;</span>
+            <h2 id="editConvocatoriaTitle">Editar Convocatoria</h2>
+            <form id="editConvocatoriaForm" class="new-modal-form">
+                <!-- Información General -->
+                <div class="form-section">
+                    <h3><i class="fas fa-info-circle"></i> Información General de la Convocatoria</h3>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="editNombreConvocatoria">Nombre de la convocatoria</label>
+                            <input type="text" id="editNombreConvocatoria" name="nombreConvocatoria" placeholder="Ej: Movilidad Académica Europa 2025-1" required>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="editConvenioUniversitario">Convenio universitario</label>
+                            <select id="editConvenioUniversitario" name="convenioUniversitario" required>
+                                <option value="">Seleccione un convenio</option>
+                                <option value="erasmus">Erasmus+</option>
+                                <option value="bilateral">Bilateral</option>
+                                <option value="multilateral">Multilateral</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="editProgramaCurricular">Programa curricular</label>
+                            <select id="editProgramaCurricular" name="programaCurricular" required>
+                                <option value="">Seleccione un programa</option>
+                                <option value="ingenieria-sistemas">Ingeniería de Sistemas</option>
+                                <option value="administracion">Administración de Empresas</option>
+                                <option value="derecho">Derecho</option>
+                                <option value="medicina">Medicina</option>
+                                <option value="arquitectura">Arquitectura</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="editCiudad">Ciudad</label>
+                            <input type="text" id="editCiudad" name="ciudad" placeholder="Ej: Barcelona" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="editPais">País</label>
+                            <input type="text" id="editPais" name="pais" placeholder="Ej: España" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="editDescripcionOferta">Descripción de la oferta</label>
+                        <textarea id="editDescripcionOferta" name="descripcionOferta" rows="4" placeholder="Describe los detalles de la convocatoria..." required></textarea>
+                    </div>
+                </div>
+
+                <!-- Fechas y Duración -->
+                <div class="form-section">
+                    <h3><i class="fas fa-calendar-alt"></i> Fechas y Duración</h3>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="editInicioConvocatoria">Inicio de la convocatoria</label>
+                            <input type="date" id="editInicioConvocatoria" name="inicioConvocatoria" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="editCierreConvocatoria">Cierre de la convocatoria</label>
+                            <input type="date" id="editCierreConvocatoria" name="cierreConvocatoria" required>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="editInicioPrograma">Inicio del programa</label>
+                            <input type="date" id="editInicioPrograma" name="inicioPrograma" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="editDuracion">Duración (años)</label>
+                            <input type="number" id="editDuracion" name="duracion" min="0.5" max="10" step="0.5" placeholder="Ej: 1" required>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Documentación Requerida -->
+                <div class="form-section">
+                    <h3><i class="fas fa-file-alt"></i> Documentación Requerida</h3>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="editRequisitosGenerales">Requisitos generales</label>
+                            <textarea id="editRequisitosGenerales" name="requisitosGenerales" rows="3" placeholder="Describe los requisitos generales..." required></textarea>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="editRequisitosAcademicos">Requisitos académicos</label>
+                            <textarea id="editRequisitosAcademicos" name="requisitosAcademicos" rows="3" placeholder="Describe los requisitos académicos..." required></textarea>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="editDocumentosConvocatoria">Documentos de la convocatoria</label>
+                            <textarea id="editDocumentosConvocatoria" name="documentosConvocatoria" rows="3" placeholder="Lista los documentos requeridos..." required></textarea>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="editCartaAceptacion">Carta de aceptación de términos (Opcional - dejar vacío para mantener actual)</label>
+                        <input type="file" id="editCartaAceptacion" name="cartaAceptacion" accept=".pdf,.doc,.docx">
+                        <p class="form-hint">Formatos permitidos: PDF, DOC, DOCX (Máx. 5MB). Solo sube un archivo si deseas reemplazar el existente.</p>
+                    </div>
+                </div>
+
+                <!-- Preselección -->
+                <div class="form-section">
+                    <h3><i class="fas fa-user-check"></i> Preselección</h3>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="editProcesoPreseleccion">Proceso de preselección</label>
+                            <textarea id="editProcesoPreseleccion" name="procesoPreseleccion" rows="3" placeholder="Describe el proceso de preselección..." required></textarea>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="editCronograma">Cronograma</label>
+                            <textarea id="editCronograma" name="cronograma" rows="3" placeholder="Detalla el cronograma de actividades..." required></textarea>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="editAclaracionesReclamaciones">Aclaraciones y reclamaciones</label>
+                        <textarea id="editAclaracionesReclamaciones" name="aclaracionesReclamaciones" rows="3" placeholder="Información sobre aclaraciones y reclamaciones..." required></textarea>
+                    </div>
+                </div>
+
+                <!-- Financiación y Contacto -->
+                <div class="form-section">
+                    <h3><i class="fas fa-money-bill-wave"></i> Financiación y Contacto</h3>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="editFinanciacion">Financiación</label>
+                            <textarea id="editFinanciacion" name="financiacion" rows="3" placeholder="Describe las opciones de financiación disponibles..." required></textarea>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="editMayorInformacion">Mayor información</label>
+                        <textarea id="editMayorInformacion" name="mayorInformacion" rows="3" placeholder="Contacto y más información (correo, teléfono, sitio web)..." required></textarea>
+                    </div>
+                </div>
+
+                <!-- Estado -->
+                <div class="form-section">
+                    <h3><i class="fas fa-toggle-on"></i> Estado de la Convocatoria</h3>
+                    <div class="form-group">
+                        <label for="editEstado">Estado</label>
+                        <select id="editEstado" name="estado" required>
+                            <option value="abierta">Abierta</option>
+                            <option value="aplazada">Aplazada</option>
+                            <option value="cerrada">Cerrada</option>
+                        </select>
+                    </div>
+                </div>
+
+                <input type="hidden" id="editConvocatoriaId" name="convocatoriaId">
+
+                <div class="form-actions">
+                    <button type="button" class="secondary-btn" onclick="closeEditConvocatoriaModal()">
+                        <i class="fas fa-times"></i>
+                        Cancelar
+                    </button>
+                    <button type="submit" class="primary-btn">
+                        <i class="fas fa-save"></i>
+                        Guardar Cambios
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Modal de Cambiar Estado de la Convocatoria -->
+    <div id="toggleConvocatoriaStatusModal" class="modal">
+        <div class="modal-content toggle-status-modal-content">
+            <span class="close-modal" onclick="closeToggleStatusModal()">&times;</span>
+            <div class="status-modal-header">
+                <div class="status-icon" id="toggleStatusIcon">
+                    <i class="fas fa-exchange-alt"></i>
+                </div>
+                <h2 id="toggleStatusTitle">Cambiar Estado</h2>
+            </div>
+            
+            <div class="status-modal-body">
+                <div class="info-summary">
+                    <div class="avatar-small" id="toggleConvocatoriaAvatar">
+                        <i class="fas fa-bullhorn"></i>
+                    </div>
+                    <div class="summary-details">
+                        <h4 id="toggleConvocatoriaName">Nombre de la Convocatoria</h4>
+                        <p id="toggleConvocatoriaUniversidad">Universidad</p>
+                        <span id="toggleConvocatoriaEstadoActual" class="status-badge">Estado Actual</span>
+                    </div>
+                </div>
+
+                <div class="status-form">
+                    <div class="form-group">
+                        <label for="nuevoEstado">Nuevo estado</label>
+                        <select id="nuevoEstado" name="nuevoEstado" required>
+                            <option value="">Seleccione el nuevo estado</option>
+                            <option value="Abierta">Abierta</option>
+                            <option value="Aplazada">Aplazada</option>
+                            <option value="Cerrada">Cerrada</option>
+                        </select>
+                    </div>
+
+                    <div class="status-warning" id="statusWarning" style="display: none; margin-top: 20px;">
+                        <div class="warning-icon">
+                            <i class="fas fa-exclamation-triangle"></i>
+                        </div>
+                        <div class="warning-content">
+                            <h4 id="warningTitle">Advertencia</h4>
+                            <p id="warningMessage">
+                                Mensaje de advertencia dinámico
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <input type="hidden" id="toggleConvocatoriaId" name="convocatoriaId">
+
+            <div class="status-form-actions">
+                <button type="button" class="secondary-btn" onclick="closeToggleStatusModal()">
+                    <i class="fas fa-times"></i>
+                    Cancelar
+                </button>
+                <button type="button" id="confirmStatusBtn" class="primary-btn" onclick="confirmStatusChange()">
+                    <i class="fas fa-check"></i>
+                    <span id="confirmStatusText">Cambiar Estado</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal de Eliminar Convocatoria -->
+    <div id="deleteConvocatoriaModal" class="modal">
+        <div class="modal-content delete-modal-content">
+            <span class="close-modal" onclick="closeDeleteConvocatoriaModal()">&times;</span>
+            
+            <div class="delete-modal-header">
+                <div class="delete-icon">
+                    <i class="fas fa-exclamation-triangle"></i>
+                </div>
+                <h2>Eliminar Convocatoria</h2>
+                <p class="delete-subtitle">Esta acción es permanente e irreversible</p>
+            </div>
+            
+            <div class="delete-modal-body">
+                <!-- Información de la convocatoria -->
+                <div class="info-summary">
+                    <div class="avatar-small" id="deleteConvocatoriaAvatar">
+                        <i class="fas fa-bullhorn"></i>
+                    </div>
+                    <div class="summary-details">
+                        <h4 id="deleteConvocatoriaName">Nombre de la Convocatoria</h4>
+                        <p id="deleteConvocatoriaUniversidad">Universidad</p>
+                        <span id="deleteConvocatoriaEstado" class="status-badge">Estado</span>
+                    </div>
+                </div>
+
+                <!-- Advertencia de eliminación -->
+                <div class="delete-warning">
+                    <div class="warning-content">
+                        <p>Al eliminar esta convocatoria se perderán de forma permanente:</p>
+                        <ul>
+                            <li>Toda la información de la convocatoria</li>
+                            <li>Documentos y archivos adjuntos</li>
+                            <li>Historial de postulaciones asociadas</li>
+                            <li>Información de preselección y resultados</li>
+                            <li>Estadísticas y reportes relacionados</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <input type="hidden" id="deleteConvocatoriaId" name="convocatoriaId">
+
+            <div class="delete-form-actions">
+                <button 
+                    type="button" 
+                    id="confirmDeleteBtn" 
+                    class="critical-danger-btn" 
+                    onclick="confirmDeleteConvocatoria()"
+                >
+                    <i class="fas fa-trash-alt"></i>
+                    <span>Eliminar Convocatoria Permanentemente</span>
+                </button>
+                <button type="button" class="alternative-btn" onclick="changeStatusInsteadOfDelete()">
+                    <i class="fas fa-exchange-alt"></i>
+                    Cambiar Estado en su lugar
+                </button>
+                <button type="button" class="secondary-btn" onclick="closeDeleteConvocatoriaModal()">
+                    <i class="fas fa-times"></i>
+                    Cancelar
+                </button>
+            </div>
+        </div>
+    </div>
+
     <script src="/js/components.js"></script>
     <script src="/js/convocatorias.js"></script>
 </body>
