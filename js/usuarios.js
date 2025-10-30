@@ -796,3 +796,106 @@ function clearFilters() {
     document.getElementById('status-filter').value = '';
     console.log('Filtros limpiados');
 }
+
+// ============================================
+// FUNCIONES PARA DROPDOWN DE MÁS ACCIONES
+// ============================================
+
+// Cerrar dropdown al hacer clic fuera
+document.addEventListener('click', function(e) {
+    const dropdown = document.getElementById('actionsDropdownUsuarios');
+    const button = document.querySelector('.more-actions-btn');
+    
+    if (dropdown && !dropdown.contains(e.target) && button && !button.contains(e.target)) {
+        dropdown.classList.remove('active');
+    }
+});
+
+/**
+ * Alterna la visibilidad del dropdown de acciones en usuarios
+ */
+function toggleActionsDropdownUsuarios() {
+    const dropdown = document.getElementById('actionsDropdownUsuarios');
+    dropdown.classList.toggle('active');
+}
+
+/**
+ * Función para importar usuarios masivamente
+ * TODO: Implementar lógica de importación desde archivo (Excel, CSV)
+ */
+function importarMasivamenteUsuarios() {
+    console.log('Importar usuarios masivamente - Por implementar');
+    
+    // Cerrar el dropdown
+    const dropdown = document.getElementById('actionsDropdownUsuarios');
+    dropdown.classList.remove('active');
+    
+    // TODO: Abrir modal de importación o selector de archivo
+    // Por ahora mostramos un alert como placeholder
+    alert('Funcionalidad de Importación Masiva de Usuarios\n\nEsta función permitirá:\n• Cargar múltiples usuarios desde un archivo Excel o CSV\n• Validar datos (correos, documentos únicos, roles válidos)\n• Asignar roles automáticamente (Estudiante, Admin, Apoyo)\n• Generar contraseñas temporales\n• Enviar correos de bienvenida con credenciales\n• Mostrar resumen de importación con errores y éxitos\n\n(Por implementar)');
+    
+    // Ejemplo de implementación futura:
+    // const input = document.createElement('input');
+    // input.type = 'file';
+    // input.accept = '.xlsx,.xls,.csv';
+    // input.onchange = handleFileImportUsuarios;
+    // input.click();
+}
+
+/**
+ * Función para enviar correo masivo a usuarios
+ * TODO: Implementar modal de envío de correos masivos
+ */
+function enviarCorreoMasivoUsuarios() {
+    console.log('Enviar correo masivo a usuarios - Por implementar');
+    
+    // Cerrar el dropdown
+    const dropdown = document.getElementById('actionsDropdownUsuarios');
+    dropdown.classList.remove('active');
+    
+    // TODO: Abrir modal de envío de correos masivos
+    // Por ahora mostramos un alert como placeholder
+    alert('Funcionalidad de Envío de Correo Masivo\n\nEsta función permitirá:\n• Filtrar usuarios por rol (Estudiantes, Admins, Profesionales de Apoyo)\n• Filtrar por estado (Activos, Inactivos, Suspendidos)\n• Seleccionar destinatarios específicos o todos\n• Crear plantillas de correo personalizadas\n• Incluir información de acceso y credenciales\n• Notificar sobre cambios en el sistema\n• Enviar recordatorios de actualización de perfil\n• Programar envío de correos\n• Ver historial de envíos y tasas de apertura\n\n(Por implementar)');
+    
+    // Ejemplo de implementación futura:
+    // openEmailMasivoModalUsuarios();
+}
+
+/**
+ * Ejemplo de función para manejar la importación de archivos de usuarios
+ * TODO: Implementar completamente
+ */
+function handleFileImportUsuarios(event) {
+    const file = event.target.files[0];
+    
+    if (!file) {
+        return;
+    }
+    
+    console.log('Archivo de usuarios seleccionado:', file.name);
+    
+    // TODO: Leer y procesar el archivo
+    // const reader = new FileReader();
+    // reader.onload = function(e) {
+    //     const data = e.target.result;
+    //     processImportDataUsuarios(data);
+    // };
+    // reader.readAsArrayBuffer(file);
+}
+
+/**
+ * Ejemplo de función para procesar datos de importación de usuarios
+ * TODO: Implementar completamente
+ */
+function processImportDataUsuarios(data) {
+    console.log('Procesando datos de usuarios importados...');
+    
+    // TODO: Parsear datos según formato (Excel/CSV)
+    // TODO: Validar campos requeridos (nombre, email, documento, rol)
+    // TODO: Verificar que correos y documentos sean únicos
+    // TODO: Validar roles válidos del sistema
+    // TODO: Generar contraseñas seguras temporales
+    // TODO: Mostrar preview de datos a importar con errores detectados
+    // TODO: Enviar al backend para guardado masivo
+    // TODO: Enviar correos de bienvenida con credenciales
+}

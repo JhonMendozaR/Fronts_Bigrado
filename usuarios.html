@@ -31,10 +31,29 @@
                     <h1>Usuarios</h1>
                     <p>Administra los usuario del sistema, gestiona roles y permisos.</p>
                 </div>
-                <button class="new-btn" onclick="openNewUserModal()">
-                    <i class="fas fa-plus"></i>
-                    Nuevo Usuario
-                </button>
+                <div class="header-actions">
+                    <!-- Botón de Más acciones con dropdown -->
+                    <div class="dropdown-container">
+                        <button class="more-actions-btn" onclick="toggleActionsDropdownUsuarios()">
+                            <i class="fas fa-chevron-down"></i>
+                            Más acciones
+                        </button>
+                        <div class="dropdown-menu" id="actionsDropdownUsuarios">
+                            <button class="dropdown-item" onclick="importarMasivamenteUsuarios()">
+                                <i class="fas fa-file-import"></i>
+                                Importar masivamente
+                            </button>
+                            <button class="dropdown-item" onclick="enviarCorreoMasivoUsuarios()">
+                                <i class="fas fa-envelope"></i>
+                                Enviar correo masivo
+                            </button>
+                        </div>
+                    </div>
+                    <button class="new-btn" onclick="openNewUserModal()">
+                        <i class="fas fa-plus"></i>
+                        Nuevo Usuario
+                    </button>
+                </div>
             </div>
 
             <!-- Cards de resumen -->
