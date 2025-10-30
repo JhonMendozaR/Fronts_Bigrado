@@ -187,6 +187,10 @@
                                             <i class="fas fa-edit"></i>
                                             Editar
                                         </a>
+                                        <a href="#" onclick="changeApplicationStatus(1)">
+                                            <i class="fas fa-exchange-alt"></i>
+                                            Cambiar Estado
+                                        </a>
                                         <a href="#" class="danger" onclick="deleteApplication(1)">
                                             <i class="fas fa-trash"></i>
                                             Eliminar
@@ -235,6 +239,10 @@
                                         <a href="#" onclick="editApplication(2)">
                                             <i class="fas fa-edit"></i>
                                             Editar
+                                        </a>
+                                        <a href="#" onclick="changeApplicationStatus(2)">
+                                            <i class="fas fa-exchange-alt"></i>
+                                            Cambiar Estado
                                         </a>
                                         <a href="#" class="danger" onclick="deleteApplication(2)">
                                             <i class="fas fa-trash"></i>
@@ -289,6 +297,10 @@
                                             <i class="fas fa-edit"></i>
                                             Editar
                                         </a>
+                                        <a href="#" onclick="changeApplicationStatus(3)">
+                                            <i class="fas fa-exchange-alt"></i>
+                                            Cambiar Estado
+                                        </a>
                                         <a href="#" class="danger" onclick="deleteApplication(3)">
                                             <i class="fas fa-trash"></i>
                                             Eliminar
@@ -322,7 +334,7 @@
                                 </div>
                             </td>
                             <td>
-                                <span class="status-badge pending">Nueva</span>
+                                <span class="status-badge nueva">Nueva</span>
                             </td>
                             <td>
                                 <div class="actions-menu">
@@ -337,6 +349,10 @@
                                         <a href="#" onclick="editApplication(4)">
                                             <i class="fas fa-edit"></i>
                                             Editar
+                                        </a>
+                                        <a href="#" onclick="changeApplicationStatus(4)">
+                                            <i class="fas fa-exchange-alt"></i>
+                                            Cambiar Estado
                                         </a>
                                         <a href="#" class="danger" onclick="deleteApplication(4)">
                                             <i class="fas fa-trash"></i>
@@ -375,7 +391,7 @@
                                 </div>
                             </td>
                             <td>
-                                <span class="status-badge pending">Actualizada</span>
+                                <span class="status-badge actualizada">Actualizada</span>
                             </td>
                             <td>
                                 <div class="actions-menu">
@@ -390,6 +406,10 @@
                                         <a href="#" onclick="editApplication(5)">
                                             <i class="fas fa-edit"></i>
                                             Editar
+                                        </a>
+                                        <a href="#" onclick="changeApplicationStatus(5)">
+                                            <i class="fas fa-exchange-alt"></i>
+                                            Cambiar Estado
                                         </a>
                                         <a href="#" class="danger" onclick="deleteApplication(5)">
                                             <i class="fas fa-trash"></i>
@@ -423,6 +443,668 @@
                 </div>
             </div>
         </main>
+    </div>
+
+    <!-- Modal de Nueva Postulación -->
+    <div id="newApplicationModal" class="modal">
+        <div class="modal-content application-modal-wrapper">
+            <!-- Panel Principal del Formulario -->
+            <div class="application-main-panel" id="mainApplicationPanel">
+                <span class="close-modal" onclick="closeNewApplicationModal()">&times;</span>
+                <h2>Nueva Postulación</h2>
+                <form id="newApplicationForm" class="new-modal-form">
+                    <!-- Buscar Estudiante -->
+                    <div class="form-section">
+                        <h3><i class="fas fa-search"></i> Buscar Estudiante</h3>
+                        <div class="form-group">
+                            <label for="studentSearch">Buscar por nombre, correo o documento</label>
+                            <input type="text" id="studentSearch" placeholder="Escribe para buscar..." oninput="searchStudents(this.value)">
+                            <small class="form-hint">Busca y selecciona un estudiante registrado en el sistema</small>
+                        </div>
+
+                        <!-- Resultados de búsqueda -->
+                        <div id="studentSearchResults" class="student-search-results" style="display: none;">
+                            <!-- Los resultados se cargarán dinámicamente aquí -->
+                        </div>
+
+                        <!-- Estudiante seleccionado -->
+                        <div id="selectedStudentCard" class="selected-student-card" style="display: none;">
+                            <div class="selected-student-info">
+                                <div class="avatar-small" id="selectedStudentAvatar">
+                                    <i class="fas fa-user"></i>
+                                </div>
+                                <div class="student-details">
+                                    <h4 id="selectedStudentName">Nombre del estudiante</h4>
+                                    <p id="selectedStudentEmail">correo@ejemplo.com</p>
+                                    <span class="role-badge student">Estudiante</span>
+                                </div>
+                            </div>
+                            <div class="selected-student-actions">
+                                <button type="button" class="view-details-btn" onclick="showStudentDetails()">
+                                    <i class="fas fa-eye"></i>
+                                    Ver información completa
+                                </button>
+                                <button type="button" class="change-student-btn" onclick="changeStudent()">
+                                    <i class="fas fa-sync-alt"></i>
+                                    Cambiar
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Convocatoria -->
+                    <div class="form-section">
+                        <h3><i class="fas fa-bullhorn"></i> Convocatoria</h3>
+                        <div class="form-group">
+                            <label for="convocatoria">Seleccione la convocatoria</label>
+                            <select id="convocatoria" name="convocatoria" required disabled>
+                                <option value="">Seleccione una convocatoria</option>
+                                <option value="1">Becas de Excelencia 2025</option>
+                                <option value="2">Movilidad Internacional 2025</option>
+                                <option value="3">Apoyo Económico 2025</option>
+                                <option value="4">Investigación Joven 2025</option>
+                                <option value="5">Becas Deportivas 2025</option>
+                                <option value="6">Apoyo a la Discapacidad 2025</option>
+                            </select>
+                            <small class="form-hint">Primero seleccione un estudiante</small>
+                        </div>
+                    </div>
+
+                    <input type="hidden" id="selectedStudentId" name="studentId">
+
+                    <div class="form-actions">
+                        <button type="button" class="secondary-btn" onclick="closeNewApplicationModal()">
+                            <i class="fas fa-times"></i>
+                            Cancelar
+                        </button>
+                        <button type="submit" class="primary-btn" id="submitApplicationBtn" disabled>
+                            <i class="fas fa-save"></i>
+                            Crear Postulación
+                        </button>
+                    </div>
+                </form>
+            </div>
+
+            <!-- Panel Deslizable de Detalles del Estudiante -->
+            <div class="student-details-panel" id="studentDetailsPanel">
+                <div class="details-panel-header">
+                    <h3>Información del Estudiante</h3>
+                    <button type="button" class="close-details-btn" onclick="hideStudentDetails()">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+                
+                <div class="details-panel-content">
+                    <!-- Header del estudiante -->
+                    <div class="details-header">
+                        <div class="avatar-large" id="detailsStudentAvatar">
+                            <i class="fas fa-user"></i>
+                        </div>
+                        <div class="details-main-info">
+                            <h3 id="detailsStudentName">Nombre del Estudiante</h3>
+                            <p id="detailsStudentEmail">email@example.com</p>
+                            <div class="details-badges">
+                                <span class="role-badge student">Estudiante</span>
+                                <span id="detailsStudentStatus" class="status-badge active">Activo</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Información personal -->
+                    <div class="detail-section">
+                        <h4><i class="fas fa-user"></i> Información Personal</h4>
+                        <div class="detail-grid">
+                            <div class="detail-item">
+                                <label>Nombres:</label>
+                                <span id="detailsFirstName">-</span>
+                            </div>
+                            <div class="detail-item">
+                                <label>Apellidos:</label>
+                                <span id="detailsLastName">-</span>
+                            </div>
+                            <div class="detail-item">
+                                <label>Tipo de Identificación:</label>
+                                <span id="detailsIdType">-</span>
+                            </div>
+                            <div class="detail-item">
+                                <label>Número de Identificación:</label>
+                                <span id="detailsIdNumber">-</span>
+                            </div>
+                            <div class="detail-item">
+                                <label>Fecha de Nacimiento:</label>
+                                <span id="detailsBirthDate">-</span>
+                            </div>
+                            <div class="detail-item">
+                                <label>Lugar de Nacimiento:</label>
+                                <span id="detailsBirthPlace">-</span>
+                            </div>
+                            <div class="detail-item">
+                                <label>Género:</label>
+                                <span id="detailsGender">-</span>
+                            </div>
+                            <div class="detail-item">
+                                <label>Nacionalidad:</label>
+                                <span id="detailsNationality">-</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Información de contacto -->
+                    <div class="detail-section">
+                        <h4><i class="fas fa-address-card"></i> Información de Contacto</h4>
+                        <div class="detail-grid">
+                            <div class="detail-item">
+                                <label>Dirección:</label>
+                                <span id="detailsAddress">-</span>
+                            </div>
+                            <div class="detail-item">
+                                <label>Ciudad:</label>
+                                <span id="detailsCity">-</span>
+                            </div>
+                            <div class="detail-item">
+                                <label>Departamento:</label>
+                                <span id="detailsDepartment">-</span>
+                            </div>
+                            <div class="detail-item">
+                                <label>Teléfono:</label>
+                                <span id="detailsPhone">-</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Contacto de emergencia -->
+                    <div class="detail-section">
+                        <h4><i class="fas fa-phone-alt"></i> Contacto de Emergencia</h4>
+                        <div class="detail-grid">
+                            <div class="detail-item">
+                                <label>Nombre:</label>
+                                <span id="detailsEmergencyName">-</span>
+                            </div>
+                            <div class="detail-item">
+                                <label>Parentesco:</label>
+                                <span id="detailsEmergencyRelation">-</span>
+                            </div>
+                            <div class="detail-item">
+                                <label>Teléfono:</label>
+                                <span id="detailsEmergencyPhone">-</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal de Editar Postulación -->
+    <div id="editApplicationModal" class="modal">
+        <div class="modal-content application-modal-wrapper">
+            <!-- Panel Principal del Formulario -->
+            <div class="application-main-panel" id="editMainApplicationPanel">
+                <span class="close-modal" onclick="closeEditApplicationModal()">&times;</span>
+                <h2>Editar Postulación</h2>
+                <form id="editApplicationForm" class="new-modal-form">
+                    <!-- Buscar Estudiante -->
+                    <div class="form-section">
+                        <h3><i class="fas fa-search"></i> Buscar Estudiante</h3>
+                        <div class="form-group">
+                            <label for="editStudentSearch">Buscar por nombre, correo o documento</label>
+                            <input type="text" id="editStudentSearch" placeholder="Escribe para buscar..." oninput="searchStudentsEdit(this.value)">
+                            <small class="form-hint">Busca y selecciona un estudiante registrado en el sistema</small>
+                        </div>
+
+                        <!-- Resultados de búsqueda -->
+                        <div id="editStudentSearchResults" class="student-search-results" style="display: none;">
+                            <!-- Los resultados se cargarán dinámicamente aquí -->
+                        </div>
+
+                        <!-- Estudiante seleccionado -->
+                        <div id="editSelectedStudentCard" class="selected-student-card" style="display: none;">
+                            <div class="selected-student-info">
+                                <div class="avatar-small" id="editSelectedStudentAvatar">
+                                    <i class="fas fa-user"></i>
+                                </div>
+                                <div class="student-details">
+                                    <h4 id="editSelectedStudentName">Nombre del estudiante</h4>
+                                    <p id="editSelectedStudentEmail">correo@ejemplo.com</p>
+                                    <span class="role-badge student">Estudiante</span>
+                                </div>
+                            </div>
+                            <div class="selected-student-actions">
+                                <button type="button" class="view-details-btn" onclick="showStudentDetailsEdit()">
+                                    <i class="fas fa-eye"></i>
+                                    Ver información completa
+                                </button>
+                                <button type="button" class="change-student-btn" onclick="changeStudentEdit()">
+                                    <i class="fas fa-sync-alt"></i>
+                                    Cambiar
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Convocatoria -->
+                    <div class="form-section">
+                        <h3><i class="fas fa-bullhorn"></i> Convocatoria</h3>
+                        <div class="form-group">
+                            <label for="editConvocatoria">Seleccione la convocatoria</label>
+                            <select id="editConvocatoria" name="convocatoria" required>
+                                <option value="">Seleccione una convocatoria</option>
+                                <option value="1">Becas de Excelencia 2025</option>
+                                <option value="2">Movilidad Internacional 2025</option>
+                                <option value="3">Apoyo Económico 2025</option>
+                                <option value="4">Investigación Joven 2025</option>
+                                <option value="5">Becas Deportivas 2025</option>
+                                <option value="6">Apoyo a la Discapacidad 2025</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <input type="hidden" id="editSelectedStudentId" name="studentId">
+                    <input type="hidden" id="editApplicationId" name="applicationId">
+
+                    <div class="form-actions">
+                        <button type="button" class="secondary-btn" onclick="closeEditApplicationModal()">
+                            <i class="fas fa-times"></i>
+                            Cancelar
+                        </button>
+                        <button type="submit" class="primary-btn" id="editSubmitApplicationBtn">
+                            <i class="fas fa-save"></i>
+                            Actualizar Postulación
+                        </button>
+                    </div>
+                </form>
+            </div>
+
+            <!-- Panel Deslizable de Detalles del Estudiante -->
+            <div class="student-details-panel" id="editStudentDetailsPanel">
+                <div class="details-panel-header">
+                    <h3>Información del Estudiante</h3>
+                    <button type="button" class="close-details-btn" onclick="hideStudentDetailsEdit()">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+                
+                <div class="details-panel-content">
+                    <!-- Header del estudiante -->
+                    <div class="details-header">
+                        <div class="avatar-large" id="editDetailsStudentAvatar">
+                            <i class="fas fa-user"></i>
+                        </div>
+                        <div class="details-main-info">
+                            <h3 id="editDetailsStudentName">Nombre del Estudiante</h3>
+                            <p id="editDetailsStudentEmail">email@example.com</p>
+                            <div class="details-badges">
+                                <span class="role-badge student">Estudiante</span>
+                                <span id="editDetailsStudentStatus" class="status-badge active">Activo</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Información personal -->
+                    <div class="detail-section">
+                        <h4><i class="fas fa-user"></i> Información Personal</h4>
+                        <div class="detail-grid">
+                            <div class="detail-item">
+                                <label>Nombres:</label>
+                                <span id="editDetailsFirstName">-</span>
+                            </div>
+                            <div class="detail-item">
+                                <label>Apellidos:</label>
+                                <span id="editDetailsLastName">-</span>
+                            </div>
+                            <div class="detail-item">
+                                <label>Tipo de Identificación:</label>
+                                <span id="editDetailsIdType">-</span>
+                            </div>
+                            <div class="detail-item">
+                                <label>Número de Identificación:</label>
+                                <span id="editDetailsIdNumber">-</span>
+                            </div>
+                            <div class="detail-item">
+                                <label>Fecha de Nacimiento:</label>
+                                <span id="editDetailsBirthDate">-</span>
+                            </div>
+                            <div class="detail-item">
+                                <label>Lugar de Nacimiento:</label>
+                                <span id="editDetailsBirthPlace">-</span>
+                            </div>
+                            <div class="detail-item">
+                                <label>Género:</label>
+                                <span id="editDetailsGender">-</span>
+                            </div>
+                            <div class="detail-item">
+                                <label>Nacionalidad:</label>
+                                <span id="editDetailsNationality">-</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Información de contacto -->
+                    <div class="detail-section">
+                        <h4><i class="fas fa-address-card"></i> Información de Contacto</h4>
+                        <div class="detail-grid">
+                            <div class="detail-item">
+                                <label>Dirección:</label>
+                                <span id="editDetailsAddress">-</span>
+                            </div>
+                            <div class="detail-item">
+                                <label>Ciudad:</label>
+                                <span id="editDetailsCity">-</span>
+                            </div>
+                            <div class="detail-item">
+                                <label>Departamento:</label>
+                                <span id="editDetailsDepartment">-</span>
+                            </div>
+                            <div class="detail-item">
+                                <label>Teléfono:</label>
+                                <span id="editDetailsPhone">-</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Contacto de emergencia -->
+                    <div class="detail-section">
+                        <h4><i class="fas fa-phone-alt"></i> Contacto de Emergencia</h4>
+                        <div class="detail-grid">
+                            <div class="detail-item">
+                                <label>Nombre:</label>
+                                <span id="editDetailsEmergencyName">-</span>
+                            </div>
+                            <div class="detail-item">
+                                <label>Parentesco:</label>
+                                <span id="editDetailsEmergencyRelation">-</span>
+                            </div>
+                            <div class="detail-item">
+                                <label>Teléfono:</label>
+                                <span id="editDetailsEmergencyPhone">-</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal de Ver Detalles -->
+    <div id="viewApplicationModal" class="modal">
+        <div class="modal-content application-modal-wrapper">
+            <!-- Panel Principal de Información -->
+            <div class="application-main-panel" id="viewMainPanel">
+                <span class="close-modal" onclick="closeViewApplicationModal()">&times;</span>
+                <h2>Detalles de la Postulación</h2>
+                
+                <div class="view-application-content">
+                    <!-- Información del Estudiante -->
+                    <div class="form-section">
+                        <h3><i class="fas fa-user-graduate"></i> Estudiante</h3>
+                        <div class="selected-student-card" style="display: block;">
+                            <div class="selected-student-info">
+                                <div class="avatar-small" id="viewStudentAvatar">
+                                    MG
+                                </div>
+                                <div class="student-details">
+                                    <h4 id="viewStudentName">María García López</h4>
+                                    <p id="viewStudentEmail">maria.garcia@estudiante.edu.co</p>
+                                    <span class="role-badge student">Estudiante</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Información de la Convocatoria -->
+                    <div class="form-section">
+                        <h3><i class="fas fa-bullhorn"></i> Convocatoria</h3>
+                        <div class="convocatoria-info-card">
+                            <div class="detail-grid">
+                                <div class="detail-item">
+                                    <label>Nombre:</label>
+                                    <span id="viewConvocatoriaNombre">Becas de Excelencia 2025</span>
+                                </div>
+                                <div class="detail-item">
+                                    <label>Tipo:</label>
+                                    <span id="viewConvocatoriaTipo">Becas de Excelencia</span>
+                                </div>
+                                <div class="detail-item">
+                                    <label>Fecha de Apertura:</label>
+                                    <span id="viewConvocatoriaApertura">01/01/2025</span>
+                                </div>
+                                <div class="detail-item">
+                                    <label>Fecha de Cierre:</label>
+                                    <span id="viewConvocatoriaCierre">31/03/2025</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Fechas de la Postulación -->
+                    <div class="form-section">
+                        <h3><i class="fas fa-calendar-alt"></i> Fechas</h3>
+                        <div class="detail-grid">
+                            <div class="detail-item">
+                                <label>Fecha de Postulación:</label>
+                                <span id="viewFechaPostulacion">15/01/2025</span>
+                            </div>
+                            <div class="detail-item">
+                                <label>Última Actualización:</label>
+                                <span id="viewFechaActualizacion">20/01/2025</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Botón para revisar postulación -->
+                    <div class="form-actions">
+                        <button type="button" class="primary-btn full-width" onclick="showReviewPanel()">
+                            <i class="fas fa-clipboard-check"></i>
+                            Revisar Postulación
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Panel Deslizable de Revisión -->
+            <div class="student-details-panel" id="reviewPanel">
+                <div class="details-panel-header">
+                    <h3>Revisar Postulación</h3>
+                    <button type="button" class="close-details-btn" onclick="hideReviewPanel()">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+                
+                <div class="details-panel-content">
+                    <!-- Resumen de la postulación -->
+                    <div class="detail-section">
+                        <h4><i class="fas fa-info-circle"></i> Resumen de la Postulación</h4>
+                        <div class="detail-grid">
+                            <div class="detail-item">
+                                <label>Estudiante:</label>
+                                <span id="reviewStudentName">María García López</span>
+                            </div>
+                            <div class="detail-item">
+                                <label>Documento:</label>
+                                <span id="reviewStudentDoc">1234567890</span>
+                            </div>
+                            <div class="detail-item">
+                                <label>Convocatoria:</label>
+                                <span id="reviewConvocatoria">Becas de Excelencia 2025</span>
+                            </div>
+                            <div class="detail-item">
+                                <label>Fecha de Postulación:</label>
+                                <span id="reviewFecha">15/01/2025</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Información académica del estudiante -->
+                    <div class="detail-section">
+                        <h4><i class="fas fa-graduation-cap"></i> Información Académica</h4>
+                        <div class="detail-grid">
+                            <div class="detail-item">
+                                <label>Universidad:</label>
+                                <span id="reviewUniversidad">Universidad Nacional de Colombia</span>
+                            </div>
+                            <div class="detail-item">
+                                <label>Programa:</label>
+                                <span id="reviewPrograma">Ingeniería de Sistemas</span>
+                            </div>
+                            <div class="detail-item">
+                                <label>Semestre Actual:</label>
+                                <span id="reviewSemestre">6º Semestre</span>
+                            </div>
+                            <div class="detail-item">
+                                <label>Promedio Académico:</label>
+                                <span id="reviewPromedio">4.5 / 5.0</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Documentos adjuntos -->
+                    <div class="detail-section">
+                        <h4><i class="fas fa-paperclip"></i> Documentos Adjuntos</h4>
+                        <div class="documents-list">
+                            <div class="document-item">
+                                <i class="fas fa-file-pdf"></i>
+                                <span>Hoja_de_vida.pdf</span>
+                                <button class="view-doc-btn" title="Ver documento">
+                                    <i class="fas fa-eye"></i>
+                                </button>
+                            </div>
+                            <div class="document-item">
+                                <i class="fas fa-file-pdf"></i>
+                                <span>Certificado_notas.pdf</span>
+                                <button class="view-doc-btn" title="Ver documento">
+                                    <i class="fas fa-eye"></i>
+                                </button>
+                            </div>
+                            <div class="document-item">
+                                <i class="fas fa-file-pdf"></i>
+                                <span>Carta_motivacion.pdf</span>
+                                <button class="view-doc-btn" title="Ver documento">
+                                    <i class="fas fa-eye"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Estado Actual -->
+                    <div class="detail-section">
+                        <h4><i class="fas fa-flag"></i> Estado Actual</h4>
+                        <div class="current-status-info">
+                            <span class="status-badge active" id="currentStatusBadge">Aprobada</span>
+                            <div class="detail-item" style="margin-top: 10px;">
+                                <label>Observaciones Anteriores:</label>
+                                <p id="currentObservations" style="margin-top: 5px; color: #64748b;">
+                                    Cumple con todos los requisitos académicos. Excelente perfil.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Formulario de Revisión -->
+                    <div class="detail-section">
+                        <h4><i class="fas fa-edit"></i> Actualizar Estado</h4>
+                        <form id="reviewForm" class="review-form">
+                            <div class="form-group">
+                                <label for="applicationStatus">Nuevo Estado *</label>
+                                <select id="applicationStatus" name="status" required>
+                                    <option value="">Seleccione un estado</option>
+                                    <option value="aprobada">Aprobada</option>
+                                    <option value="rechazada">Rechazada</option>
+                                    <option value="pendiente">Pendiente</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="applicationObservations">Observaciones *</label>
+                                <textarea 
+                                    id="applicationObservations" 
+                                    name="observations" 
+                                    rows="5" 
+                                    placeholder="Ingrese las observaciones sobre esta postulación..."
+                                    required
+                                ></textarea>
+                                <small class="form-hint">Las observaciones serán notificadas al estudiante</small>
+                            </div>
+
+                            <div class="form-actions">
+                                <button type="button" class="secondary-btn" onclick="hideReviewPanel()">
+                                    <i class="fas fa-times"></i>
+                                    Cancelar
+                                </button>
+                                <button type="submit" class="primary-btn">
+                                    <i class="fas fa-save"></i>
+                                    Guardar Estado y Notificar
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal de Eliminar Postulación -->
+    <div id="deleteApplicationModal" class="modal">
+        <div class="modal-content delete-modal-content">
+            <span class="close-modal" onclick="closeDeleteApplicationModal()">&times;</span>
+            
+            <div class="delete-modal-header">
+                <div class="delete-icon">
+                    <i class="fas fa-exclamation-triangle"></i>
+                </div>
+                <h2>Eliminar Postulación</h2>
+                <p class="delete-subtitle">Esta acción es permanente e irreversible</p>
+            </div>
+            
+            <div class="delete-modal-body">
+                <!-- Información de la postulación -->
+                <div class="info-summary">
+                    <div class="avatar-small" id="deleteApplicationAvatar">
+                        <i class="fas fa-user-graduate"></i>
+                    </div>
+                    <div class="summary-details">
+                        <h4 id="deleteApplicationStudentName">Nombre del Estudiante</h4>
+                        <p id="deleteApplicationConvocatoria">Convocatoria</p>
+                        <span id="deleteApplicationEstado" class="status-badge">Estado</span>
+                    </div>
+                </div>
+
+                <!-- Advertencia de eliminación -->
+                <div class="delete-warning">
+                    <div class="warning-content">
+                        <p>Al eliminar esta postulación se perderán de forma permanente:</p>
+                        <ul>
+                            <li>Toda la información de la postulación</li>
+                            <li>Documentos y archivos adjuntos del estudiante</li>
+                            <li>Historial de revisión y comentarios</li>
+                            <li>Información de evaluación y resultados</li>
+                            <li>Registros de fechas y actualizaciones</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <input type="hidden" id="deleteApplicationId" name="applicationId">
+
+            <div class="delete-form-actions">
+                <button 
+                    type="button" 
+                    id="confirmDeleteApplicationBtn" 
+                    class="critical-danger-btn" 
+                    onclick="confirmDeleteApplication()"
+                >
+                    <i class="fas fa-trash-alt"></i>
+                    <span>Eliminar Postulación Permanentemente</span>
+                </button>
+                <button type="button" class="alternative-btn" onclick="changeApplicationStatusInsteadOfDelete()">
+                    <i class="fas fa-exchange-alt"></i>
+                    Cambiar Estado en su lugar
+                </button>
+                <button type="button" class="secondary-btn" onclick="closeDeleteApplicationModal()">
+                    <i class="fas fa-times"></i>
+                    Cancelar
+                </button>
+            </div>
+        </div>
     </div>
 
     <script src="/js/components.js"></script>
