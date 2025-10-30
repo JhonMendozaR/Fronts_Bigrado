@@ -679,4 +679,103 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Aquí se pueden inicializar más funcionalidades
     // como cargar datos desde el backend, etc.
+    
+    // Cerrar dropdown al hacer clic fuera
+    document.addEventListener('click', function(e) {
+        const dropdown = document.getElementById('actionsDropdown');
+        const button = document.querySelector('.more-actions-btn');
+        
+        if (dropdown && !dropdown.contains(e.target) && !button.contains(e.target)) {
+            dropdown.classList.remove('active');
+        }
+    });
 });
+
+// ============================================
+// FUNCIONES PARA DROPDOWN DE MÁS ACCIONES
+// ============================================
+
+/**
+ * Alterna la visibilidad del dropdown de acciones
+ */
+function toggleActionsDropdown() {
+    const dropdown = document.getElementById('actionsDropdown');
+    dropdown.classList.toggle('active');
+}
+
+/**
+ * Función para importar convocatorias masivamente
+ * TODO: Implementar lógica de importación desde archivo (Excel, CSV)
+ */
+function importarMasivamente() {
+    console.log('Importar masivamente - Por implementar');
+    
+    // Cerrar el dropdown
+    const dropdown = document.getElementById('actionsDropdown');
+    dropdown.classList.remove('active');
+    
+    // TODO: Abrir modal de importación o selector de archivo
+    // Por ahora mostramos un alert como placeholder
+    alert('Funcionalidad de Importación Masiva\n\nEsta función permitirá:\n• Cargar múltiples convocatorias desde un archivo Excel o CSV\n• Validar datos antes de importar\n• Mostrar resumen de importación\n\n(Por implementar)');
+    
+    // Ejemplo de implementación futura:
+    // const input = document.createElement('input');
+    // input.type = 'file';
+    // input.accept = '.xlsx,.xls,.csv';
+    // input.onchange = handleFileImport;
+    // input.click();
+}
+
+/**
+ * Función para enviar correo masivo a convocatorias
+ * TODO: Implementar modal de envío de correos masivos
+ */
+function enviarCorreoMasivo() {
+    console.log('Enviar correo masivo - Por implementar');
+    
+    // Cerrar el dropdown
+    const dropdown = document.getElementById('actionsDropdown');
+    dropdown.classList.remove('active');
+    
+    // TODO: Abrir modal de envío de correos masivos
+    // Por ahora mostramos un alert como placeholder
+    alert('Funcionalidad de Envío de Correo Masivo\n\nEsta función permitirá:\n• Seleccionar destinatarios (todos los postulantes, preseleccionados, etc.)\n• Crear plantillas de correo personalizadas\n• Programar envío de correos\n• Ver historial de envíos\n\n(Por implementar)');
+    
+    // Ejemplo de implementación futura:
+    // openEmailMasivoModal();
+}
+
+/**
+ * Ejemplo de función para manejar la importación de archivos
+ * TODO: Implementar completamente
+ */
+function handleFileImport(event) {
+    const file = event.target.files[0];
+    
+    if (!file) {
+        return;
+    }
+    
+    console.log('Archivo seleccionado:', file.name);
+    
+    // TODO: Leer y procesar el archivo
+    // const reader = new FileReader();
+    // reader.onload = function(e) {
+    //     const data = e.target.result;
+    //     processImportData(data);
+    // };
+    // reader.readAsArrayBuffer(file);
+}
+
+/**
+ * Ejemplo de función para procesar datos de importación
+ * TODO: Implementar completamente
+ */
+function processImportData(data) {
+    console.log('Procesando datos importados...');
+    
+    // TODO: Parsear datos según formato (Excel/CSV)
+    // TODO: Validar campos requeridos
+    // TODO: Mostrar preview de datos a importar
+    // TODO: Enviar al backend para guardado masivo
+}

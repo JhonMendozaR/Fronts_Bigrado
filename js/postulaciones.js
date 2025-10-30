@@ -1014,4 +1014,105 @@ document.addEventListener('DOMContentLoaded', function() {
             closeViewApplicationModal();
         });
     }
+
+    // Cerrar dropdown al hacer clic fuera
+    document.addEventListener('click', function(e) {
+        const dropdown = document.getElementById('actionsDropdownPostulaciones');
+        const button = document.querySelector('.more-actions-btn');
+        
+        if (dropdown && !dropdown.contains(e.target) && button && !button.contains(e.target)) {
+            dropdown.classList.remove('active');
+        }
+    });
 });
+
+// ============================================
+// FUNCIONES PARA DROPDOWN DE MÁS ACCIONES
+// ============================================
+
+/**
+ * Alterna la visibilidad del dropdown de acciones en postulaciones
+ */
+function toggleActionsDropdownPostulaciones() {
+    const dropdown = document.getElementById('actionsDropdownPostulaciones');
+    dropdown.classList.toggle('active');
+}
+
+/**
+ * Función para importar postulaciones masivamente
+ * TODO: Implementar lógica de importación desde archivo (Excel, CSV)
+ */
+function importarMasivamentePostulaciones() {
+    console.log('Importar postulaciones masivamente - Por implementar');
+    
+    // Cerrar el dropdown
+    const dropdown = document.getElementById('actionsDropdownPostulaciones');
+    dropdown.classList.remove('active');
+    
+    // TODO: Abrir modal de importación o selector de archivo
+    // Por ahora mostramos un alert como placeholder
+    alert('Funcionalidad de Importación Masiva de Postulaciones\n\nEsta función permitirá:\n• Cargar múltiples postulaciones desde un archivo Excel o CSV\n• Validar datos de estudiantes y convocatorias\n• Asociar automáticamente estudiantes existentes\n• Mostrar resumen de importación con errores y éxitos\n\n(Por implementar)');
+    
+    // Ejemplo de implementación futura:
+    // const input = document.createElement('input');
+    // input.type = 'file';
+    // input.accept = '.xlsx,.xls,.csv';
+    // input.onchange = handleFileImportPostulaciones;
+    // input.click();
+}
+
+/**
+ * Función para enviar correo masivo a postulaciones
+ * TODO: Implementar modal de envío de correos masivos
+ */
+function enviarCorreoMasivoPostulaciones() {
+    console.log('Enviar correo masivo a postulaciones - Por implementar');
+    
+    // Cerrar el dropdown
+    const dropdown = document.getElementById('actionsDropdownPostulaciones');
+    dropdown.classList.remove('active');
+    
+    // TODO: Abrir modal de envío de correos masivos
+    // Por ahora mostramos un alert como placeholder
+    alert('Funcionalidad de Envío de Correo Masivo\n\nEsta función permitirá:\n• Filtrar postulaciones por estado (aprobadas, rechazadas, pendientes, etc.)\n• Seleccionar destinatarios específicos o todos\n• Crear plantillas de correo personalizadas con datos dinámicos\n• Programar envío de correos\n• Ver historial de envíos y tasas de apertura\n• Notificar sobre cambios de estado o solicitudes de documentación\n\n(Por implementar)');
+    
+    // Ejemplo de implementación futura:
+    // openEmailMasivoModalPostulaciones();
+}
+
+/**
+ * Ejemplo de función para manejar la importación de archivos de postulaciones
+ * TODO: Implementar completamente
+ */
+function handleFileImportPostulaciones(event) {
+    const file = event.target.files[0];
+    
+    if (!file) {
+        return;
+    }
+    
+    console.log('Archivo de postulaciones seleccionado:', file.name);
+    
+    // TODO: Leer y procesar el archivo
+    // const reader = new FileReader();
+    // reader.onload = function(e) {
+    //     const data = e.target.result;
+    //     processImportDataPostulaciones(data);
+    // };
+    // reader.readAsArrayBuffer(file);
+}
+
+/**
+ * Ejemplo de función para procesar datos de importación de postulaciones
+ * TODO: Implementar completamente
+ */
+function processImportDataPostulaciones(data) {
+    console.log('Procesando datos de postulaciones importadas...');
+    
+    // TODO: Parsear datos según formato (Excel/CSV)
+    // TODO: Validar campos requeridos (estudiante, convocatoria, fechas)
+    // TODO: Verificar existencia de estudiantes en el sistema
+    // TODO: Validar que las convocatorias estén activas
+    // TODO: Mostrar preview de datos a importar con errores detectados
+    // TODO: Enviar al backend para guardado masivo
+}

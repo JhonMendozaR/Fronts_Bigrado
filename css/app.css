@@ -328,6 +328,97 @@ body {
     box-shadow: 0 8px 20px rgba(51, 147, 255, 0.3);
 }
 
+/* Header Actions - Contenedor para los botones */
+.header-actions {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+/* Dropdown Container */
+.dropdown-container {
+    position: relative;
+}
+
+/* Botón Más acciones */
+.more-actions-btn {
+    background: #6c757d;
+    color: white;
+    border: none;
+    padding: 12px 24px;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    transition: all 0.3s ease;
+}
+
+.more-actions-btn:hover {
+    background: #5a6268;
+    transform: translateY(-1px);
+    box-shadow: 0 8px 20px rgba(90, 108, 125, 0.3);
+}
+
+.more-actions-btn i {
+    font-size: 0.85rem;
+}
+
+/* Dropdown Menu */
+.dropdown-menu {
+    position: absolute;
+    top: calc(100% + 8px);
+    left: 0;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+    min-width: 220px;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-10px);
+    transition: all 0.3s ease;
+    z-index: 1000;
+    overflow: hidden;
+}
+
+.dropdown-menu.active {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+/* Dropdown Items */
+.dropdown-item {
+    width: 100%;
+    padding: 12px 16px;
+    background: white;
+    border: none;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    font-size: 0.9rem;
+    color: #333;
+    text-align: left;
+}
+
+.dropdown-item:hover {
+    background: #f8f9fa;
+}
+
+.dropdown-item i {
+    font-size: 1rem;
+    color: #5a6268;
+    width: 20px;
+    text-align: center;
+}
+
+.dropdown-item:not(:last-child) {
+    border-bottom: 1px solid #f0f0f0;
+}
+
 /* Cards de resumen */
 .summary-cards {
     display: grid;
@@ -2391,5 +2482,35 @@ body {
     
     .view-doc-btn {
         padding: 6px 10px;
+    }
+
+    /* Estilos responsivos para header actions y dropdown */
+    .header-actions {
+        flex-direction: column;
+        width: 100%;
+        gap: 10px;
+    }
+
+    .dropdown-container,
+    .new-btn {
+        width: 100%;
+    }
+
+    .more-actions-btn,
+    .new-btn {
+        justify-content: center;
+        padding: 10px 16px;
+        font-size: 0.9rem;
+    }
+
+    .dropdown-menu {
+        left: 0;
+        right: 0;
+        width: 100%;
+        min-width: auto;
+    }
+
+    .dropdown-item {
+        padding: 14px 16px;
     }
 }

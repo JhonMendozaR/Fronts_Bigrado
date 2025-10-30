@@ -28,10 +28,29 @@
                     <h1>Postulaciones</h1>
                     <p>Gestiona las postulaciones de los estudiantes a las diferentes convocatorias disponibles.</p>
                 </div>
-                <button class="new-btn" onclick="openNewApplicationModal()">
-                    <i class="fas fa-plus"></i>
-                    Nueva Postulación
-                </button>
+                <div class="header-actions">
+                    <!-- Botón de Más acciones con dropdown -->
+                    <div class="dropdown-container">
+                        <button class="more-actions-btn" onclick="toggleActionsDropdownPostulaciones()">
+                            <i class="fas fa-chevron-down"></i>
+                            Acciones
+                        </button>
+                        <div class="dropdown-menu" id="actionsDropdownPostulaciones">
+                            <!-- <button class="dropdown-item" onclick="importarMasivamentePostulaciones()">
+                                <i class="fas fa-file-import"></i>
+                                Importar masivamente
+                            </button> -->
+                            <button class="dropdown-item" onclick="enviarCorreoMasivoPostulaciones()">
+                                <i class="fas fa-envelope"></i>
+                                Enviar correo masivo
+                            </button>
+                        </div>
+                    </div>
+                    <button class="new-btn" onclick="openNewApplicationModal()">
+                        <i class="fas fa-plus"></i>
+                        Nueva Postulación
+                    </button>
+                </div>
             </div>
 
             <!-- Cards de resumen -->
