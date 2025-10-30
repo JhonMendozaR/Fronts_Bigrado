@@ -28,10 +28,29 @@
                     <h1>Programas Curriculares</h1>
                     <p>Administra los programas curriculares del sistema, gestiona niveles de formación y facultades.</p>
                 </div>
-                <button class="new-btn" onclick="openNewProgramModal()">
-                    <i class="fas fa-plus"></i>
-                    Nuevo Programa
-                </button>
+                <div class="header-actions">
+                    <!-- Botón de Más acciones con dropdown -->
+                    <div class="dropdown-container">
+                        <button class="more-actions-btn" onclick="toggleActionsDropdownProgramas()">
+                            <i class="fas fa-chevron-down"></i>
+                            Acciones
+                        </button>
+                        <div class="dropdown-menu" id="actionsDropdownProgramas">
+                            <button class="dropdown-item" onclick="importarMasivamenteProgramas()">
+                                <i class="fas fa-file-import"></i>
+                                Importar masivamente
+                            </button>
+                            <button class="dropdown-item" onclick="enviarCorreoMasivoProgramas()">
+                                <i class="fas fa-envelope"></i>
+                                Enviar correo masivo
+                            </button>
+                        </div>
+                    </div>
+                    <button class="new-btn" onclick="openNewProgramModal()">
+                        <i class="fas fa-plus"></i>
+                        Nuevo Programa
+                    </button>
+                </div>
             </div>
 
             <!-- Cards de resumen -->

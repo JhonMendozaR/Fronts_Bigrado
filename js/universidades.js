@@ -742,3 +742,107 @@ function downloadDocument(filename) {
     // Aquí podrías implementar la lógica real de descarga
     console.log(`Iniciando descarga de: ${filename}`);
 }
+
+// ============================================
+// FUNCIONES PARA DROPDOWN DE MÁS ACCIONES
+// ============================================
+
+// Cerrar dropdown al hacer clic fuera
+document.addEventListener('click', function(e) {
+    const dropdown = document.getElementById('actionsDropdownUniversidades');
+    const button = document.querySelector('.more-actions-btn');
+    
+    if (dropdown && !dropdown.contains(e.target) && button && !button.contains(e.target)) {
+        dropdown.classList.remove('active');
+    }
+});
+
+/**
+ * Alterna la visibilidad del dropdown de acciones en universidades
+ */
+function toggleActionsDropdownUniversidades() {
+    const dropdown = document.getElementById('actionsDropdownUniversidades');
+    dropdown.classList.toggle('active');
+}
+
+/**
+ * Función para importar universidades masivamente
+ * TODO: Implementar lógica de importación desde archivo (Excel, CSV)
+ */
+function importarMasivamenteUniversidades() {
+    console.log('Importar universidades masivamente - Por implementar');
+    
+    // Cerrar el dropdown
+    const dropdown = document.getElementById('actionsDropdownUniversidades');
+    dropdown.classList.remove('active');
+    
+    // TODO: Abrir modal de importación o selector de archivo
+    // Por ahora mostramos un alert como placeholder
+    alert('Funcionalidad de Importación Masiva de Universidades\n\nEsta función permitirá:\n• Cargar múltiples universidades desde un archivo Excel o CSV\n• Validar datos (nombres únicos, países, ciudades)\n• Importar información de contacto institucional\n• Cargar convenios asociados automáticamente\n• Validar fechas de vigencia de convenios\n• Asignar coordinadores de convenio\n• Mostrar resumen de importación con errores y éxitos\n\n(Por implementar)');
+    
+    // Ejemplo de implementación futura:
+    // const input = document.createElement('input');
+    // input.type = 'file';
+    // input.accept = '.xlsx,.xls,.csv';
+    // input.onchange = handleFileImportUniversidades;
+    // input.click();
+}
+
+/**
+ * Función para enviar correo masivo a universidades
+ * TODO: Implementar modal de envío de correos masivos
+ */
+function enviarCorreoMasivoUniversidades() {
+    console.log('Enviar correo masivo a universidades - Por implementar');
+    
+    // Cerrar el dropdown
+    const dropdown = document.getElementById('actionsDropdownUniversidades');
+    dropdown.classList.remove('active');
+    
+    // TODO: Abrir modal de envío de correos masivos
+    // Por ahora mostramos un alert como placeholder
+    alert('Funcionalidad de Envío de Correo Masivo\n\nEsta función permitirá:\n• Filtrar universidades por país o región\n• Filtrar por estado de convenio (Activo, Vencido, Por renovar)\n• Enviar a contactos institucionales específicos\n• Notificar sobre vencimiento próximo de convenios\n• Enviar invitaciones para nuevos convenios\n• Compartir información sobre convocatorias disponibles\n• Solicitar documentación o renovación de convenios\n• Crear plantillas de correo institucionales\n• Programar envío de correos\n• Ver historial de comunicaciones\n\n(Por implementar)');
+    
+    // Ejemplo de implementación futura:
+    // openEmailMasivoModalUniversidades();
+}
+
+/**
+ * Ejemplo de función para manejar la importación de archivos de universidades
+ * TODO: Implementar completamente
+ */
+function handleFileImportUniversidades(event) {
+    const file = event.target.files[0];
+    
+    if (!file) {
+        return;
+    }
+    
+    console.log('Archivo de universidades seleccionado:', file.name);
+    
+    // TODO: Leer y procesar el archivo
+    // const reader = new FileReader();
+    // reader.onload = function(e) {
+    //     const data = e.target.result;
+    //     processImportDataUniversidades(data);
+    // };
+    // reader.readAsArrayBuffer(file);
+}
+
+/**
+ * Ejemplo de función para procesar datos de importación de universidades
+ * TODO: Implementar completamente
+ */
+function processImportDataUniversidades(data) {
+    console.log('Procesando datos de universidades importadas...');
+    
+    // TODO: Parsear datos según formato (Excel/CSV)
+    // TODO: Validar campos requeridos (nombre universidad, país, ciudad, contacto)
+    // TODO: Verificar que nombres de universidad sean únicos
+    // TODO: Validar formato de contactos (email, teléfono)
+    // TODO: Validar datos de convenio si están incluidos
+    // TODO: Verificar fechas de vigencia de convenios
+    // TODO: Mostrar preview de datos a importar con errores detectados
+    // TODO: Enviar al backend para guardado masivo
+    // TODO: Generar reporte de importación exitosa
+}

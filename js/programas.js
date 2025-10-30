@@ -464,3 +464,109 @@ function validatePhone(phone) {
     const phoneRegex = /^[\+]?[0-9\s\-\(\)]{7,15}$/;
     return phoneRegex.test(phone);
 }
+
+// ============================================
+// FUNCIONES PARA DROPDOWN DE MÁS ACCIONES
+// ============================================
+
+// Cerrar dropdown al hacer clic fuera
+document.addEventListener('click', function(e) {
+    const dropdown = document.getElementById('actionsDropdownProgramas');
+    const button = document.querySelector('.more-actions-btn');
+    
+    if (dropdown && !dropdown.contains(e.target) && button && !button.contains(e.target)) {
+        dropdown.classList.remove('active');
+    }
+});
+
+/**
+ * Alterna la visibilidad del dropdown de acciones en programas curriculares
+ */
+function toggleActionsDropdownProgramas() {
+    const dropdown = document.getElementById('actionsDropdownProgramas');
+    dropdown.classList.toggle('active');
+}
+
+/**
+ * Función para importar programas curriculares masivamente
+ * TODO: Implementar lógica de importación desde archivo (Excel, CSV)
+ */
+function importarMasivamenteProgramas() {
+    console.log('Importar programas curriculares masivamente - Por implementar');
+    
+    // Cerrar el dropdown
+    const dropdown = document.getElementById('actionsDropdownProgramas');
+    dropdown.classList.remove('active');
+    
+    // TODO: Abrir modal de importación o selector de archivo
+    // Por ahora mostramos un alert como placeholder
+    alert('Funcionalidad de Importación Masiva de Programas Curriculares\n\nEsta función permitirá:\n• Cargar múltiples programas desde un archivo Excel o CSV\n• Validar datos (nombres únicos, sedes, facultades)\n• Importar información de coordinadores curriculares\n• Asignar automáticamente niveles de formación\n• Validar estructura de facultades y sedes\n• Asociar coordinadores existentes o crear nuevos\n• Mostrar resumen de importación con errores y éxitos\n• Generar códigos de programa automáticamente\n\n(Por implementar)');
+    
+    // Ejemplo de implementación futura:
+    // const input = document.createElement('input');
+    // input.type = 'file';
+    // input.accept = '.xlsx,.xls,.csv';
+    // input.onchange = handleFileImportProgramas;
+    // input.click();
+}
+
+/**
+ * Función para enviar correo masivo a coordinadores de programas
+ * TODO: Implementar modal de envío de correos masivos
+ */
+function enviarCorreoMasivoProgramas() {
+    console.log('Enviar correo masivo a programas - Por implementar');
+    
+    // Cerrar el dropdown
+    const dropdown = document.getElementById('actionsDropdownProgramas');
+    dropdown.classList.remove('active');
+    
+    // TODO: Abrir modal de envío de correos masivos
+    // Por ahora mostramos un alert como placeholder
+    alert('Funcionalidad de Envío de Correo Masivo\n\nEsta función permitirá:\n• Filtrar programas por sede o facultad\n• Filtrar por nivel de formación (Pregrado, Posgrado)\n• Enviar a coordinadores curriculares específicos\n• Notificar sobre actualizaciones académicas\n• Compartir información sobre convocatorias\n• Solicitar información o reportes de programa\n• Enviar recordatorios de fechas importantes\n• Comunicar cambios en políticas académicas\n• Crear plantillas de correo institucionales\n• Programar envío de correos\n• Ver historial de comunicaciones con coordinadores\n\n(Por implementar)');
+    
+    // Ejemplo de implementación futura:
+    // openEmailMasivoModalProgramas();
+}
+
+/**
+ * Ejemplo de función para manejar la importación de archivos de programas
+ * TODO: Implementar completamente
+ */
+function handleFileImportProgramas(event) {
+    const file = event.target.files[0];
+    
+    if (!file) {
+        return;
+    }
+    
+    console.log('Archivo de programas seleccionado:', file.name);
+    
+    // TODO: Leer y procesar el archivo
+    // const reader = new FileReader();
+    // reader.onload = function(e) {
+    //     const data = e.target.result;
+    //     processImportDataProgramas(data);
+    // };
+    // reader.readAsArrayBuffer(file);
+}
+
+/**
+ * Ejemplo de función para procesar datos de importación de programas
+ * TODO: Implementar completamente
+ */
+function processImportDataProgramas(data) {
+    console.log('Procesando datos de programas curriculares importados...');
+    
+    // TODO: Parsear datos según formato (Excel/CSV)
+    // TODO: Validar campos requeridos (nombre programa, sede, facultad, nivel, coordinador)
+    // TODO: Verificar que nombres de programa sean únicos por sede
+    // TODO: Validar existencia de sedes y facultades en el sistema
+    // TODO: Validar formato de contactos de coordinador (email, teléfono)
+    // TODO: Verificar si coordinadores ya existen en el sistema
+    // TODO: Generar códigos de programa automáticamente
+    // TODO: Mostrar preview de datos a importar con errores detectados
+    // TODO: Enviar al backend para guardado masivo
+    // TODO: Generar reporte de importación exitosa
+    // TODO: Notificar a coordinadores sobre sus programas asignados
+}

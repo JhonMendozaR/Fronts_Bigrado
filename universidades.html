@@ -28,10 +28,29 @@
                     <h1>Universidades</h1>
                     <p>Administra las universidades registradas en el sistema.</p>
                 </div>
-                <button class="new-btn" onclick="openNewUniversityModal()">
-                    <i class="fas fa-plus"></i>
-                    Nueva Universidad
-                </button>
+                <div class="header-actions">
+                    <!-- Botón de Más acciones con dropdown -->
+                    <div class="dropdown-container">
+                        <button class="more-actions-btn" onclick="toggleActionsDropdownUniversidades()">
+                            <i class="fas fa-chevron-down"></i>
+                            Acciones
+                        </button>
+                        <div class="dropdown-menu" id="actionsDropdownUniversidades">
+                            <button class="dropdown-item" onclick="importarMasivamenteUniversidades()">
+                                <i class="fas fa-file-import"></i>
+                                Importar masivamente
+                            </button>
+                            <button class="dropdown-item" onclick="enviarCorreoMasivoUniversidades()">
+                                <i class="fas fa-envelope"></i>
+                                Enviar correo masivo
+                            </button>
+                        </div>
+                    </div>
+                    <button class="new-btn" onclick="openNewUniversityModal()">
+                        <i class="fas fa-plus"></i>
+                        Nueva Universidad
+                    </button>
+                </div>
             </div>
 
             <!-- Cards de resumen -->
