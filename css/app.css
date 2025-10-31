@@ -340,31 +340,6 @@ body {
     position: relative;
 }
 
-/* Botón Más acciones */
-.more-actions-btn {
-    background: #6c757d;
-    color: white;
-    border: none;
-    padding: 12px 24px;
-    border-radius: 8px;
-    font-weight: 600;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    transition: all 0.3s ease;
-}
-
-.more-actions-btn:hover {
-    background: #5a6268;
-    transform: translateY(-1px);
-    box-shadow: 0 8px 20px rgba(90, 108, 125, 0.3);
-}
-
-.more-actions-btn i {
-    font-size: 0.85rem;
-}
-
 /* Dropdown Menu */
 .dropdown-menu {
     position: absolute;
@@ -1207,6 +1182,7 @@ body {
 .secondary-btn:hover {
     background: #5a6268;
     transform: translateY(-1px);
+    box-shadow: 0 8px 20px rgba(90, 108, 125, 0.3);
 }
 
 /* View Modal Styles */
@@ -2496,7 +2472,6 @@ body {
         width: 100%;
     }
 
-    .more-actions-btn,
     .new-btn {
         justify-content: center;
         padding: 10px 16px;

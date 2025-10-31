@@ -472,7 +472,7 @@ function validatePhone(phone) {
 // Cerrar dropdown al hacer clic fuera
 document.addEventListener('click', function(e) {
     const dropdown = document.getElementById('actionsDropdownProgramas');
-    const button = document.querySelector('.more-actions-btn');
+    const button = document.querySelector('.secondary-btn');
     
     if (dropdown && !dropdown.contains(e.target) && button && !button.contains(e.target)) {
         dropdown.classList.remove('active');
